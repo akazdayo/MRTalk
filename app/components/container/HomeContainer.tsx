@@ -1,21 +1,60 @@
-import { useNavigate } from "@remix-run/react";
+import { Box, PersonStanding, PlusIcon } from "lucide-react";
 import Main from "~/components/layout/main";
 import { Button } from "~/components/ui/button";
-import { signOut } from "~/lib/auth/google";
+import { ChatBubbleIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import FeatureCard from "../card/FeatureCard";
 
-export default function HomeContainer({ session }: { session: any }) {
-  const navigate = useNavigate();
-
+export default function HomeContainer() {
   return (
     <Main>
-      {session !== null ? (
+      <div className="grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
-          <p>{session.user.name}さん、ようこそ</p>
-          <Button onClick={() => signOut(navigate)}>Sign out</Button>
+          <h1 className="text-5xl font-bold tracking-tight">MRTalk</h1>
+
+          <div className="flex flex-wrap gap-4">
+            <Button variant="default">
+              <PlusIcon className="w-4 h-4 mr-2" />
+              キャラクターを追加
+            </Button>
+            <Button variant="outline">
+              <Box className="w-4 h-4 mr-2" />
+              モデルを選択
+            </Button>
+          </div>
         </div>
-      ) : (
-        ""
-      )}
+
+        <div className="relative">
+          <img
+            src="img/demo.png"
+            alt="MR character visualization"
+            className="w-full rounded-lg shadow-md"
+          />
+        </div>
+      </div>
+
+      <div className="py-12">
+        <h2 className="text-2xl font-semibold text-center mb-10">
+          3ステップで簡単に始める
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <FeatureCard
+            step="1"
+            title="Githubアカウントでログイン"
+            icon={<GitHubLogoIcon className="w-8 h-8" />}
+          />
+          <FeatureCard
+            step="2"
+            title="キャラクターを選択"
+            icon={<PersonStanding className="w-8 h-8" />}
+          />
+          <FeatureCard
+            step="3"
+            title="MRでキャラクターと会話"
+            icon={<ChatBubbleIcon className="w-8 h-8" />}
+          />
+        </div>
+      </div>
     </Main>
   );
 }

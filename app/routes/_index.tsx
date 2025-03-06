@@ -1,7 +1,5 @@
-import { type LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { MetaFunction } from "@remix-run/node";
 import HomeContainer from "~/components/container/HomeContainer";
-import { getServerSession } from "~/lib/auth/session";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,20 +8,6 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const headers = request.headers;
-
-  const session = await getServerSession(headers);
-
-  if (session) {
-    return session;
-  }
-
-  return null;
-}
-
 export default function Index() {
-  const session = useLoaderData<typeof loader>();
-
-  return <HomeContainer session={session} />;
+  return <HomeContainer />;
 }

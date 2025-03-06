@@ -1,6 +1,6 @@
 # MRTalk
 
-[![technologies](https://skillicons.dev/icons?i=ts,tailwind,remix,threejs,supabase)](https://skillicons.dev)
+[![technologies](https://skillicons.dev/icons?i=ts,tailwind,remix,threejs,prisma)](https://skillicons.dev)
 
 MRTalk は、Meta Quest3 と Web ブラウザだけで、VRM や MMD のキャラクターと現実世界で音声会話をすることができる Web アプリです。
 
@@ -29,35 +29,3 @@ MRTalk は、Meta Quest3 と Web ブラウザだけで、VRM や MMD のキャ�
 - キャラクターは PC やスマホのブラウザから登録可能
 - キャラクターの公開/非公開を設定可能
 - VRM モデルのアップロード機能
-
-# Usage
-
-依存ライブラリのインストール。
-
-```
-yarn install
-```
-
-DB の起動。
-
-```
-supabase start
-```
-
-必要な認証情報を.env に記載。
-
-```
-SUPABASE_URL=
-SUPABASE_ANON_KEY=
-
-GITHUB_SECRET=
-GITHUB_CLIENT_ID=
-
-RESEND_API_KEY=
-```
-
-開発サーバーの起動。
-
-```
-yarn run dev
-```

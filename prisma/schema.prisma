@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id            String    @id
+  id            String      @id
   name          String
   email         String
   emailVerified Boolean
@@ -23,6 +23,8 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  Character     Character[]
+  Favorite      Favorite[]
 
   @@unique([email])
   @@map("user")
@@ -71,4 +73,28 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Character {
+  id          String     @id @default(uuid())
+  name        String
+  personality String
+  story       String
+  model_url   String
+  postedBy    String
+  user        User       @relation(fields: [postedBy], references: [id], onDelete: Cascade)
+  Favorite    Favorite[]
+
+  @@map("character")
+}
+
+model Favorite {
+  id          String    @id @default(uuid())
+  characterId String
+  userId      String
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, characterId])
+  @@map("favorite")
 }

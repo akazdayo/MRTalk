@@ -34,7 +34,7 @@ export default function HomeContainer() {
 
       <div className="py-12">
         <h2 className="text-2xl font-semibold text-center mb-10">
-          3ステップで簡単に始める
+          3ステップで簡単に開始
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

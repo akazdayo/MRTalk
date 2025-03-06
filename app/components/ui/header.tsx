@@ -41,7 +41,9 @@ export default function Header({ siteName = "MRTalk" }: { siteName?: string }) {
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <a href={`/user/${session.user.id}`}>
+                    <DropdownMenuItem>プロフィール</DropdownMenuItem>
+                  </a>
                   <DropdownMenuItem onClick={() => signOut(navigate)}>
                     ログアウト
                   </DropdownMenuItem>

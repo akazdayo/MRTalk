@@ -1,12 +1,17 @@
 import { Character } from "@prisma/client";
 import { prisma } from "~/lib/db/db";
 
-export const getCharacter = async (id: string) => {
-  return await prisma.character.findUnique({ where: { id } });
+export const getCharacter = async (id: string, isIncludePostedBy: boolean) => {
+  return await prisma.character.findUnique({
+    where: { id },
+    include: { user: isIncludePostedBy },
+  });
 };
 
-export const getCharacters = async () => {
-  return await prisma.character.findMany();
+export const getCharacters = async (isIncludePostedBy: boolean) => {
+  return await prisma.character.findMany({
+    include: { user: isIncludePostedBy },
+  });
 };
 
 export const createCharacter = async (character: Omit<Character, "id">) => {
@@ -22,11 +27,11 @@ export const updateCharacter = async (
   });
 
   if (!existingCharacter) {
-    throw new Error("Character not found");
+    throw new Error("Character not found.");
   }
 
   if (existingCharacter.postedBy !== user) {
-    throw new Error("Unauthorized");
+    throw new Error("Unauthorized.");
   }
 
   return await prisma.character.update({
@@ -46,11 +51,11 @@ export const deleteCharacter = async (id: string, user: string) => {
   });
 
   if (!existingCharacter) {
-    throw new Error("Character not found");
+    throw new Error("Character not found.");
   }
 
   if (existingCharacter.postedBy !== user) {
-    throw new Error("Unauthorized");
+    throw new Error("Unauthorized.");
   }
 
   await prisma.character.delete({ where: { id } });

@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { redirect, useLoaderData } from "@remix-run/react";
 import ProfileContainer from "~/components/container/ProfileContainer";
 import Main from "~/components/layout/main";
 import { getUserProfile } from "~/lib/api/user";
@@ -7,7 +7,7 @@ import { getUserProfile } from "~/lib/api/user";
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = params.id;
 
-  if (!id) return null;
+  if (!id) return redirect("/");
 
   const profile = await getUserProfile(id);
 

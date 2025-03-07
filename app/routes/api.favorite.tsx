@@ -11,7 +11,7 @@ export const action: ActionFunction = async ({ request }) => {
   try {
     switch (method) {
       case "POST": {
-        const favorite = createFavorite(user.user.id, body.characterId);
+        const favorite = await createFavorite(user.user.id, body.characterId);
         return Response.json(favorite, { status: 201 });
       }
       case "DELETE": {
@@ -19,9 +19,9 @@ export const action: ActionFunction = async ({ request }) => {
         return Response.json(null);
       }
       default:
-        return Response.json("Method not allowed", { status: 405 });
+        return Response.json("Method not allowed.", { status: 405 });
     }
   } catch (e) {
-    return Response.json(e, { status: 400 });
+    return Response.json("An error has occurred.", { status: 400 });
   }
 };

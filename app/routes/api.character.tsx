@@ -11,7 +11,7 @@ export const action: ActionFunction = async ({ request }) => {
   const body = await request.json();
   const user = await getServerSession(request.headers);
 
-  if (!user) return Response.json("Unauthorized.", { status: 401 });
+  if (!user) return Response.json("Unauthorized", { status: 401 });
 
   try {
     switch (method) {
@@ -43,9 +43,14 @@ export const action: ActionFunction = async ({ request }) => {
         return Response.json(null);
       }
       default:
-        return Response.json("Method not allowed", { status: 405 });
+        return Response.json("Method not allowed.", { status: 405 });
     }
   } catch (e) {
-    return Response.json(e, { status: 400 });
+    const message =
+      e === "Character not found." || e === "Unauthorized."
+        ? e
+        : "An error has occurred.";
+
+    return Response.json(message, { status: 400 });
   }
 };

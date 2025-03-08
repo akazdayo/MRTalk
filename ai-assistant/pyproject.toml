@@ -16,12 +16,14 @@ dependencies = [
     "numpy>=2.2.3",
     "langgraph-checkpoint>=2.0.18",
     "langgraph-checkpoint-postgres>=2.0.16",
+    "uvicorn>=0.34.0",
+    "psycopg[binary,pool]>=3.2.5",
 ]
 readme = "README.md"
 requires-python = ">=3.11"
 
 [tool.rye.scripts]
-dev = { cmd = "uvicorn main:app --reload", env-file = ".env" }
+dev = { cmd = "uvicorn src.main:app --reload", env-file = ".env" }
 
 [build-system]
 requires = ["hatchling"]

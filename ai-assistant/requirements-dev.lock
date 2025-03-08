@@ -29,6 +29,7 @@ charset-normalizer==3.4.1
     # via requests
 click==8.1.8
     # via prisma
+    # via uvicorn
 distro==1.9.0
     # via anthropic
     # via openai
@@ -40,6 +41,7 @@ greenlet==3.1.1
     # via sqlalchemy
 h11==0.14.0
     # via httpcore
+    # via uvicorn
 httpcore==1.0.7
     # via httpx
 httpx==0.28.1
@@ -122,9 +124,13 @@ packaging==24.2
 prisma==0.15.0
     # via ai-assistant
 psycopg==3.2.5
+    # via ai-assistant
     # via langgraph-checkpoint-postgres
+psycopg-binary==3.2.5
+    # via psycopg
 psycopg-pool==3.2.6
     # via langgraph-checkpoint-postgres
+    # via psycopg
 pydantic==2.10.6
     # via anthropic
     # via dydantic
@@ -184,5 +190,7 @@ typing-extensions==4.12.2
     # via sqlalchemy
 urllib3==2.3.0
     # via requests
+uvicorn==0.34.0
+    # via ai-assistant
 zstandard==0.23.0
     # via langsmith

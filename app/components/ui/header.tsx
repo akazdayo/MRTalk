@@ -1,7 +1,7 @@
 import { useNavigate, useOutletContext } from "@remix-run/react";
 import { Avatar, AvatarImage, AvatarFallback } from "./avatar";
 import { Button } from "./button";
-import { LogIn } from "lucide-react";
+import { BoxIcon, LogIn, LogOutIcon, PlusIcon } from "lucide-react";
 import { Session, User } from "better-auth";
 import {
   DropdownMenu,
@@ -42,9 +42,19 @@ export default function Header({ siteName = "MRTalk" }: { siteName?: string }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <a href={`/user/${session.user.id}`}>
-                    <DropdownMenuItem>プロフィール</DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <BoxIcon />
+                      マイキャラクター
+                    </DropdownMenuItem>
+                  </a>
+                  <a href={`/character/add`}>
+                    <DropdownMenuItem>
+                      <PlusIcon />
+                      キャラクターを投稿
+                    </DropdownMenuItem>
                   </a>
                   <DropdownMenuItem onClick={() => signOut(navigate)}>
+                    <LogOutIcon />
                     ログアウト
                   </DropdownMenuItem>
                 </DropdownMenuContent>

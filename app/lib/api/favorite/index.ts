@@ -9,7 +9,7 @@ export const getFavorite = async (userId: string, characterId: string) => {
 export const getUserFavorites = async (userId: string) => {
   return await prisma.favorite.findMany({
     where: { userId },
-    include: { character: true },
+    include: { character: { include: { user: true } } },
   });
 };
 

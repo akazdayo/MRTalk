@@ -8,18 +8,29 @@ export const getCharacter = async (id: string, isIncludePostedBy: boolean) => {
   });
 };
 
-export const getCharacters = async (isIncludePostedBy: boolean) => {
+export const getAllCharacters = async (isIncludePostedBy: boolean) => {
   return await prisma.character.findMany({
     include: { user: isIncludePostedBy },
+    orderBy: { updatedAt: "desc" },
   });
 };
 
-export const createCharacter = async (character: Omit<Character, "id">) => {
+export const getAllCharactersByUser = async (id: string) => {
+  return await prisma.character.findMany({
+    include: { user: true },
+    where: { postedBy: id },
+    orderBy: { updatedAt: "desc" },
+  });
+};
+
+export const createCharacter = async (
+  character: Omit<Character, "id" | "createdAt" | "updatedAt">
+) => {
   return await prisma.character.create({ data: character });
 };
 
 export const updateCharacter = async (
-  character: Omit<Character, "postedBy">,
+  character: Omit<Character, "postedBy" | "createdAt" | "updatedAt">,
   user: string
 ) => {
   const existingCharacter = await prisma.character.findUnique({

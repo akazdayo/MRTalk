@@ -1,25 +1,43 @@
 import { Box, PersonStanding, PlusIcon } from "lucide-react";
-import Main from "~/components/layout/main";
 import { Button } from "~/components/ui/button";
 import { ChatBubbleIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import FeatureCard from "../card/FeatureCard";
+import { useOutletContext } from "@remix-run/react";
+import { Session, User } from "better-auth";
 
 export default function HomeContainer() {
+  const { session } = useOutletContext<{
+    session: { user: User; session: Session };
+  }>();
+
   return (
-    <Main>
+    <div>
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
           <h1 className="text-5xl font-bold tracking-tight">MRTalk</h1>
 
           <div className="flex flex-wrap gap-4">
-            <Button variant="default">
-              <PlusIcon className="w-4 h-4 mr-2" />
-              キャラクターを追加
-            </Button>
-            <Button variant="outline">
-              <Box className="w-4 h-4 mr-2" />
-              モデルを選択
-            </Button>
+            <div>
+              <a href="/character/add">
+                <Button variant="default">
+                  <PlusIcon className="w-4 h-4 mr-2" />
+                  キャラクターを追加
+                </Button>
+              </a>
+            </div>
+
+            {session ? (
+              <div>
+                <a href={`/user/${session.user.id}`}>
+                  <Button variant="outline">
+                    <Box className="w-4 h-4 mr-2" />
+                    キャラクターを選択
+                  </Button>
+                </a>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
 
@@ -55,6 +73,6 @@ export default function HomeContainer() {
           />
         </div>
       </div>
-    </Main>
+    </div>
   );
 }

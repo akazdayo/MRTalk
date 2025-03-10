@@ -2,7 +2,7 @@ import datetime
 import os
 from typing import Any, Dict
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Header
 from langchain.chat_models import init_chat_model
 from langchain.embeddings import init_embeddings
 from langgraph.func import entrypoint
@@ -23,6 +23,7 @@ optimizer = create_prompt_optimizer(
     config={"max_reflection_steps": 3, "min_reflection_steps": 0},
 )
 
+
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
 memory_manager = create_memory_store_manager(
     "openai:o3-mini",
@@ -31,7 +32,12 @@ memory_manager = create_memory_store_manager(
 
 
 # セッショントークンからユーザーを取得
-async def get_current_user(token: str) -> User:
+async def get_current_user(authorization: str = Header(None)) -> User:
+    if not authorization:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    token = authorization.replace("Bearer ", "")
+
     prisma = Prisma()
     await prisma.connect()
 
@@ -41,7 +47,7 @@ async def get_current_user(token: str) -> User:
 
     await prisma.disconnect()
 
-    if not session or session.expiresAt < datetime.utcnow():
+    if not session or session.expiresAt < datetime.datetime.now(datetime.timezone.utc):
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
     return session.user
@@ -56,15 +62,9 @@ async def get_character(id: str) -> Character | None:
     return character
 
 
-@app.get("/")
-async def root() -> Dict[str, str]:
-    return {"message": "welcome to MRTalk API."}
-
-
 @app.get("/chat")
 async def talk(
     text: str,
-    user_id: str,
     character_id: str,
     current_user: User = Depends(get_current_user),
 ) -> Dict[str, str]:
@@ -126,7 +126,7 @@ async def talk(
         response = await chat.ainvoke(
             {
                 "messages": [{"role": "user", "content": text}],
-                "user_id": user_id,
+                "user_id": current_user.id,
                 "character_id": character_id,
             }
         )

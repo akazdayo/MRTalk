@@ -14,7 +14,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   if (!id) return redirect("/");
 
   const profile = await getUserProfile(id);
-  const uploadedCharacter = await getAllCharactersByUser(id);
+  const uploadedCharacter = await getAllCharactersByUser(id, true);
   const favorite = await getUserFavorites(id);
 
   return { profile, uploadedCharacter, favorite };
@@ -28,6 +28,7 @@ export default function UserProfile() {
     return (
       <Main>
         <ProfileContainer user={profile} />
+
         {uploadedCharacter.length > 0 ? (
           <CharacterList title="投稿済み">
             {uploadedCharacter.map((character) => {

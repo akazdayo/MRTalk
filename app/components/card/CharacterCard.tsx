@@ -12,25 +12,29 @@ export default function CharacterCard({
   postedby: User;
 }) {
   return (
-    <a href={`/character/${id}`}>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">{name}</CardTitle>
-        </CardHeader>
+    <div className="min-w-44">
+      <a href={`/character/${id}`}>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold">{name}</CardTitle>
+          </CardHeader>
 
-        <CardFooter>
-          <div>
-            <p>by {postedby.name}</p>
-          </div>
+          <CardFooter>
+            <div>
+              <p>by {postedby.name}</p>
+            </div>
 
-          <div>
-            <Avatar>
-              <AvatarImage src={postedby.image!} alt={postedby.name} />
-              <AvatarFallback>{postedby.name.toUpperCase()[0]}</AvatarFallback>
-            </Avatar>
-          </div>
-        </CardFooter>
-      </Card>
-    </a>
+            <div>
+              <Avatar>
+                <AvatarImage src={postedby.image!} alt={postedby.name} />
+                <AvatarFallback>
+                  {postedby.name.toUpperCase()[0]}
+                </AvatarFallback>
+              </Avatar>
+            </div>
+          </CardFooter>
+        </Card>
+      </a>
+    </div>
   );
 }

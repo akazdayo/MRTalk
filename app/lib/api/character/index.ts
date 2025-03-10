@@ -15,9 +15,12 @@ export const getAllCharacters = async (isIncludePostedBy: boolean) => {
   });
 };
 
-export const getAllCharactersByUser = async (id: string) => {
+export const getAllCharactersByUser = async (
+  id: string,
+  isIncludePostedBy: boolean
+) => {
   return await prisma.character.findMany({
-    include: { user: true },
+    include: { user: isIncludePostedBy },
     where: { postedBy: id },
     orderBy: { updatedAt: "desc" },
   });
@@ -31,7 +34,7 @@ export const createCharacter = async (
 
 export const updateCharacter = async (
   character: Omit<Character, "postedBy" | "createdAt" | "updatedAt">,
-  user: string
+  userId: string
 ) => {
   const existingCharacter = await prisma.character.findUnique({
     where: { id: character.id },
@@ -41,7 +44,7 @@ export const updateCharacter = async (
     throw new Error("Character not found.");
   }
 
-  if (existingCharacter.postedBy !== user) {
+  if (existingCharacter.postedBy !== userId) {
     throw new Error(
       "The requesting user does not have permission to edit the character."
     );

@@ -11,7 +11,7 @@ export const action: ActionFunction = async ({ request }) => {
   const body = await request.json();
   const user = await getServerSession(request.headers);
 
-  if (!user) return Response.json("Unauthorized", { status: 401 });
+  if (!user) return Response.json("Unauthorized.", { status: 401 });
 
   try {
     switch (method) {

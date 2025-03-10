@@ -15,23 +15,30 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     );
   }
 
-  const res = await fetch(
-    `http://localhost:8000/chat?text=${text}&character_id=${id}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${session.session.token}`,
-      },
+  try {
+    const res = await fetch(
+      `http://localhost:8000/chat?text=${text}&character_id=${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${session.session.token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      const errorResponse = await res.json();
+      return Response.json(
+        { error: errorResponse.details },
+        { status: res.status }
+      );
     }
-  );
 
-  if (!res.ok) {
-    const errorResponse = await res.json();
-    return Response.json(errorResponse, { status: res.status });
+    const json = await res.json();
+    return Response.json(json, {
+      status: 200,
+    });
+  } catch (e) {
+    return Response.json({ error: "An error has occurred." }, { status: 500 });
   }
-
-  const json = await res.json();
-  return Response.json(json, {
-    status: 200,
-  });
 }

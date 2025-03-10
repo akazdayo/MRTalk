@@ -31,7 +31,9 @@ export const updateCharacter = async (
   }
 
   if (existingCharacter.postedBy !== user) {
-    throw new Error("Unauthorized.");
+    throw new Error(
+      "The requesting user does not have permission to edit the character."
+    );
   }
 
   return await prisma.character.update({
@@ -55,7 +57,9 @@ export const deleteCharacter = async (id: string, user: string) => {
   }
 
   if (existingCharacter.postedBy !== user) {
-    throw new Error("Unauthorized.");
+    throw new Error(
+      "The requesting user does not have permission to edit the character."
+    );
   }
 
   await prisma.character.delete({ where: { id } });

@@ -22,6 +22,6 @@ export const action: ActionFunction = async ({ request }) => {
         return Response.json("Method not allowed.", { status: 405 });
     }
   } catch (e) {
-    return Response.json("An error has occurred.", { status: 400 });
+    return Response.json("An error has occurred.", { status: 500 });
   }
 };

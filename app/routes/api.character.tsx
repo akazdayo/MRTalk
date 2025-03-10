@@ -46,11 +46,17 @@ export const action: ActionFunction = async ({ request }) => {
         return Response.json("Method not allowed.", { status: 405 });
     }
   } catch (e) {
-    const message =
-      e === "Character not found." || e === "Unauthorized."
-        ? e
-        : "An error has occurred.";
-
-    return Response.json(message, { status: 400 });
+    switch (e) {
+      case e === "Character not found.":
+        return Response.json({ error: e }, { status: 400 });
+      case e ===
+        "The requesting user does not have permission to edit the character.":
+        return Response.json({ error: e }, { status: 403 });
+      default:
+        return Response.json(
+          { error: "An error has occurred." },
+          { status: 500 }
+        );
+    }
   }
 };

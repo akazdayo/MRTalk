@@ -72,15 +72,17 @@ export default function CharacterDetailsContainer({
 
         <p>{data.character.user.name}が投稿</p>
 
-        <Avatar>
-          <AvatarImage
-            src={data.character.user.image!}
-            alt={data.character.user.name}
-          />
-          <AvatarFallback>
-            {data.character.user.name.toUpperCase()[0]}
-          </AvatarFallback>
-        </Avatar>
+        <a href={`/user/${data.character.user.id}`}>
+          <Avatar>
+            <AvatarImage
+              src={data.character.user.image!}
+              alt={data.character.user.name}
+            />
+            <AvatarFallback>
+              {data.character.user.name.toUpperCase()[0]}
+            </AvatarFallback>
+          </Avatar>
+        </a>
       </div>
       <p>性格</p>
       <div>{data.character.personality}</div>

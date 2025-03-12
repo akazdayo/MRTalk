@@ -25,12 +25,14 @@ export default function CharacterCard({
             </div>
 
             <div>
-              <Avatar>
-                <AvatarImage src={postedby.image!} alt={postedby.name} />
-                <AvatarFallback>
-                  {postedby.name.toUpperCase()[0]}
-                </AvatarFallback>
-              </Avatar>
+              <a href={`/user/${postedby.id}`}>
+                <Avatar>
+                  <AvatarImage src={postedby.image!} alt={postedby.name} />
+                  <AvatarFallback>
+                    {postedby.name.toUpperCase()[0]}
+                  </AvatarFallback>
+                </Avatar>
+              </a>
             </div>
           </CardFooter>
         </Card>

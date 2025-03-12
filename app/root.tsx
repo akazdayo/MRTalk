@@ -14,6 +14,7 @@ import type {
 
 import "./tailwind.css";
 import { getServerSession } from "./lib/auth/session";
+import { Toaster } from "~/components/ui/sonner";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -55,6 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster />
         <ScrollRestoration />
         <Scripts />
       </body>

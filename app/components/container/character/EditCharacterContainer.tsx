@@ -1,16 +1,28 @@
 import { Character } from "@prisma/client";
-import { Form } from "@remix-run/react";
+import { Form, useNavigate } from "@remix-run/react";
 import { SaveIcon, TrashIcon } from "lucide-react";
 import { FormEvent } from "react";
+import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
 
 export default function EditCharacterContainer({
   character,
 }: {
   character: Character;
 }) {
+  const navigate = useNavigate();
+
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
@@ -19,7 +31,7 @@ export default function EditCharacterContainer({
     const personality = formData.get("personality") as string;
     const story = formData.get("story") as string;
 
-    await fetch("/api/character/", {
+    const res = await fetch("/api/character/", {
       method: "PUT",
       body: JSON.stringify({
         id: character.id,
@@ -29,15 +41,27 @@ export default function EditCharacterContainer({
         story,
       }),
     });
+
+    if (!res.ok) {
+      toast("エラーが発生しました。", { className: "bg-red-500" });
+    }
+
+    navigate(`/character/${character.id}`);
   };
 
   const onDelete = async () => {
-    await fetch("/api/character/", {
+    const res = await fetch("/api/character/", {
       method: "DELETE",
       body: JSON.stringify({
         id: character.id,
       }),
     });
+
+    if (!res.ok) {
+      toast("エラーが発生しました。", { className: "bg-red-500" });
+    }
+
+    navigate(`/`);
   };
 
   return (
@@ -94,14 +118,32 @@ export default function EditCharacterContainer({
             <SaveIcon className="mr-2" />
             更新する
           </Button>
-          <Button
-            type="button"
-            className="bg-red-600 text-white"
-            onClick={onDelete}
-          >
-            <TrashIcon className="mr-2" />
-            削除する
-          </Button>
+
+          <Dialog>
+            <DialogTrigger>
+              <Button type="button" className="bg-red-600 text-white">
+                <TrashIcon className="mr-2" />
+                削除する
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>本当に削除しますか?</DialogTitle>
+              </DialogHeader>
+              <DialogFooter className="sm:justify-start">
+                <DialogClose asChild>
+                  <Button
+                    type="button"
+                    className="bg-red-600 text-white"
+                    onClick={onDelete}
+                  >
+                    <TrashIcon className="mr-2" />
+                    削除する
+                  </Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </Form>
     </div>

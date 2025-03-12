@@ -1,11 +1,14 @@
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
-import { Form } from "@remix-run/react";
+import { Form, useNavigate } from "@remix-run/react";
 import { PlusIcon } from "lucide-react";
 import { FormEvent } from "react";
+import { toast } from "sonner";
 
 export default function AddCharacterContainer() {
+  const navigate = useNavigate();
+
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
@@ -14,10 +17,18 @@ export default function AddCharacterContainer() {
     const personality = formData.get("personality") as string;
     const story = formData.get("story") as string;
 
-    await fetch("/api/character/", {
+    const res = await fetch("/api/character/", {
       method: "POST",
       body: JSON.stringify({ name, model_url, personality, story }),
     });
+
+    if (!res.ok) {
+      toast("エラーが発生しました。", { className: "bg-red-500" });
+    }
+
+    const json = await res.json();
+
+    navigate(`/character/${json.id}`);
   };
 
   return (

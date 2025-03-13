@@ -21,4 +21,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  server: {
+    allowedHosts: ["expressions-lone-sn-digest.trycloudflare.com"],
+  },
 });

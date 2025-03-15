@@ -84,7 +84,7 @@ export default function VRM() {
         animations.current.set("sit", sitClip);
         animations.current.set("walk", walkClip);
 
-        mixer.current.clipAction(walkClip).play();
+        mixer.current.clipAction(sitClip).play();
       }
     };
 

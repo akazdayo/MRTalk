@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["ant-ts-collecting-place.trycloudflare.com"],
+    allowedHosts: ["array-appliance-message-mart.trycloudflare.com"],
   },
 });

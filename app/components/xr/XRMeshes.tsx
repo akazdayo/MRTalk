@@ -51,7 +51,11 @@ export default function XRMeshes() {
               setMeshes(mesh.semanticLabel!, self);
             }}
           >
-            <meshBasicMaterial color={getColorByLabel(mesh.semanticLabel!)} />
+            <meshBasicMaterial
+              color={getColorByLabel(mesh.semanticLabel!)}
+              opacity={0.5}
+              transparent
+            />
           </XRMeshModel>
         </XRSpace>
       ))}

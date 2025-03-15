@@ -16,13 +16,14 @@ import { init } from "@recast-navigation/core";
 import { Text } from "@react-three/drei";
 import { createVRMAnimationClip } from "@pixiv/three-vrm-animation";
 import { useEffect, useRef, useState } from "react";
+import { VRM as VRMType } from "@pixiv/three-vrm";
 
 export default function VRM() {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [mode, setMode] = useState<"sitting" | "walking">("sitting");
 
   const mixer = useRef<AnimationMixer | null>(null);
-  const isSetupComplete = useRef<boolean>(false);
+  const isSetupCompconste = useRef<boolean>(false);
   const isNavMeshBaked = useRef<boolean>(false);
   const crowd = useRef<Crowd | null>(null);
   const agent = useRef<CrowdAgent | null>(null);
@@ -100,8 +101,43 @@ export default function VRM() {
     }
   }
 
+  function lookAtPlayer() {
+    if (!gltf) return;
+    const vrm: VRMType = gltf.userData.vrm;
+    const camera = gl.xr.getCamera();
+    const headBone = vrm.humanoid.getBoneNode("head");
+    if (!headBone) return;
+
+    const distance = gltf.scene.position.distanceTo(camera.position);
+
+    if (distance > 2) {
+      vrm.lookAt?.reset();
+      return;
+    }
+
+    vrm.lookAt?.lookAt(camera.position);
+
+    const originalRotation = headBone.quaternion.clone();
+
+    headBone.lookAt(camera.position);
+    const targetRotation = headBone.quaternion.clone();
+
+    headBone.quaternion.copy(originalRotation);
+
+    const angle = originalRotation.angleTo(targetRotation);
+
+    const maxAngle = Math.PI / 4;
+
+    if (angle > maxAngle) {
+      const t = maxAngle / angle;
+      headBone.quaternion.slerpQuaternions(originalRotation, targetRotation, t);
+    } else {
+      headBone.quaternion.slerp(targetRotation, 0.5);
+    }
+  }
+
   gl.xr.addEventListener("sessionstart", () => {
-    if (isSetupComplete.current) return;
+    if (isSetupCompconste.current) return;
 
     const setUpModels = async () => {
       const loadedGltf = await loadVRM("/models/shibu.vrm");
@@ -132,11 +168,15 @@ export default function VRM() {
     init();
     setUpModels();
 
-    isSetupComplete.current = true;
+    isSetupCompconste.current = true;
   });
 
   gl.xr.addEventListener("planesdetected", () => {
-    if (meshes.size <= 0 || !isSetupComplete.current || isNavMeshBaked.current)
+    if (
+      meshes.size <= 0 ||
+      !isSetupCompconste.current ||
+      isNavMeshBaked.current
+    )
       return;
 
     const meshList = [];
@@ -159,22 +199,26 @@ export default function VRM() {
   useEffect(() => {
     moveAgent();
 
-    const updateInterval = setInterval(updateModelMovement, 500);
     const movementInterval = setInterval(moveAgent, 5000);
 
     return () => {
-      clearInterval(updateInterval);
       clearInterval(movementInterval);
     };
-  }, [gltf, mode]);
+  }, [mode]);
 
   useFrame(() => {
     const deltaTime = clock.current.getDelta();
-    gltf?.userData.vrm?.update(deltaTime);
     mixer.current?.update(deltaTime);
+
+    if (gltf) {
+      gltf.userData.vrm.update(deltaTime);
+      lookAtPlayer();
+    }
 
     if (mode === "walking") {
       if (crowd.current && agent.current && gltf) {
+        updateModelMovement();
+
         crowd.current.update(1 / 60);
         const { x, z } = agent.current.position();
         gltf.scene.position.set(x, 0, z);

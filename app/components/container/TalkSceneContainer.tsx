@@ -15,8 +15,8 @@ export default function TalkSceneContainer() {
       <Canvas>
         <XR store={store}>
           <ambientLight />
-          <VRM />
           <XRMeshesComponent />
+          <VRM />
         </XR>
       </Canvas>
     </Main>

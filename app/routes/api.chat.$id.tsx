@@ -1,10 +1,20 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs } from "@remix-run/node";
 import { getServerSession } from "~/lib/auth/session";
-import { getParams } from "~/utils/getParams";
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function action({ params, request }: ActionFunctionArgs) {
   const id = params.id;
-  const text = getParams(request.url, "text");
+  const form = await request.formData();
+  const audio = form.get("file");
+
+  if (!audio) {
+    return Response.json(
+      { error: "Audio files required." },
+      {
+        status: 400,
+      }
+    );
+  }
+
   const session = await getServerSession(request.headers);
   if (!session) {
     return Response.json(
@@ -16,20 +26,19 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   }
 
   try {
-    const res = await fetch(
-      `http://localhost:8000/chat?text=${text}&character_id=${id}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${session.session.token}`,
-        },
-      }
-    );
+    const res = await fetch(`http://localhost:8000/chat?character_id=${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${session.session.token}`,
+      },
+      body: form,
+    });
 
     if (!res.ok) {
       const errorResponse = await res.json();
+
       return Response.json(
-        { error: errorResponse.details },
+        { error: errorResponse.detail },
         { status: res.status }
       );
     }

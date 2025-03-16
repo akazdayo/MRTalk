@@ -17,10 +17,14 @@ import { Text } from "@react-three/drei";
 import { createVRMAnimationClip } from "@pixiv/three-vrm-animation";
 import { useEffect, useRef, useState } from "react";
 import { VRM as VRMType } from "@pixiv/three-vrm";
+import { useXRInputSourceEvent, useXRInputSourceState } from "@react-three/xr";
+import { useReactMediaRecorder } from "react-media-recorder";
+import { Character } from "@prisma/client";
 
-export default function VRM() {
+export default function VRM({ character }: { character: Character }) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [mode, setMode] = useState<"sitting" | "walking">("sitting");
+  const [text, setText] = useState<string>("aaaaaaaa");
 
   const mixer = useRef<AnimationMixer | null>(null);
   const isSetupCompconste = useRef<boolean>(false);
@@ -30,10 +34,56 @@ export default function VRM() {
   const navMeshQuery = useRef<NavMeshQuery | null>(null);
   const clock = useRef<Clock>(new Clock());
   const animations = useRef<Map<string, AnimationClip>>(new Map());
+  const { startRecording, stopRecording } = useReactMediaRecorder({
+    audio: true,
+    onStop(blobUrl, blob) {
+      talk(blob);
+    },
+  });
 
   const { gl } = useThree();
   const meshes = useMeshStore((state) => state.meshes);
   const getMeshByLabel = useMeshStore((state) => state.getMeshByLabel);
+
+  const controller = useXRInputSourceState("hand", "left");
+
+  useXRInputSourceEvent(
+    controller?.inputSource,
+    "selectstart",
+    () => {
+      setText("録音中...");
+      startRecording();
+    },
+    [controller]
+  );
+
+  useXRInputSourceEvent(
+    controller?.inputSource,
+    "selectend",
+    () => {
+      setText("考え中...");
+      stopRecording();
+    },
+    [controller]
+  );
+
+  async function talk(blob: Blob) {
+    const form = new FormData();
+    form.set("file", blob);
+
+    const res = await fetch(`/api/chat/${character.id}`, {
+      method: "POST",
+      body: form,
+    });
+
+    const json = await res.json();
+
+    if (!res.ok) {
+      setText("エラーが発生しました。");
+    }
+
+    setText(json.response);
+  }
 
   function StopAnim(mixer: AnimationMixer, name: "walk" | "idle" | "sit") {
     const anim = animations.current.get(name);
@@ -132,7 +182,7 @@ export default function VRM() {
       const t = maxAngle / angle;
       headBone.quaternion.slerpQuaternions(originalRotation, targetRotation, t);
     } else {
-      headBone.quaternion.slerp(targetRotation, 0.5);
+      headBone.quaternion.slerp(targetRotation, 0.1);
     }
   }
 
@@ -250,6 +300,7 @@ export default function VRM() {
           <primitive object={gltf.scene} />
 
           <mesh
+            pointerEventsType={{ deny: "grab" }}
             onClick={() => {
               if (mixer.current) {
                 mixer.current.stopAllAction();
@@ -273,6 +324,18 @@ export default function VRM() {
             </group>
             <boxGeometry />
           </mesh>
+
+          <group
+            position={[gltf.scene.position.x, 1.5, gltf.scene.position.z]}
+            scale={0.1}
+            lookAt={[
+              gl.xr.getCamera().position.x,
+              gl.xr.getCamera().position.y,
+              gl.xr.getCamera().position.z,
+            ]}
+          >
+            <Text font="/fonts/keifont.ttf">{text}</Text>
+          </group>
         </>
       ) : null}
     </>

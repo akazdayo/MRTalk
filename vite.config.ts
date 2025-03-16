@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["array-appliance-message-mart.trycloudflare.com"],
+    allowedHosts: ["border-arising-images-having.trycloudflare.com"],
   },
 });

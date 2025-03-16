@@ -4,10 +4,15 @@ import XRMeshesComponent from "../xr/XRMeshes";
 import { Button } from "../ui/button";
 import Main from "../layout/main";
 import VRM from "../xr/VRM";
+import { Character } from "@prisma/client";
 
 const store = createXRStore();
 
-export default function TalkSceneContainer() {
+export default function TalkSceneContainer({
+  character,
+}: {
+  character: Character;
+}) {
   return (
     <Main>
       <Button onClick={() => store.enterAR()}>Enter AR</Button>
@@ -16,7 +21,7 @@ export default function TalkSceneContainer() {
         <XR store={store}>
           <ambientLight />
           <XRMeshesComponent />
-          <VRM />
+          <VRM character={character} />
         </XR>
       </Canvas>
     </Main>

@@ -2,7 +2,8 @@ import datetime
 import os
 from typing import Any, Dict
 
-from fastapi import Depends, FastAPI, HTTPException, Header
+from fastapi import Depends, FastAPI, HTTPException, Header, Request, UploadFile
+import tempfile
 from langchain.chat_models import init_chat_model
 from langchain.embeddings import init_embeddings
 from langgraph.func import entrypoint
@@ -11,14 +12,16 @@ from langmem import create_memory_store_manager, create_prompt_optimizer
 
 from prisma import Prisma
 from prisma.models import Character, User
+import whisper
 
+model = whisper.load_model("small")
 app = FastAPI()
+llm = init_chat_model("gpt-4o-mini")
 
-llm = init_chat_model("openai:o3-mini")
 
 # システムプロンプトを動的にLLMに改善させる(未実装)
 optimizer = create_prompt_optimizer(
-    "openai:o3-mini",
+    "gpt-4o-mini",
     kind="gradient",
     config={"max_reflection_steps": 3, "min_reflection_steps": 0},
 )
@@ -26,9 +29,26 @@ optimizer = create_prompt_optimizer(
 
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
 memory_manager = create_memory_store_manager(
-    "openai:o3-mini",
+    "gpt-4o-mini",
     namespace=("memories", "{user_id}", "{character_id}"),
 )
+
+
+# 音声ファイルを文字起こし
+async def get_audio_text(request: Request) -> str:
+    form = await request.form()
+    file = form['file']
+
+    with tempfile.NamedTemporaryFile(delete=True, suffix=".wav") as temp_file:
+        temp_file_path = temp_file.name
+
+        with open(temp_file_path, "wb") as f:
+            content = await file.read()
+            f.write(content)
+
+        result = model.transcribe(temp_file_path)
+
+        return result["text"]
 
 
 # セッショントークンからユーザーを取得
@@ -58,15 +78,20 @@ async def get_character(id: str) -> Character | None:
     prisma = Prisma()
     await prisma.connect()
     character = await prisma.character.find_unique(where={"id": id})
+
+    if not character:
+        raise HTTPException(
+            status_code=400, detail="Character not found")
+
     await prisma.disconnect()
     return character
 
 
-@app.get("/chat")
+@app.post("/chat")
 async def talk(
-    text: str,
     character_id: str,
     current_user: User = Depends(get_current_user),
+    text: str = Depends(get_audio_text),
 ) -> Dict[str, str]:
     # DBに接続(リクエストごとに接続しているのでどうにかする)
     with PostgresStore.from_conn_string(
@@ -78,6 +103,7 @@ async def talk(
         },
     ) as store:
         store.conn.execute("SET search_path TO memories")
+        store.setup()
 
         @entrypoint(store=store)
         async def chat(params: Dict[str, Any]) -> str:
@@ -96,7 +122,7 @@ async def talk(
           <important>
           ユーザの役にたつAIアシスタントとしてではなく、ユーザと共に生活するパートナーとして振る舞いましょう。
           </important>
-      
+
           あなたがなりきるキャラクターの名前は、「{character.name}」です。
 
           あなたがなりきるキャラクターの人格や基本設定は、以下の通りです。

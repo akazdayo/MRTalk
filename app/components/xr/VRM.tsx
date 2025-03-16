@@ -20,13 +20,16 @@ import { VRM as VRMType } from "@pixiv/three-vrm";
 import { useXRInputSourceEvent, useXRInputSourceState } from "@react-three/xr";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { Character } from "@prisma/client";
+import TextBox from "./TextBox";
+import SettingsPanel from "./SettingsPanel";
 
 export default function VRM({ character }: { character: Character }) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [mode, setMode] = useState<"sitting" | "walking">("sitting");
-  const [text, setText] = useState<string>("aaaaaaaa");
+  const [text, setText] = useState<string>("話しかけてみましょう！");
 
   const mixer = useRef<AnimationMixer | null>(null);
+  const isTalking = useRef<boolean>(false);
   const isSetupCompconste = useRef<boolean>(false);
   const isNavMeshBaked = useRef<boolean>(false);
   const crowd = useRef<Crowd | null>(null);
@@ -51,8 +54,11 @@ export default function VRM({ character }: { character: Character }) {
     controller?.inputSource,
     "selectstart",
     () => {
+      if (isTalking.current) return;
+
       setText("録音中...");
       startRecording();
+      isTalking.current = true;
     },
     [controller]
   );
@@ -80,9 +86,11 @@ export default function VRM({ character }: { character: Character }) {
 
     if (!res.ok) {
       setText("エラーが発生しました。");
+      isTalking.current = false;
+    } else {
+      setText(json.response);
+      isTalking.current = false;
     }
-
-    setText(json.response);
   }
 
   function StopAnim(mixer: AnimationMixer, name: "walk" | "idle" | "sit") {
@@ -266,7 +274,7 @@ export default function VRM({ character }: { character: Character }) {
     }
 
     if (mode === "walking") {
-      if (crowd.current && agent.current && gltf) {
+      if (crowd.current && agent.current && gltf && !isTalking.current) {
         updateModelMovement();
 
         crowd.current.update(1 / 60);
@@ -299,8 +307,8 @@ export default function VRM({ character }: { character: Character }) {
         <>
           <primitive object={gltf.scene} />
 
-          <mesh
-            pointerEventsType={{ deny: "grab" }}
+          <SettingsPanel
+            mode={mode}
             onClick={() => {
               if (mixer.current) {
                 mixer.current.stopAllAction();
@@ -316,26 +324,10 @@ export default function VRM({ character }: { character: Character }) {
                 }
               }
             }}
-            scale={0.1}
-            position={[0, 1.4, 0]}
-          >
-            <group position={[0, 1.7, 0]}>
-              <Text>{mode === "walking" ? "座る" : "歩かせる"}</Text>
-            </group>
-            <boxGeometry />
-          </mesh>
+            camera={gl.xr.getCamera()}
+          />
 
-          <group
-            position={[gltf.scene.position.x, 1.5, gltf.scene.position.z]}
-            scale={0.1}
-            lookAt={[
-              gl.xr.getCamera().position.x,
-              gl.xr.getCamera().position.y,
-              gl.xr.getCamera().position.z,
-            ]}
-          >
-            <Text font="/fonts/keifont.ttf">{text}</Text>
-          </group>
+          <TextBox text={text} camera={gl.xr.getCamera()} />
         </>
       ) : null}
     </>

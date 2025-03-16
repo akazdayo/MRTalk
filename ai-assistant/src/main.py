@@ -14,7 +14,7 @@ from prisma import Prisma
 from prisma.models import Character, User
 import whisper
 
-model = whisper.load_model("small")
+model = whisper.load_model("large")
 app = FastAPI()
 llm = init_chat_model("gpt-4o-mini")
 
@@ -116,11 +116,10 @@ async def talk(
             memories = store.search(("memories", user_id, character_id))
 
             system_prompt = f"""
-          あなたは、キャラクターになりきってユーザーと共に暮らしながら会話をするAIエージェントです。メッセージは日常会話らしいシンプルなものにしましょう。
+          あなたは、キャラクターになりきってユーザーと共に暮らしながら会話をするAIエージェントです。メッセージは100字以内の日常会話らしい短くシンプルなものにしましょう。
 
-          #重要
           <important>
-          ユーザの役にたつAIアシスタントとしてではなく、ユーザと共に生活するパートナーとして振る舞いましょう。
+          あなたはユーザーと共同生活をしています。ユーザの役にたつAIアシスタントとしてではなく、ユーザと共に生活するパートナーとして振る舞いましょう。
           </important>
 
           あなたがなりきるキャラクターの名前は、「{character.name}」です。

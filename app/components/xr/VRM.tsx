@@ -13,7 +13,6 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { setupNavMeshAndCrowd } from "~/lib/xr/navigation/setupNavMeshAndCrowd";
 import { Crowd, CrowdAgent, NavMeshQuery } from "recast-navigation";
 import { init } from "@recast-navigation/core";
-import { Text } from "@react-three/drei";
 import { createVRMAnimationClip } from "@pixiv/three-vrm-animation";
 import { useEffect, useRef, useState } from "react";
 import { VRM as VRMType } from "@pixiv/three-vrm";
@@ -328,7 +327,7 @@ export default function VRM({ character }: { character: Character }) {
             camera={gl.xr.getCamera()}
           />
 
-          <TextBox text={text} camera={gl.xr.getCamera()} />
+          <TextBox text={text} camera={gl.xr.getCamera()} gltf={gltf} />
         </>
       ) : null}
     </>

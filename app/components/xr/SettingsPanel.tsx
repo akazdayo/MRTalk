@@ -24,7 +24,7 @@ export default function SettingsPanel({
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[1, 0, 1]}>
       <Root>
         <Container
           flexDirection="column"

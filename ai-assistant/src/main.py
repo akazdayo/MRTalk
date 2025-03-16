@@ -87,12 +87,7 @@ async def get_character(id: str) -> Character | None:
     return character
 
 
-@app.post("/chat")
-async def talk(
-    character_id: str,
-    current_user: User = Depends(get_current_user),
-    text: str = Depends(get_audio_text),
-) -> Dict[str, str]:
+async def talk(text: str, current_user: User, character_id: str) -> str:
     # DBに接続(リクエストごとに接続しているのでどうにかする)
     with PostgresStore.from_conn_string(
         os.getenv("DATABASE_URL"),
@@ -116,6 +111,8 @@ async def talk(
             memories = store.search(("memories", user_id, character_id))
 
             system_prompt = f"""
+          今の時間は <time>{datetime.datetime.now(datetime.timezone.utc)}</time> です。
+
           あなたは、キャラクターになりきってユーザーと共に暮らしながら会話をするAIエージェントです。メッセージは100字以内の日常会話らしい短くシンプルなものにしましょう。
 
           <important>
@@ -160,4 +157,26 @@ async def talk(
                 "character_id": character_id,
             }
         )
-        return {"response": response}
+        return response
+
+
+@app.get("/chat")
+async def chat_get(
+    text: str,
+    character_id: str,
+    current_user: User = Depends(get_current_user),
+) -> Dict[str, str]:
+    response: str = await talk(character_id=character_id,
+                               current_user=current_user, text=text)
+    return {"response": response}
+
+
+@app.post("/chat")
+async def chat_post(
+    character_id: str,
+    current_user: User = Depends(get_current_user),
+    text: str = Depends(get_audio_text),
+) -> Dict[str, str]:
+    response: str = await talk(character_id=character_id,
+                               current_user=current_user, text=text)
+    return {"response": response}

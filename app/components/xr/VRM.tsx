@@ -34,7 +34,7 @@ export default function VRM({ character }: { character: Character }) {
   const crowd = useRef<Crowd | null>(null);
   const agent = useRef<CrowdAgent | null>(null);
   const navMeshQuery = useRef<NavMeshQuery | null>(null);
-  const clock = useRef<Clock>(new Clock());
+  const clock = new Clock();
   const animations = useRef<Map<string, AnimationClip>>(new Map());
   const { startRecording, stopRecording } = useReactMediaRecorder({
     audio: true,
@@ -122,7 +122,7 @@ export default function VRM({ character }: { character: Character }) {
   }
 
   function updateModelMovement() {
-    if (mode !== "walking") return;
+    if (mode !== "walking" || !isTalking.current) return;
 
     if (agent.current && gltf) {
       const agentPosition = new Vector3().copy(agent.current.position());

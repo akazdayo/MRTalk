@@ -54,11 +54,8 @@ export default function VRM({ character }: { character: Character }) {
     controller?.inputSource,
     "selectstart",
     () => {
-      if (isTalking.current) return;
-
       setText("録音中...");
       startRecording();
-      isTalking.current = true;
     },
     [controller]
   );
@@ -74,6 +71,10 @@ export default function VRM({ character }: { character: Character }) {
   );
 
   async function talk(blob: Blob) {
+    if (isTalking.current) return;
+
+    isTalking.current = true;
+
     const form = new FormData();
     form.set("file", blob);
 
@@ -86,11 +87,11 @@ export default function VRM({ character }: { character: Character }) {
 
     if (!res.ok) {
       setText("エラーが発生しました。");
-      isTalking.current = false;
     } else {
       setText(json.response);
-      isTalking.current = false;
     }
+
+    isTalking.current = false;
   }
 
   function StopAnim(mixer: AnimationMixer, name: "walk" | "idle" | "sit") {

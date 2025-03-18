@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["border-arising-images-having.trycloudflare.com"],
+    allowedHosts: ["dubai-ted-training-culture.trycloudflare.com"],
   },
 });

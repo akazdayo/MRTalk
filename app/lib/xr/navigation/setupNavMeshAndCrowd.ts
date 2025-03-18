@@ -28,8 +28,8 @@ export function setupNavMeshAndCrowd(meshes: Mesh[]) {
   const agent = crowd.addAgent(new THREE.Vector3(0, 0, 0), {
     radius: 0.15,
     height: 1.5,
-    maxAcceleration: 4.0,
-    maxSpeed: 0.5,
+    maxAcceleration: 8.0,
+    maxSpeed: 2,
     pathOptimizationRange: 1.0,
   });
 

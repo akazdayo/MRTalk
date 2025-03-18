@@ -29,12 +29,12 @@ export default function VRM({ character }: { character: Character }) {
 
   const mixer = useRef<AnimationMixer | null>(null);
   const isTalking = useRef<boolean>(false);
-  const isSetupCompconste = useRef<boolean>(false);
+  const isSetupComplete = useRef<boolean>(false);
   const isNavMeshBaked = useRef<boolean>(false);
   const crowd = useRef<Crowd | null>(null);
   const agent = useRef<CrowdAgent | null>(null);
   const navMeshQuery = useRef<NavMeshQuery | null>(null);
-  const clock = new Clock();
+  const clock = useRef<Clock>(new Clock());
   const animations = useRef<Map<string, AnimationClip>>(new Map());
   const { startRecording, stopRecording } = useReactMediaRecorder({
     audio: true,
@@ -122,14 +122,22 @@ export default function VRM({ character }: { character: Character }) {
   }
 
   function updateModelMovement() {
-    if (mode !== "walking" || !isTalking.current) return;
+    if (mode !== "walking") return;
 
     if (agent.current && gltf) {
-      const agentPosition = new Vector3().copy(agent.current.position());
-      const agentDestination = new Vector3().copy(agent.current.target());
+      const agentPosition = new Vector3(
+        agent.current.position().x,
+        agent.current.position().y,
+        agent.current.position().z
+      );
+      const agentDestination = new Vector3(
+        agent.current.target().x,
+        agent.current.target().y,
+        agent.current.target().z
+      );
 
       const distanceToTarget = agentPosition.distanceTo(agentDestination);
-      const thresholdDistance = 0.1;
+      const thresholdDistance = 0.05;
 
       if (distanceToTarget > thresholdDistance) {
         if (mixer.current) {
@@ -140,10 +148,12 @@ export default function VRM({ character }: { character: Character }) {
         const direction = new Vector3()
           .subVectors(agentDestination, agentPosition)
           .normalize();
+
         const targetQuaternion = new Quaternion().setFromUnitVectors(
           new Vector3(0, 0, 1),
           direction
         );
+
         const euler = new Euler().setFromQuaternion(targetQuaternion, "YXZ");
         euler.x = 0;
         euler.z = 0;
@@ -195,7 +205,7 @@ export default function VRM({ character }: { character: Character }) {
   }
 
   gl.xr.addEventListener("sessionstart", () => {
-    if (isSetupCompconste.current) return;
+    if (isSetupComplete.current) return;
 
     const setUpModels = async () => {
       const loadedGltf = await loadVRM("/models/shibu.vrm");
@@ -220,20 +230,19 @@ export default function VRM({ character }: { character: Character }) {
       animations.current.set("walk", walkClip);
       animations.current.set("idle", idleClip);
 
-      Anim(mixer.current, "sit");
+      isSetupComplete.current = true;
     };
 
     init();
     setUpModels();
-
-    isSetupCompconste.current = true;
   });
 
   gl.xr.addEventListener("planesdetected", () => {
     if (
       meshes.size <= 0 ||
-      !isSetupCompconste.current ||
-      isNavMeshBaked.current
+      !isSetupComplete.current ||
+      isNavMeshBaked.current ||
+      !mixer.current
     )
       return;
 
@@ -241,6 +250,16 @@ export default function VRM({ character }: { character: Character }) {
 
     for (const mesh of meshes.values()) {
       meshList.push(mesh);
+    }
+
+    const couch = getMeshByLabel("couch");
+
+    if (couch) {
+      Anim(mixer.current, "sit");
+      setMode("sitting");
+    } else {
+      Anim(mixer.current, "idle");
+      setMode("walking");
     }
 
     const result = setupNavMeshAndCrowd(meshList);
@@ -257,7 +276,7 @@ export default function VRM({ character }: { character: Character }) {
   useEffect(() => {
     moveAgent();
 
-    const movementInterval = setInterval(moveAgent, 5000);
+    const movementInterval = setInterval(moveAgent, 15000);
 
     return () => {
       clearInterval(movementInterval);
@@ -274,7 +293,7 @@ export default function VRM({ character }: { character: Character }) {
     }
 
     if (mode === "walking") {
-      if (crowd.current && agent.current && gltf && !isTalking.current) {
+      if (crowd.current && agent.current && gltf) {
         updateModelMovement();
 
         crowd.current.update(1 / 60);
@@ -289,14 +308,14 @@ export default function VRM({ character }: { character: Character }) {
 
       if (couch && gltf) {
         const { x, z } = new Vector3().setFromMatrixPosition(couch.matrixWorld);
-        gltf.scene.position.set(x, -0.3, z);
+        gltf.scene.position.set(x, 0, z);
       }
 
       if (screen && gltf) {
         const { x, z } = new Vector3().setFromMatrixPosition(
           screen.matrixWorld
         );
-        gltf.scene.lookAt(x, -0.3, z);
+        gltf.scene.lookAt(x, 0, z);
       }
     }
   });

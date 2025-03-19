@@ -14,6 +14,7 @@ export default function TextBox({
   camera: WebXRArrayCamera;
   gltf: GLTF;
 }) {
+  //UIをプレイヤーに向ける
   const groupRef = useRef<Group<Object3DEventMap> | null>(null);
 
   useFrame(() => {

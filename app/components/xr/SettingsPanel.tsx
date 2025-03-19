@@ -9,10 +9,11 @@ export default function SettingsPanel({
   onClick,
   camera,
 }: {
-  mode: "sitting" | "walking";
+  mode: "sitting" | "walking" | "thinking";
   onClick: () => void;
   camera: WebXRArrayCamera;
 }) {
+  //UIをプレイヤーに向ける
   const groupRef = useRef<Group<Object3DEventMap> | null>(null);
 
   useFrame(() => {

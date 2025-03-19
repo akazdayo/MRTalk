@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["dubai-ted-training-culture.trycloudflare.com"],
+    allowedHosts: ["expectations-lucas-products-firefox.trycloudflare.com"],
   },
 });

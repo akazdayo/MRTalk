@@ -8,6 +8,7 @@ interface MeshStore {
   getMeshByLabel: (label: string) => Mesh | undefined;
 }
 
+//メッシュをラベル分け
 export const useMeshStore = create<MeshStore>((set) => ({
   meshes: new Map<string, Mesh>(),
   setMeshes: (key: string, mesh: Mesh): void =>
@@ -16,6 +17,7 @@ export const useMeshStore = create<MeshStore>((set) => ({
       newMap.set(key, mesh);
       return { meshes: newMap };
     }),
+  //メッシュ名からメッシュを取得
   getMeshByLabel: (label): Mesh | undefined =>
     useMeshStore.getState().meshes.get(label),
 }));
@@ -24,6 +26,7 @@ export default function XRMeshes() {
   const meshes = useXRMeshes();
   const setMeshes = useMeshStore((state) => state.setMeshes);
 
+  //メッシュのタイプごとに色分け
   const getColorByLabel = (label: string) => {
     switch (label) {
       case "shelf":
@@ -51,7 +54,7 @@ export default function XRMeshes() {
               setMeshes(mesh.semanticLabel!, self);
             }}
           >
-            <meshBasicMaterial
+            <meshPhongMaterial
               color={getColorByLabel(mesh.semanticLabel!)}
               opacity={0}
               transparent

@@ -32,11 +32,11 @@ export class MovementManager {
     }, 10000);
   }
 
-  lookAtPlayer(position: Vector3) {
+  lookAtPlayer() {
     if (!this.gltf) return;
     const vrm: VRM = this.gltf.userData.vrm;
 
-    const distance = this.gltf.scene.position.distanceTo(position);
+    const distance = this.gltf.scene.position.distanceTo(this.player);
 
     if (distance > 2) {
       vrm.lookAt?.reset();
@@ -44,7 +44,7 @@ export class MovementManager {
     }
 
     // プレイヤーを目線で追う
-    vrm.lookAt?.lookAt(position);
+    vrm.lookAt?.lookAt(this.player);
   }
 
   setup(navigation: NavMeshManager, agent: AgentManager) {
@@ -105,13 +105,13 @@ export class MovementManager {
     }
   }
 
-  talking(position: Vector3) {
+  talking() {
     //プレイヤーのほうを向く
-    this.gltf.scene.lookAt(position.x, 0, position.z);
+    this.gltf.scene.lookAt(this.player.x, 0, this.player.z);
   }
 
-  update(position: Vector3) {
-    this.lookAtPlayer(position);
+  update() {
+    this.lookAtPlayer();
 
     switch (this.state) {
       case "walking":
@@ -121,7 +121,7 @@ export class MovementManager {
         this.sitting();
         break;
       case "talking":
-        this.talking(position);
+        this.talking();
         break;
     }
   }
@@ -139,7 +139,6 @@ export class MovementManager {
         this.animation.playAnimation("sit");
         break;
       case "talking":
-        this.animation.playAnimation("idle");
         break;
     }
   }

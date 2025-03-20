@@ -5,7 +5,7 @@ import {
   NavMesh,
   NavMeshQuery,
 } from "@recast-navigation/core";
-import { threeToSoloNavMesh } from "@recast-navigation/three";
+import { threeToSoloNavMesh, CrowdHelper } from "@recast-navigation/three";
 
 export interface INavMeshFactory {
   createNavMesh(meshes: Mesh[]): NavMesh | null;
@@ -13,7 +13,9 @@ export interface INavMeshFactory {
 
 export class RecastNavMeshFactory implements INavMeshFactory {
   createNavMesh(meshes: Mesh[]): NavMesh | null {
-    const { navMesh } = threeToSoloNavMesh(meshes);
+    const { navMesh } = threeToSoloNavMesh(meshes, {
+      walkableClimb: 0.1,
+    }); //家具貫通防止
     return navMesh || null;
   }
 }
@@ -51,8 +53,9 @@ export class NavMeshManager {
 }
 
 export class AgentManager {
-  private crowd: Crowd | null = null;
-  private agent: CrowdAgent | null = null;
+  private crowd: Crowd;
+  private agent: CrowdAgent;
+  private crowdHelper: CrowdHelper;
 
   constructor(private navMesh: NavMesh) {
     this.crowd = new Crowd(navMesh, {
@@ -61,16 +64,22 @@ export class AgentManager {
     });
 
     this.agent = this.crowd.addAgent(new Vector3(0, 0, 0), {
-      radius: 0.15,
-      height: 1.5,
+      radius: 0.5,
       maxAcceleration: 8.0,
       maxSpeed: 2,
       pathOptimizationRange: 1.0,
+      collisionQueryRange: 1.0,
     });
+
+    this.crowdHelper = new CrowdHelper(this.crowd);
   }
 
   getCrowd() {
     return this.crowd;
+  }
+
+  getCrowdHelper() {
+    return this.crowdHelper;
   }
 
   getAgent() {
@@ -96,5 +105,9 @@ export class AgentManager {
     return new Vector3(agentVec.x, agentVec.y, agentVec.z).distanceTo(
       targetVec
     );
+  }
+
+  update() {
+    this.crowdHelper.update();
   }
 }

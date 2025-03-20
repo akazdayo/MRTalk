@@ -47,6 +47,10 @@ export class AnimationManager {
     }
   }
 
+  setSpeed(speed: number) {
+    this.mixer.setTime(speed);
+  }
+
   stopAllAnimation() {
     this.mixer.stopAllAction();
   }

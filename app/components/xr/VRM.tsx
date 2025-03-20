@@ -143,7 +143,7 @@ export default function VRM({ character }: { character: Character }) {
     }
 
     if (movementManager.current) {
-      movementManager.current.update(gl.xr.getCamera().position);
+      movementManager.current.update();
     }
   });
 

@@ -50,6 +50,8 @@ export class MovementManager {
   setup(navigation: NavMeshManager, agent: AgentManager) {
     this.navigation = navigation;
     this.agent = agent;
+
+    this.walk();
   }
 
   walk() {

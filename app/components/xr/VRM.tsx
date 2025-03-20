@@ -39,6 +39,10 @@ export default function VRM({ character }: { character: Character }) {
   });
 
   async function onResult(blob: Blob) {
+    if (animationManager.current) {
+      animationManager.current.playAnimation("thinking");
+    }
+
     const res = await chatRef.current.voiceChat(blob);
     if (res.error) {
       setText(res.error);
@@ -98,8 +102,6 @@ export default function VRM({ character }: { character: Character }) {
       thinking: "/anim/vrma/thinking.vrma",
     });
 
-    animationManager.current = animation;
-
     const movement = new MovementManager(
       "walking",
       gltf,
@@ -108,6 +110,7 @@ export default function VRM({ character }: { character: Character }) {
       gl.xr.getCamera().position
     );
 
+    animationManager.current = animation;
     movementManager.current = movement;
 
     animation.playAnimation("idle");

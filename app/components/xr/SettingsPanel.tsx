@@ -3,14 +3,13 @@ import { Container, FontFamilyProvider, Root, Text } from "@react-three/uikit";
 import { Card, Button } from "@react-three/uikit-apfel";
 import { useRef } from "react";
 import { Group, Object3DEventMap, Vector3, WebXRArrayCamera } from "three";
+import { StateType } from "~/lib/xr/vrm/MovementManager";
 
 export default function SettingsPanel({
-  mode,
   onClick,
   camera,
 }: {
-  mode: "sitting" | "walking" | "thinking";
-  onClick: () => void;
+  onClick: (state: StateType) => void;
   camera: WebXRArrayCamera;
 }) {
   //UIをプレイヤーに向ける
@@ -25,7 +24,7 @@ export default function SettingsPanel({
   });
 
   return (
-    <group ref={groupRef} position={[1, 0, 1]}>
+    <group ref={groupRef} position={[0.5, 0, 0.5]}>
       <Root>
         <Container
           flexDirection="column"
@@ -41,16 +40,25 @@ export default function SettingsPanel({
               alignItems="center"
               gapRow={16}
             >
-              <Button size="xs" onClick={onClick}>
+              <Button size="xs" onClick={() => onClick("walking")}>
                 <FontFamilyProvider
                   noto-sans={{
                     normal:
                       "/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json",
                   }}
                 >
-                  <Text fontFamily="noto-sans">
-                    {mode === "walking" ? "座らせる" : "歩く"}
-                  </Text>
+                  <Text fontFamily="noto-sans">歩き</Text>
+                </FontFamilyProvider>
+              </Button>
+
+              <Button size="xs" onClick={() => onClick("sitting")}>
+                <FontFamilyProvider
+                  noto-sans={{
+                    normal:
+                      "/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json",
+                  }}
+                >
+                  <Text fontFamily="noto-sans">座り</Text>
                 </FontFamilyProvider>
               </Button>
             </Container>

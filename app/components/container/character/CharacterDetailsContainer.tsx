@@ -1,7 +1,7 @@
 import { Character, Favorite } from "@prisma/client";
 import { useDebouncedCallback } from "use-debounce";
 import { Button } from "~/components/ui/button";
-import { Edit, Star } from "lucide-react";
+import { BoxIcon, Edit, Star } from "lucide-react";
 import { useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "~/components/ui/avatar";
 import { Session, User } from "better-auth";
@@ -69,6 +69,13 @@ export default function CharacterDetailsContainer({
         ) : (
           ""
         )}
+
+        <a href={`/talk/${data.character.id}`}>
+          <Button>
+            <BoxIcon />
+            VRモード(Meta Quest3が必要です)
+          </Button>
+        </a>
 
         <p>{data.character.user.name}が投稿</p>
 

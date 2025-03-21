@@ -39,23 +39,46 @@ export default function VRM({ character }: { character: Character }) {
   });
 
   async function onResult(blob: Blob) {
+    //考え中アニメーションを再生
     if (animationManager.current) {
       animationManager.current.playAnimation("thinking");
     }
 
-    const res = await chatRef.current.voiceChat(blob);
-    if (res.error) {
-      setText(res.error);
-    } else {
-      setText(res.response);
+    try {
+      const res = await chatRef.current.voiceChat(blob);
 
+      setText(res.content);
+
+      const arr = Object.entries(res.emotion);
+
+      arr.sort((a, b) => {
+        return b[1] - a[1];
+      });
+
+      //返答が帰ってきたら考え中モーションを停止
+      if (animationManager.current) {
+        animationManager.current.setEmotion(arr[0][0]);
+        animationManager.current.stopAnimation("thinking");
+      }
+
+      //talkingモード(プレイヤーのほうを向く)に切り替える
       if (movementManager.current) {
-        const currentState = movementManager.current.getState();
+        const currentState = movementManager.current.getState(); //talkingの前のstateを保持しておく
 
         movementManager.current.switchState("talking");
+
+        //10秒後に戻す
         setTimeout(() => {
           movementManager.current?.switchState(currentState);
+          animationManager.current?.resetEmotion();
         }, 10000);
+      }
+    } catch (e: unknown) {
+      animationManager.current?.stopAnimation("thinking");
+      animationManager.current?.resetEmotion();
+
+      if (e instanceof Error) {
+        setText(e.message);
       }
     }
   }
@@ -76,8 +99,10 @@ export default function VRM({ character }: { character: Character }) {
     controller?.inputSource,
     "selectend",
     () => {
-      setText("考え中...");
-      stopRecording();
+      setTimeout(() => {
+        setText("考え中...");
+        stopRecording();
+      }, 2000); //すぐに終了しないように2秒あける
     },
     [controller]
   );
@@ -96,10 +121,10 @@ export default function VRM({ character }: { character: Character }) {
 
     const animation = new AnimationManager(gltf);
     await animation.load({
-      idle: "/anim/vrma/idle.vrma",
-      walk: "/anim/vrma/walk.vrma",
-      sit: "/anim/vrma/sit_anim.vrma",
-      thinking: "/anim/vrma/thinking.vrma",
+      idle: { path: "/anim/vrma/idle.vrma", isAdditive: false },
+      walk: { path: "/anim/vrma/walk.vrma", isAdditive: false },
+      sit: { path: "/anim/vrma/sit_anim.vrma", isAdditive: false },
+      thinking: { path: "/anim/vrma/thinking.vrma", isAdditive: true },
     });
 
     const movement = new MovementManager(

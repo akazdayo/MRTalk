@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["expectations-lucas-products-firefox.trycloudflare.com"],
+    allowedHosts: ["connector-placed-cherry-trash.trycloudflare.com"],
   },
 });

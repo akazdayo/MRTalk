@@ -72,7 +72,7 @@ export class MovementManager {
       const { x, z } = agent.position();
       this.gltf.scene.position.set(x, 0, z);
 
-      const thresholdDistance = 0.05;
+      const thresholdDistance = 0.2;
 
       if (distanceToTarget > thresholdDistance) {
         // 歩きアニメーション再生
@@ -127,15 +127,18 @@ export class MovementManager {
   }
 
   switchState(state: StateType) {
-    this.animation.stopAllAnimation();
     this.state = state;
 
     switch (state) {
       case "walking":
+        this.animation.stopAllAnimation();
+
         this.animation.playAnimation("walk");
         this.walk();
         break;
       case "sitting":
+        this.animation.stopAllAnimation();
+
         this.animation.playAnimation("sit");
         break;
       case "talking":

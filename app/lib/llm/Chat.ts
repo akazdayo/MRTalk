@@ -1,73 +1,50 @@
-export interface ChatResponse {
-  response: string;
-  error?: string;
-}
+type Res = {
+  role: string;
+  content: string;
+  emotion: {
+    joy: number;
+    fun: number;
+    sorrow: number;
+    angry: number;
+  };
+};
 
 export class Chat {
-  private isGeneratingResponse: boolean = false;
   private apiEndpoint: string;
 
   constructor(characterId: string) {
     this.apiEndpoint = `/api/chat/${characterId}`;
   }
 
-  async talk(text: string): Promise<ChatResponse> {
-    if (this.isGeneratingResponse) {
-      return { response: "", error: "Already processing a request" };
+  async talk(text: string) {
+    const res = await fetch(this.apiEndpoint + `?text=${text}`, {});
+
+    if (!res.ok) {
+      const errorResponse = await res.json();
+
+      throw new Error(errorResponse.error);
     }
 
-    this.isGeneratingResponse = true;
-
-    try {
-      const response = await fetch(this.apiEndpoint + `?text=${text}`, {});
-
-      if (!response.ok) {
-        throw new Error("Failed to get response");
-      }
-
-      const data = await response.json();
-      return { response: data.response };
-    } catch (error) {
-      return {
-        response: "",
-        error:
-          error instanceof Error ? error.message : "Unknown error occurred",
-      };
-    } finally {
-      this.isGeneratingResponse = false;
-    }
+    const data: Res = await res.json();
+    return data;
   }
 
-  async voiceChat(blob: Blob): Promise<ChatResponse> {
-    if (this.isGeneratingResponse) {
-      return { response: "", error: "Already processing a request" };
+  async voiceChat(blob: Blob) {
+    const form = new FormData();
+    form.set("file", blob);
+
+    const res = await fetch(this.apiEndpoint, {
+      method: "POST",
+      body: form,
+    });
+
+    if (!res.ok) {
+      const errorResponse = await res.json();
+
+      throw new Error(errorResponse.error);
     }
 
-    this.isGeneratingResponse = true;
-
-    try {
-      const form = new FormData();
-      form.set("file", blob);
-
-      const response = await fetch(this.apiEndpoint, {
-        method: "POST",
-        body: form,
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to get response");
-      }
-
-      const data = await response.json();
-      return { response: data.response };
-    } catch (error) {
-      return {
-        response: "",
-        error:
-          error instanceof Error ? error.message : "Unknown error occurred",
-      };
-    } finally {
-      this.isGeneratingResponse = false;
-    }
+    const data: Res = await res.json();
+    return data;
   }
 }

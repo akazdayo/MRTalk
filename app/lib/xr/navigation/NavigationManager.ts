@@ -43,7 +43,7 @@ export class NavMeshManager {
     this.navMesh = this.factory.createNavMesh(meshes);
     if (!this.navMesh) {
       alert(
-        "ナビメッシュの生成に失敗しました。Quest3でスペースのスキャンを行っているか確認してください。"
+        "NavMeshの生成に失敗しました。Quest3でスペースのスキャンを行っているか確認してください。"
       );
       return;
     }
@@ -65,7 +65,7 @@ export class AgentManager {
 
     this.agent = this.crowd.addAgent(new Vector3(0, 0, 0), {
       radius: 0.5,
-      maxAcceleration: 8.0,
+      maxAcceleration: 4.0,
       maxSpeed: 2,
       pathOptimizationRange: 1.0,
       collisionQueryRange: 1.0,

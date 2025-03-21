@@ -18,9 +18,9 @@ dependencies = [
     "langgraph-checkpoint-postgres>=2.0.16",
     "uvicorn>=0.34.0",
     "psycopg[binary,pool]>=3.2.5",
-    "openai-whisper>=20240930",
-    "numba==0.60.0",
     "python-multipart>=0.0.20",
+    "speechrecognition>=3.14.1",
+    "pydub>=0.25.1",
 ]
 
 readme = "README.md"

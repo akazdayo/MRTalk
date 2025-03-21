@@ -106,8 +106,22 @@ export class MovementManager {
   }
 
   talking() {
-    //プレイヤーのほうを向く
-    this.gltf.scene.lookAt(this.player.x, 0, this.player.z);
+    if (!this.gltf) return;
+    const vrm: VRM = this.gltf.userData.vrm;
+    const headBone = vrm.humanoid.getNormalizedBoneNode("head");
+    if (!headBone) return;
+
+    vrm.lookAt?.lookAt(this.player);
+
+    const originalRotation = headBone.quaternion.clone();
+
+    headBone.lookAt(this.player);
+
+    const targetRotation = headBone.quaternion.clone();
+
+    headBone.quaternion.copy(originalRotation);
+
+    headBone.quaternion.slerpQuaternions(originalRotation, targetRotation, 0.5);
   }
 
   update() {

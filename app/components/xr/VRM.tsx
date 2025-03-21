@@ -102,7 +102,7 @@ export default function VRM({ character }: { character: Character }) {
       setTimeout(() => {
         setText("考え中...");
         stopRecording();
-      }, 2000); //すぐに終了しないように2秒あける
+      }, 1000); //すぐに終了しないように1秒あける
     },
     [controller]
   );

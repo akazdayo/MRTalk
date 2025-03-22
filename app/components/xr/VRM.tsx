@@ -49,6 +49,7 @@ export default function VRM({ character }: { character: Character }) {
 
       setText(res.content);
 
+      //感情スコアをソート
       const arr = Object.entries(res.emotion);
 
       arr.sort((a, b) => {
@@ -116,6 +117,7 @@ export default function VRM({ character }: { character: Character }) {
   const onSessionStart = async () => {
     await init();
     const loader = new VRMLoader();
+
     const { gltf } = await loader.load("/models/AliciaSolid-1.0.vrm");
     setGltf(gltf);
 
@@ -127,22 +129,13 @@ export default function VRM({ character }: { character: Character }) {
       thinking: { path: "/anim/vrma/thinking.vrma", isAdditive: true },
     });
 
-    const movement = new MovementManager(
-      "walking",
-      gltf,
-      animation,
-      getMeshByLabel,
-      gl.xr.getCamera().position
-    );
-
     animationManager.current = animation;
-    movementManager.current = movement;
 
     animation.playAnimation("idle");
   };
 
   const onPlanesDetected = () => {
-    if (isCompleteSetup.current || !movementManager.current) return;
+    if (isCompleteSetup.current || !gltf || !animationManager.current) return;
 
     //NavMeshをベイク
     const navigation = new NavMeshManager(new RecastNavMeshFactory());
@@ -154,7 +147,16 @@ export default function VRM({ character }: { character: Character }) {
 
     const agent = new AgentManager(navMesh);
 
-    movementManager.current.setup(navigation, agent);
+    const movement = new MovementManager(
+      "walking",
+      gltf,
+      animationManager.current,
+      agent,
+      getMeshByLabel,
+      gl.xr.getCamera().position
+    );
+
+    movementManager.current = movement;
 
     isCompleteSetup.current = true;
   };

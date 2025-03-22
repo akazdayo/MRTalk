@@ -14,7 +14,7 @@ export interface INavMeshFactory {
 export class RecastNavMeshFactory implements INavMeshFactory {
   createNavMesh(meshes: Mesh[]): NavMesh | null {
     const { navMesh } = threeToSoloNavMesh(meshes, {
-      walkableClimb: 0.1,
+      walkableClimb: 0.05,
     }); //家具貫通防止
     return navMesh || null;
   }
@@ -86,6 +86,14 @@ export class AgentManager {
     return this.agent;
   }
 
+  getTargetPosition() {
+    return new Vector3(
+      this.agent.target().x,
+      this.agent.target().y,
+      this.agent.target().z
+    );
+  }
+
   moveRandomPoint(center: Vector3) {
     if (!this.agent) return;
     const navMeshQuery = new NavMeshQuery(this.navMesh);
@@ -94,17 +102,6 @@ export class AgentManager {
       0.2
     );
     this.agent.requestMoveTarget(randomPoint);
-  }
-
-  getDistanceToTarget() {
-    if (!this.agent) return null;
-
-    const agentVec = this.agent.position();
-    const targetVec = this.agent.target();
-
-    return new Vector3(agentVec.x, agentVec.y, agentVec.z).distanceTo(
-      targetVec
-    );
   }
 
   update() {

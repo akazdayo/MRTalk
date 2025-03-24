@@ -1,19 +1,31 @@
 import { z } from "zod";
 
 export const InputSchema = z.object({
-  id: z.string().min(1, "id is required"),
-  text: z.string().min(1, "text is required"),
+  id: z.string().min(1, "ID is required"),
+  text: z.string().min(1, "Text is required"),
 });
 
 export const EmotionSchema = z.object({
-  joy: z.number().min(0).max(1),
-  fun: z.number().min(0).max(1),
-  sorrow: z.number().min(0).max(1),
-  angry: z.number().min(0).max(1),
+  neutral: z
+    .number()
+    .min(0, "Joy value must be 0 or greater")
+    .max(1, "Joy value must be 1 or less"),
+  happy: z
+    .number()
+    .min(0, "Fun value must be 0 or greater")
+    .max(1, "Fun value must be 1 or less"),
+  sad: z
+    .number()
+    .min(0, "Sorrow value must be 0 or greater")
+    .max(1, "Sorrow value must be 1 or less"),
+  angry: z
+    .number()
+    .min(0, "Angry value must be 0 or greater")
+    .max(1, "Angry value must be 1 or less"),
 });
 
 export const ResponseSchema = z.object({
-  role: z.string(),
-  content: z.string(),
+  role: z.string().min(1, "Role is required"),
+  content: z.string().min(1, "Content is required"),
   emotion: EmotionSchema,
 });

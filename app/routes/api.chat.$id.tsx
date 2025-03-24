@@ -1,14 +1,15 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { getServerSession } from "~/lib/auth/session";
-import { ResponseSchema } from "~/lib/llm/schema";
+import { InputSchema, ResponseSchema } from "~/lib/llm/schema";
 import { getParams } from "~/utils/getParams";
 import { getErrorMessages } from "~/utils/zod/getErrorMessages";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
-  const id = params.id;
-  const text = getParams(request.url, "text");
+  const parsed = InputSchema.safeParse({
+    id: params.id,
+    text: getParams(request.url, "text"),
+  });
 
-  const parsed = ResponseSchema.safeParse({ id, text });
   if (!parsed.success) {
     return Response.json(
       {
@@ -27,6 +28,8 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       }
     );
   }
+
+  const { id, text } = parsed.data;
 
   try {
     const res = await fetch(
@@ -60,7 +63,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       );
     }
 
-    return Response.json(parsed, {
+    return Response.json(parsed.data, {
       status: 200,
     });
   } catch (e) {
@@ -132,7 +135,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
       );
     }
 
-    return Response.json(parsed, {
+    return Response.json(parsed.data, {
       status: 200,
     });
   } catch (e) {

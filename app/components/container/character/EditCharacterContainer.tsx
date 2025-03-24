@@ -4,7 +4,6 @@ import { SaveIcon, TrashIcon } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { Textarea } from "~/components/ui/textarea";
 import {
   Dialog,
   DialogClose,
@@ -98,20 +97,20 @@ export default function EditCharacterContainer({
         </div>
         <div>
           <label htmlFor="personality">人格、性格など</label>
-          <Textarea
+          <textarea
             name="personality"
             id="personality"
-            className="h-36"
+            className="h-36 bg-transparent text-sm w-full px-3 py-2 border rounded-md"
             defaultValue={character.personality}
             required
           />
         </div>
         <div>
           <label htmlFor="story">背景ストーリーなど</label>
-          <Textarea
+          <textarea
             name="story"
             id="story"
-            className="h-36"
+            className="h-36 bg-transparent text-sm w-full px-3 py-2 border rounded-md"
             defaultValue={character.story}
             required
           />

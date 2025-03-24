@@ -1,6 +1,5 @@
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { Textarea } from "~/components/ui/textarea";
 import { Form, useNavigate } from "@remix-run/react";
 import { PlusIcon } from "lucide-react";
 import { FormEvent } from "react";
@@ -50,17 +49,22 @@ export default function AddCharacterContainer() {
 
         <div>
           <label htmlFor="personality">人格、性格など</label>
-          <Textarea
+          <textarea
             name="personality"
             id="personality"
-            className="h-36"
+            className="h-36 bg-transparent text-sm w-full px-3 py-2 border rounded-md"
             required
           />
         </div>
 
         <div>
           <label htmlFor="story">背景ストーリーなど</label>
-          <Textarea name="story" id="story" className="h-36" required />
+          <textarea
+            name="story"
+            id="story"
+            className="h-36 bg-transparent text-sm w-full px-3 py-2 border rounded-md"
+            required
+          />
         </div>
 
         <Button type="submit" className="bg-green-500 text-black my-12">

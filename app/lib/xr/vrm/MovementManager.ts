@@ -33,10 +33,10 @@ export class MovementManager {
     this.getMeshByLabel = getMeshByLabel;
     this.player = player;
 
-    this.walk();
+    this.walk(this.agent.getRandomPoint(this.player));
 
     setInterval(() => {
-      this.walk();
+      this.walk(this.agent.getRandomPoint(this.player));
     }, 10000);
   }
 
@@ -54,9 +54,9 @@ export class MovementManager {
     vrm.lookAt?.lookAt(targetVec);
   }
 
-  walk() {
+  walk(pointVec: Vector3) {
     if (this.state === "walking" && this.agent && this.player) {
-      this.agent.moveRandomPoint(this.player);
+      this.agent.moveTo(pointVec);
     }
   }
 
@@ -74,7 +74,7 @@ export class MovementManager {
     const { x, z } = agent.position();
     this.gltf.scene.position.set(x, 0, z);
 
-    const thresholdDistance = 0.2;
+    const thresholdDistance = 0.1;
 
     if (distanceToTarget > thresholdDistance) {
       // 歩きアニメーション再生
@@ -153,7 +153,7 @@ export class MovementManager {
         this.animation.stopAllAnimation();
 
         this.animation.playAnimation("walk");
-        this.walk();
+        this.walk(this.agent.getRandomPoint(this.player));
         break;
       case "sitting":
         this.animation.stopAllAnimation();

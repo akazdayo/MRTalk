@@ -14,7 +14,7 @@ export interface INavMeshFactory {
 export class RecastNavMeshFactory implements INavMeshFactory {
   createNavMesh(meshes: Mesh[]): NavMesh | null {
     const { navMesh } = threeToSoloNavMesh(meshes, {
-      walkableClimb: 0.1,
+      walkableClimb: 1,
     }); //家具貫通防止
     return navMesh || null;
   }
@@ -38,7 +38,7 @@ export class NavMeshManager {
   }
 
   bake(meshes: Mesh[]) {
-    if (meshes.length <= 0) return;
+    if (meshes.length < 0) return;
 
     this.navMesh = this.factory.createNavMesh(meshes);
     if (!this.navMesh) {
@@ -65,10 +65,8 @@ export class AgentManager {
 
     this.agent = this.crowd.addAgent(new Vector3(0, 0, 0), {
       radius: 0.1,
-      maxAcceleration: 4.0,
-      maxSpeed: 2,
+      maxSpeed: 1,
       pathOptimizationRange: 1.0,
-      collisionQueryRange: 1.0,
     });
 
     this.crowdHelper = new CrowdHelper(this.crowd);
@@ -94,14 +92,18 @@ export class AgentManager {
     );
   }
 
-  moveRandomPoint(center: Vector3) {
-    if (!this.agent) return;
+  getRandomPoint(center: Vector3) {
     const navMeshQuery = new NavMeshQuery(this.navMesh);
     const { randomPoint } = navMeshQuery.findRandomPointAroundCircle(
       center,
       0.2
     );
-    this.agent.requestMoveTarget(randomPoint);
+
+    return new Vector3(randomPoint.x, randomPoint.y, randomPoint.z);
+  }
+
+  moveTo(pointVec: Vector3) {
+    this.agent.requestMoveTarget(pointVec);
   }
 
   update() {

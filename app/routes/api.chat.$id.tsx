@@ -1,10 +1,22 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { getServerSession } from "~/lib/auth/session";
+import { ResponseSchema } from "~/lib/llm/schema";
 import { getParams } from "~/utils/getParams";
+import { getErrorMessages } from "~/utils/zod/getErrorMessages";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const id = params.id;
   const text = getParams(request.url, "text");
+
+  const parsed = ResponseSchema.safeParse({ id, text });
+  if (!parsed.success) {
+    return Response.json(
+      {
+        error: getErrorMessages(parsed.error.flatten().fieldErrors),
+      },
+      { status: 400 }
+    );
+  }
 
   const session = await getServerSession(request.headers);
   if (!session) {
@@ -36,7 +48,19 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     }
 
     const json = await res.json();
-    return Response.json(json, {
+
+    //バリデーション
+    const parsed = ResponseSchema.safeParse(json);
+    if (!parsed.success) {
+      return Response.json(
+        {
+          error: getErrorMessages(parsed.error.flatten().fieldErrors),
+        },
+        { status: 400 }
+      );
+    }
+
+    return Response.json(parsed, {
       status: 200,
     });
   } catch (e) {
@@ -48,6 +72,15 @@ export async function action({ params, request }: ActionFunctionArgs) {
   const id = params.id;
   const form = await request.formData();
   const audio = form.get("file");
+
+  if (!id) {
+    return Response.json(
+      { error: "id is required." },
+      {
+        status: 400,
+      }
+    );
+  }
 
   if (!audio) {
     return Response.json(
@@ -87,7 +120,19 @@ export async function action({ params, request }: ActionFunctionArgs) {
     }
 
     const json = await res.json();
-    return Response.json(json, {
+
+    //バリデーション
+    const parsed = ResponseSchema.safeParse(json);
+    if (!parsed.success) {
+      return Response.json(
+        {
+          error: getErrorMessages(parsed.error.flatten().fieldErrors),
+        },
+        { status: 400 }
+      );
+    }
+
+    return Response.json(parsed, {
       status: 200,
     });
   } catch (e) {

@@ -10,13 +10,13 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const user = await getServerSession(request.headers);
 
   if (!params.id) {
-    return { character: null, favorite: null };
+    return null;
   }
 
   const character = await getCharacter(params.id, true);
+  if (!character) return null;
 
   let favorite = null;
-
   if (user) {
     favorite = await getFavorite(user.user.id, params.id);
   }
@@ -30,9 +30,12 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 export default function CharacterDetails() {
   const data = useLoaderData<typeof loader>();
 
-  return (
-    <Main>
-      <CharacterDetailsContainer data={data} />
-    </Main>
-  );
+  if (data)
+    return (
+      <Main>
+        <CharacterDetailsContainer data={data} />
+      </Main>
+    );
+
+  return <Main>キャラクターが見つかりませんでした。</Main>;
 }

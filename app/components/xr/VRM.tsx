@@ -118,7 +118,7 @@ export default function VRM({ character }: { character: Character }) {
     await init();
     const loader = new VRMLoader();
 
-    const { gltf } = await loader.load("/models/AliciaSolid-1.0.vrm");
+    const { gltf } = await loader.load(character.model_url);
     setGltf(gltf);
 
     const animation = new AnimationManager(gltf);

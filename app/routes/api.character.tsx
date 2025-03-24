@@ -5,6 +5,12 @@ import {
   deleteCharacter,
 } from "~/lib/api/character";
 import { getServerSession } from "~/lib/auth/session";
+import {
+  CreateCharacterSchema,
+  DeleteCharacterSchema,
+  UpdateCharacterSchema,
+} from "~/lib/api/character/schema";
+import { getErrorMessages } from "~/utils/zod/getErrorMessages";
 
 export const action: ActionFunction = async ({ request }) => {
   const method = request.method;
@@ -16,30 +22,62 @@ export const action: ActionFunction = async ({ request }) => {
   try {
     switch (method) {
       case "POST": {
+        const parsed = CreateCharacterSchema.safeParse(body);
+        if (!parsed.success) {
+          return Response.json(
+            {
+              error: getErrorMessages(parsed.error.flatten().fieldErrors),
+            },
+            { status: 400 }
+          );
+        }
+
+        const { name, personality, story, model_url } = parsed.data;
         const character = await createCharacter({
-          name: body.name,
-          personality: body.personality,
-          story: body.story,
-          model_url: body.model_url,
+          name,
+          personality,
+          story,
+          model_url,
           postedBy: user.user.id,
         });
         return Response.json(character, { status: 201 });
       }
       case "PUT": {
+        const parsed = UpdateCharacterSchema.safeParse(body);
+        if (!parsed.success) {
+          return Response.json(
+            {
+              error: getErrorMessages(parsed.error.flatten().fieldErrors),
+            },
+            { status: 400 }
+          );
+        }
+
+        const { id, name, personality, story, model_url } = parsed.data;
         const character = await updateCharacter(
           {
-            id: body.id,
-            name: body.name,
-            personality: body.personality,
-            story: body.story,
-            model_url: body.model_url,
+            id,
+            name,
+            personality,
+            story,
+            model_url,
           },
           user.user.id
         );
         return Response.json(character);
       }
       case "DELETE": {
-        await deleteCharacter(body.id, user.user.id);
+        const parsed = DeleteCharacterSchema.safeParse(body);
+        if (!parsed.success) {
+          return Response.json(
+            {
+              error: getErrorMessages(parsed.error.flatten().fieldErrors),
+            },
+            { status: 400 }
+          );
+        }
+
+        await deleteCharacter(parsed.data.id, user.user.id);
         return Response.json(null);
       }
       default:

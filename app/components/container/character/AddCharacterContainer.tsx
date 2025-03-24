@@ -23,24 +23,21 @@ export default function AddCharacterContainer() {
     });
 
     if (!res.ok) {
-      toast("エラーが発生しました。", { className: "bg-red-500" });
+      const error = await res.json();
+
+      toast(error.error);
+    } else {
+      const json = await res.json();
+
+      navigate(`/character/${json.id}`);
     }
-
-    const json = await res.json();
-
-    navigate(`/character/${json.id}`);
   };
 
   return (
     <div>
       <h1 className="font-bold text-3xl text-center">キャラクターを投稿</h1>
 
-      <Form
-        method="post"
-        className="py-10 space-y-6"
-        encType="multipart/form-data"
-        onSubmit={onSubmit}
-      >
+      <Form method="post" className="py-10 space-y-6" onSubmit={onSubmit}>
         <div>
           <label htmlFor="name">キャラクター名</label>
           <Input type="text" name="name" id="name" required />
@@ -53,12 +50,17 @@ export default function AddCharacterContainer() {
 
         <div>
           <label htmlFor="personality">人格、性格など</label>
-          <Textarea name="personality" id="personality" className="h-36" />
+          <Textarea
+            name="personality"
+            id="personality"
+            className="h-36"
+            required
+          />
         </div>
 
         <div>
           <label htmlFor="story">背景ストーリーなど</label>
-          <Textarea name="story" id="story" className="h-36" />
+          <Textarea name="story" id="story" className="h-36" required />
         </div>
 
         <Button type="submit" className="bg-green-500 text-black my-12">

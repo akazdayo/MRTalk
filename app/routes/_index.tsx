@@ -17,18 +17,22 @@ export default function Index() {
     <Main>
       <HomeContainer />
 
-      <CharacterList title="最新のキャラクター">
-        {characters.map((character) => {
-          return (
-            <CharacterCard
-              key={character.id}
-              id={character.id}
-              name={character.name}
-              postedby={character.user}
-            />
-          );
-        })}
-      </CharacterList>
+      {characters.length > 0 ? (
+        <CharacterList title="最新のキャラクター">
+          {characters.map((character) => {
+            return (
+              <CharacterCard
+                key={character.id}
+                id={character.id}
+                name={character.name}
+                postedby={character.user}
+              />
+            );
+          })}
+        </CharacterList>
+      ) : (
+        ""
+      )}
     </Main>
   );
 }

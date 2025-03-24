@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { redirect, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import CharacterCard from "~/components/card/CharacterCard";
 import CharacterList from "~/components/container/CharacterListContainer";
 import ProfileContainer from "~/components/container/ProfileContainer";
@@ -11,7 +11,7 @@ import { getUserProfile } from "~/lib/api/user";
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = params.id;
 
-  if (!id) return redirect("/");
+  if (!id) return null;
 
   const profile = await getUserProfile(id);
   const uploadedCharacter = await getAllCharactersByUser(id, true);
@@ -21,17 +21,16 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function UserProfile() {
-  const { profile, uploadedCharacter, favorite } =
-    useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof loader>();
 
-  if (profile)
+  if (data && data.profile)
     return (
       <Main>
-        <ProfileContainer user={profile} />
+        <ProfileContainer user={data.profile} />
 
-        {uploadedCharacter.length > 0 ? (
+        {data.uploadedCharacter.length > 0 ? (
           <CharacterList title="投稿済み">
-            {uploadedCharacter.map((character) => {
+            {data.uploadedCharacter.map((character) => {
               return (
                 <CharacterCard
                   key={character.id}
@@ -46,9 +45,9 @@ export default function UserProfile() {
           ""
         )}
 
-        {favorite.length > 0 ? (
+        {data.favorite.length > 0 ? (
           <CharacterList title="お気に入り">
-            {favorite.map((data) => {
+            {data.favorite.map((data) => {
               const character = data.character;
 
               return (

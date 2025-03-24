@@ -6,16 +6,15 @@ import { getServerSession } from "~/lib/auth/session";
 import Main from "~/components/layout/main";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
-  const user = await getServerSession(request.headers);
-  if (!user) return redirect("/login");
+  const session = await getServerSession(request.headers);
+  if (!session) return redirect("/login");
 
-  if (!params.id) return redirect("/");
+  if (!params.id) return null;
 
   const character = await getCharacter(params.id, false);
+  if (!character) return null;
 
-  if (!character) return redirect("/");
-
-  if (user.user.id !== character.postedBy) {
+  if (session.user.id !== character.postedBy) {
     return redirect("/");
   }
 
@@ -25,9 +24,12 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 export default function CharacterDetails() {
   const character = useLoaderData<typeof loader>();
 
-  return (
-    <Main>
-      <EditCharacterContainer character={character} />
-    </Main>
-  );
+  if (character)
+    return (
+      <Main>
+        <EditCharacterContainer character={character} />
+      </Main>
+    );
+
+  return <Main>キャラクターが見つかりませんでした。</Main>;
 }

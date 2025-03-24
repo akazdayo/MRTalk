@@ -1,13 +1,7 @@
-type Res = {
-  role: string;
-  content: string;
-  emotion: {
-    joy: number;
-    fun: number;
-    sorrow: number;
-    angry: number;
-  };
-};
+import { z } from "zod";
+import { ResponseSchema } from "./schema";
+
+export type Res = z.infer<typeof ResponseSchema>;
 
 export class Chat {
   private apiEndpoint: string;

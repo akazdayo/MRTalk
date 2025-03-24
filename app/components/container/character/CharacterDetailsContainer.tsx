@@ -6,12 +6,13 @@ import { useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "~/components/ui/avatar";
 import { Session, User } from "better-auth";
 import { useOutletContext } from "@remix-run/react";
+import { toast } from "sonner";
 
 export default function CharacterDetailsContainer({
   data,
 }: {
   data: {
-    character: (Character & { user: User }) | null;
+    character: Character & { user: User };
     favorite: Favorite | null;
   };
 }) {
@@ -27,21 +28,33 @@ export default function CharacterDetailsContainer({
     setIsFavorite(!isFavorite);
 
     if (isFavorite) {
-      await fetch("/api/favorite/", {
+      const res = await fetch("/api/favorite/", {
         method: "DELETE",
         body: JSON.stringify({ characterId: data.character.id }),
       });
+
+      if (!res.ok) {
+        const error = await res.json();
+        toast(error.error);
+
+        //エラーが発生したら表示も元に戻す
+        setIsFavorite(!isFavorite);
+      }
     } else {
-      await fetch("/api/favorite/", {
+      const res = await fetch("/api/favorite/", {
         method: "POST",
         body: JSON.stringify({ characterId: data.character.id }),
       });
+
+      if (!res.ok) {
+        const error = await res.json();
+        toast(error.error);
+
+        //エラーが発生したら表示も元に戻す
+        setIsFavorite(!isFavorite);
+      }
     }
   }, 500);
-
-  if (!data.character) {
-    return <div>キャラクターが見つかりませんでした。</div>;
-  }
 
   return (
     <div className="space-y-4">
@@ -73,7 +86,7 @@ export default function CharacterDetailsContainer({
         <a href={`/talk/${data.character.id}`}>
           <Button>
             <BoxIcon />
-            VRモード(Meta Quest3が必要です)
+            MRモード(Meta Quest3が必要です)
           </Button>
         </a>
 

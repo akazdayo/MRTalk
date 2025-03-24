@@ -2,7 +2,6 @@ import { Character } from "@prisma/client";
 import { Form, useNavigate } from "@remix-run/react";
 import { SaveIcon, TrashIcon } from "lucide-react";
 import { FormEvent } from "react";
-import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
@@ -15,6 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
+import { toast } from "sonner";
 
 export default function EditCharacterContainer({
   character,
@@ -43,10 +43,14 @@ export default function EditCharacterContainer({
     });
 
     if (!res.ok) {
-      toast("エラーが発生しました。", { className: "bg-red-500" });
-    }
+      const error = await res.json();
 
-    navigate(`/character/${character.id}`);
+      toast(error.error);
+    } else {
+      const json = await res.json();
+
+      navigate(`/character/${json.id}`);
+    }
   };
 
   const onDelete = async () => {
@@ -58,10 +62,12 @@ export default function EditCharacterContainer({
     });
 
     if (!res.ok) {
-      toast("エラーが発生しました。", { className: "bg-red-500" });
-    }
+      const error = await res.json();
 
-    navigate(`/`);
+      toast(error.error);
+    } else {
+      navigate(`/`);
+    }
   };
 
   return (
@@ -69,12 +75,7 @@ export default function EditCharacterContainer({
       <h1 className="font-bold text-3xl text-center">
         {character.name}の情報を編集
       </h1>
-      <Form
-        method="post"
-        className="py-10 space-y-6"
-        encType="multipart/form-data"
-        onSubmit={onSubmit}
-      >
+      <Form method="post" className="py-10 space-y-6" onSubmit={onSubmit}>
         <div>
           <label htmlFor="name">キャラクター名</label>
           <Input
@@ -102,6 +103,7 @@ export default function EditCharacterContainer({
             id="personality"
             className="h-36"
             defaultValue={character.personality}
+            required
           />
         </div>
         <div>
@@ -111,6 +113,7 @@ export default function EditCharacterContainer({
             id="story"
             className="h-36"
             defaultValue={character.story}
+            required
           />
         </div>
         <div className="flex justify-between">
@@ -120,7 +123,7 @@ export default function EditCharacterContainer({
           </Button>
 
           <Dialog>
-            <DialogTrigger>
+            <DialogTrigger asChild>
               <Button type="button" className="bg-red-600 text-white">
                 <TrashIcon className="mr-2" />
                 削除する

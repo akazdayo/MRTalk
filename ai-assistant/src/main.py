@@ -1,6 +1,7 @@
 import datetime
 import os
 import io
+import asyncio
 from typing import Any, Dict
 
 from fastapi import Depends, FastAPI, HTTPException, Header, Request
@@ -8,19 +9,36 @@ from fastapi.responses import JSONResponse
 from langchain_openai import ChatOpenAI
 from langchain.embeddings import init_embeddings
 from langgraph.func import entrypoint
-from langgraph.store.postgres import PostgresStore
+from langgraph.store.postgres import AsyncPostgresStore
 from langmem import create_memory_store_manager
 
 from prisma import Prisma
 from prisma.models import Character, User
 import speech_recognition as sr
 from pydub import AudioSegment
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+from pydantic import BaseModel, Field
+from typing import Dict, Any
+
+
+class Emotion(BaseModel):
+    neutral: float = Field(gt=0.0, lte=1.0, description="ニュートラルの感情値（0〜1の間）")
+    happy: float = Field(gt=0.0, lte=1.0, description="幸せの感情値（0〜1の間）")
+    sad: float = Field(gt=0.0, lte=1.0, description="悲しみの感情値（0〜1の間）")
+    angry: float = Field(gt=0.0, lte=1.0, description="怒りの感情値（0〜1の間）")
+
+
+class EmotionMessage(BaseModel):
+    role: str = Field(description="メッセージの役割（assistant）")
+    content: str = Field(description="メッセージ内容")
+    emotion: Emotion = Field(description="感情オブジェクト")
+
 
 r = sr.Recognizer()
 app = FastAPI()
-llm = ChatOpenAI(model="gpt-4o-mini")
-structured_llm = llm.with_structured_output(method="json_mode")
-
+llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash')
+structured_llm = llm.with_structured_output(EmotionMessage)
 
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
 memory_manager = create_memory_store_manager(
@@ -77,7 +95,6 @@ async def get_current_user(authorization: str = Header(None)) -> User:
     return session.user
 
 
-# キャラクタ-IDからキャラクターを取得
 async def get_character(id: str) -> Character | None:
     prisma = Prisma()
     await prisma.connect()
@@ -91,9 +108,9 @@ async def get_character(id: str) -> Character | None:
     return character
 
 
-async def talk(text: str, current_user: User, character_id: str):
-    # DBに接続(リクエストごとに接続しているのでどうにかする)
-    with PostgresStore.from_conn_string(
+# 記憶を保存
+async def save_memory(messages, user_id, character_id, response_content):
+    async with AsyncPostgresStore.from_conn_string(
         os.getenv("DATABASE_URL"),
         index={
             "dims": 1536,
@@ -101,8 +118,37 @@ async def talk(text: str, current_user: User, character_id: str):
             "fields": ["text"],
         },
     ) as store:
-        store.conn.execute("SET search_path TO memories")
-        store.setup()
+        await store.conn.execute("SET search_path TO memories")
+        await store.setup()
+
+        @entrypoint(store=store)
+        async def save_to_memory(params: Dict[str, Any]):
+            await memory_manager.ainvoke(
+                {"messages": params["messages"] + [{"role": "assistant",
+                                                    "content": params["response_content"]}]},
+                config={"configurable": {
+                    "user_id": params["user_id"], "character_id": params["character_id"]}},
+            )
+
+        await save_to_memory.ainvoke({
+            "messages": messages,
+            "user_id": user_id,
+            "character_id": character_id,
+            "response_content": response_content
+        })
+
+
+async def talk(text: str, current_user: User, character_id: str):
+    async with AsyncPostgresStore.from_conn_string(
+        os.getenv("DATABASE_URL"),
+        index={
+            "dims": 1536,
+            "embed": init_embeddings("openai:text-embedding-3-small"),
+            "fields": ["text"],
+        },
+    ) as store:
+        await store.conn.execute("SET search_path TO memories")
+        await store.setup()
 
         @entrypoint(store=store)
         async def chat(params: Dict[str, Any]):
@@ -112,7 +158,10 @@ async def talk(text: str, current_user: User, character_id: str):
 
             character = await get_character(character_id)
 
-            memories = store.search(("memories", user_id, character_id))
+            memories = await store.asearch(
+                ("memories", user_id, character_id))
+            memory_text = "\n".join(
+                m.value["content"]["content"] for m in memories)
 
             system_prompt = f"""
           今の時間は <time>{datetime.datetime.now(datetime.timezone.utc)}</time> です。
@@ -137,12 +186,12 @@ async def talk(text: str, current_user: User, character_id: str):
 
           ユーザーとの思い出や記憶は、以下の通りです。
           <memories>
-          {memories}
+          {memory_text}
           </memories>
 
           応答は必ず以下のJSON形式で返してください：
           {{
-            "role":"assistant"
+            "role":"assistant",
             "content": "キャラクターの返答メッセージ",
             "emotion": {{
               "neutral": 0.1から1.0の数値,
@@ -157,11 +206,14 @@ async def talk(text: str, current_user: User, character_id: str):
                 [{"role": "system", "content": system_prompt}, *messages]
             )
 
-            await memory_manager.ainvoke(
-                {"messages": messages + [response]},
-                config={
-                    "configurable": {"user_id": user_id, "character_id": character_id}
-                },
+            # 並列で記憶を保存
+            asyncio.create_task(
+                save_memory(
+                    messages,
+                    user_id,
+                    character_id,
+                    response.content
+                )
             )
 
             return response
@@ -184,7 +236,7 @@ async def chat_get(
 ) -> Dict[str, str]:
     response = await talk(character_id=character_id,
                           current_user=current_user, text=text)
-    return JSONResponse(content=response)
+    return JSONResponse(content=response.dict())
 
 
 @app.post("/chat")
@@ -195,4 +247,4 @@ async def chat_post(
 ) -> Dict[str, str]:
     response = await talk(character_id=character_id,
                           current_user=current_user, text=text)
-    return JSONResponse(content=response)
+    return JSONResponse(content=response.dict())

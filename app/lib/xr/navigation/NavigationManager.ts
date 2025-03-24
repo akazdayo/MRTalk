@@ -14,7 +14,7 @@ export interface INavMeshFactory {
 export class RecastNavMeshFactory implements INavMeshFactory {
   createNavMesh(meshes: Mesh[]): NavMesh | null {
     const { navMesh } = threeToSoloNavMesh(meshes, {
-      walkableClimb: 0.05,
+      walkableClimb: 0.1,
     }); //家具貫通防止
     return navMesh || null;
   }
@@ -64,7 +64,7 @@ export class AgentManager {
     });
 
     this.agent = this.crowd.addAgent(new Vector3(0, 0, 0), {
-      radius: 0.5,
+      radius: 0.1,
       maxAcceleration: 4.0,
       maxSpeed: 2,
       pathOptimizationRange: 1.0,

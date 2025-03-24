@@ -70,8 +70,6 @@ export class MovementManager {
       agent.position().z
     ).distanceTo(targetVec);
 
-    if (!crowd || !agent || !distanceToTarget) return;
-
     crowd.update(1 / 60);
     const { x, z } = agent.position();
     this.gltf.scene.position.set(x, 0, z);
@@ -98,7 +96,6 @@ export class MovementManager {
   }
 
   talking(lookAt: Vector3) {
-    if (!this.gltf) return;
     const vrm: VRM = this.gltf.userData.vrm;
     const headBone = vrm.humanoid.getNormalizedBoneNode("head");
     if (!headBone) return;

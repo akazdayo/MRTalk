@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["connector-placed-cherry-trash.trycloudflare.com"],
+    allowedHosts: ["aged-hits-nelson-returns.trycloudflare.com"],
   },
 });

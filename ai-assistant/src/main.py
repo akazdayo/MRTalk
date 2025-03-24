@@ -23,10 +23,10 @@ from typing import Dict, Any
 
 
 class Emotion(BaseModel):
-    neutral: float = Field(gt=0.0, lte=1.0, description="ニュートラルの感情値（0〜1の間）")
-    happy: float = Field(gt=0.0, lte=1.0, description="幸せの感情値（0〜1の間）")
-    sad: float = Field(gt=0.0, lte=1.0, description="悲しみの感情値（0〜1の間）")
-    angry: float = Field(gt=0.0, lte=1.0, description="怒りの感情値（0〜1の間）")
+    neutral: float = Field(description="ニュートラルの感情値（0〜1の間）")
+    happy: float = Field(description="幸せの感情値（0〜1の間）")
+    sad: float = Field(description="悲しみの感情値（0〜1の間）")
+    angry: float = Field(description="怒りの感情値（0〜1の間）")
 
 
 class EmotionMessage(BaseModel):

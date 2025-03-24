@@ -33,11 +33,11 @@ export default function TextBox({
           <Card padding={16} width={100} height={50}>
             <Container gapRow={16}>
               <FontFamilyProvider
-                noto-sans={{
-                  normal: "/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json",
+                keifont={{
+                  normal: "/fonts/keifont/keifont.json",
                 }}
               >
-                <Text wordBreak="break-all" fontFamily="noto-sans" fontSize={3}>
+                <Text wordBreak="break-all" fontFamily="keifont" fontSize={3}>
                   {text}
                 </Text>
               </FontFamilyProvider>

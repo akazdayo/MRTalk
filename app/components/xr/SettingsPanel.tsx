@@ -42,23 +42,25 @@ export default function SettingsPanel({
             >
               <Button size="xs" onClick={() => onClick("walking")}>
                 <FontFamilyProvider
-                  noto-sans={{
-                    normal:
-                      "/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json",
+                  keifont={{
+                    normal: "/fonts/keifont/keifont.json",
                   }}
                 >
-                  <Text fontFamily="noto-sans">歩き</Text>
+                  <Text wordBreak="break-all" fontFamily="keifont">
+                    歩き
+                  </Text>
                 </FontFamilyProvider>
               </Button>
 
               <Button size="xs" onClick={() => onClick("sitting")}>
                 <FontFamilyProvider
-                  noto-sans={{
-                    normal:
-                      "/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json",
+                  keifont={{
+                    normal: "/fonts/keifont/keifont.json",
                   }}
                 >
-                  <Text fontFamily="noto-sans">座り</Text>
+                  <Text wordBreak="break-all" fontFamily="keifont">
+                    座り
+                  </Text>
                 </FontFamilyProvider>
               </Button>
             </Container>

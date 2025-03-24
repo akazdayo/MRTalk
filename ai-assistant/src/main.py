@@ -206,16 +206,6 @@ async def talk(text: str, current_user: User, character_id: str):
                 [{"role": "system", "content": system_prompt}, *messages]
             )
 
-            # 並列で記憶を保存
-            asyncio.create_task(
-                save_memory(
-                    messages,
-                    user_id,
-                    character_id,
-                    response.content
-                )
-            )
-
             return response
 
         response = await chat.ainvoke(
@@ -225,6 +215,17 @@ async def talk(text: str, current_user: User, character_id: str):
                 "character_id": character_id,
             }
         )
+
+        # 並列で記憶を保存
+        asyncio.create_task(
+            save_memory(
+                [{"role": "user", "content": text}],
+                current_user.id,
+                character_id,
+                response.content
+            )
+        )
+
         return response
 
 

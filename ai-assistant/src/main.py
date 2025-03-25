@@ -2,6 +2,7 @@ import datetime
 import os
 import io
 import asyncio
+import base64
 from typing import Any, Dict
 
 from fastapi import Depends, FastAPI, HTTPException, Header, Request
@@ -21,6 +22,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel, Field
 from typing import Dict, Any
 
+from parler_tts import ParlerTTSForConditionalGeneration
+from transformers import AutoTokenizer
+import soundfile as sf
+from rubyinserter import add_ruby
+
 
 class Emotion(BaseModel):
     neutral: float = Field(description="ニュートラルの感情値（0〜1の間）")
@@ -33,8 +39,13 @@ class EmotionMessage(BaseModel):
     role: str = Field(description="メッセージの役割（assistant）")
     content: str = Field(description="メッセージ内容")
     emotion: Emotion = Field(description="感情オブジェクト")
+    voice: str = Field(description="Base64エンコードされた音声データ", default=None)
 
 
+model = ParlerTTSForConditionalGeneration.from_pretrained(
+    "2121-8/japanese-parler-tts-mini-bate").to("cpu")
+tokenizer = AutoTokenizer.from_pretrained(
+    "2121-8/japanese-parler-tts-mini-bate")
 r = sr.Recognizer()
 app = FastAPI()
 llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash')
@@ -45,6 +56,25 @@ memory_manager = create_memory_store_manager(
     "gpt-4o-mini",
     namespace=("memories", "{user_id}", "{character_id}"),
 )
+
+
+# 音声合成
+def generate_voice(prompt: str):
+    description = "A female speaker with a slightly high-pitched voice delivers her words at a moderate speed with a quite monotone tone in a confined environment, resulting in a quite clear audio recording."
+
+    prompt = add_ruby(prompt)
+    input_ids = tokenizer(description, return_tensors="pt").input_ids.to("cpu")
+    prompt_input_ids = tokenizer(
+        prompt, return_tensors="pt").input_ids.to("cpu")
+
+    generation = model.generate(
+        input_ids=input_ids, prompt_input_ids=prompt_input_ids)
+    audio_arr = generation.cpu().numpy().squeeze()
+    audio_bytes = audio_arr.tobytes()
+
+    base64_audio = base64.b64encode(audio_bytes).decode('utf-8')
+
+    return base64_audio
 
 
 # 音声ファイルを文字起こし
@@ -206,7 +236,16 @@ async def talk(text: str, current_user: User, character_id: str):
                 [{"role": "system", "content": system_prompt}, *messages]
             )
 
-            return response
+            base64_voice = generate_voice(response.content)
+
+            emotion_message = EmotionMessage(
+                role=response.role,
+                content=response.content,
+                emotion=response.emotion,
+                voice=base64_voice
+            )
+
+            return emotion_message
 
         response = await chat.ainvoke(
             {

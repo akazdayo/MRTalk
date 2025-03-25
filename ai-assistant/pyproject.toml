@@ -23,6 +23,8 @@ dependencies = [
     "pydub>=0.25.1",
     "langchain-google-genai>=2.1.1",
     "langchain-google-vertexai>=2.0.16",
+    "parler-tts @ git+https://github.com/huggingface/parler-tts.git",
+    "rubyinserter @ git+https://github.com/getuka/RubyInserter.git",
 ]
 
 readme = "README.md"

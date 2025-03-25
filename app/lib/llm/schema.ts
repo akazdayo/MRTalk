@@ -41,5 +41,6 @@ export const ResponseSchema = z
     role: z.string().min(1, "Role is required"),
     content: z.string().min(1, "Content is required"),
     emotion: EmotionSchema,
+    voice: z.string().base64(),
   })
   .strict();

@@ -13,7 +13,7 @@ dependencies = [
     "langgraph>=0.3.5",
     "fastapi>=0.115.11",
     "prisma>=0.15.0",
-    "numpy==2.0.0",
+    "numpy==1.26.4",
     "langgraph-checkpoint>=2.0.18",
     "langgraph-checkpoint-postgres>=2.0.16",
     "uvicorn>=0.34.0",
@@ -23,8 +23,12 @@ dependencies = [
     "pydub>=0.25.1",
     "langchain-google-genai>=2.1.1",
     "langchain-google-vertexai>=2.0.16",
-    "parler-tts @ git+https://github.com/huggingface/parler-tts.git",
-    "rubyinserter @ git+https://github.com/getuka/RubyInserter.git",
+    "torch==2.6.0+cu126",
+    "torchvision==0.21.0+cu126",
+    "torchaudio==2.6.0",
+    "style-bert-vits2>=2.5.0",
+    "scipy>=1.15.2",
+    "setuptools>=78.0.2",
 ]
 
 readme = "README.md"
@@ -46,3 +50,14 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ai_assistant"]
+
+[[tool.rye.sources]]
+name = "torch"
+url = "https://download.pytorch.org/whl/test/torch/"
+type = "find-links"
+
+[[tool.rye.sources]]
+name = "torchvision"
+url = "https://download.pytorch.org/whl/test/torchvision/"
+type = "find-links"
+

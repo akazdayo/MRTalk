@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["aged-hits-nelson-returns.trycloudflare.com"],
+    allowedHosts: [],
   },
 });

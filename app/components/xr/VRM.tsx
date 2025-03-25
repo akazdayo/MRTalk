@@ -49,6 +49,12 @@ export default function VRM({ character }: { character: Character }) {
 
       setText(res.content);
 
+      const sound = "data:audio/wav;base64," + res.voice;
+      const audio = new Audio();
+      audio.src = sound;
+
+      audio.play();
+
       //感情スコアをソート
       const arr = Object.entries(res.emotion);
 

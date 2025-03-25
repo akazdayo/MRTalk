@@ -10,8 +10,6 @@
 #   universal: false
 
 -e file:.
-absl-py==2.2.0
-    # via tensorboard
 annotated-types==0.7.0
     # via pydantic
 anthropic==0.49.0
@@ -21,75 +19,52 @@ anyio==4.8.0
     # via httpx
     # via openai
     # via starlette
-argbind==0.3.9
-    # via descript-audio-codec
-    # via descript-audiotools
-asttokens==3.0.0
-    # via stack-data
 asyncio==3.4.3
     # via ai-assistant
-audioread==3.0.1
-    # via librosa
 cachetools==5.5.2
     # via google-auth
 certifi==2025.1.31
     # via httpcore
     # via httpx
     # via requests
-cffi==1.17.1
-    # via soundfile
 charset-normalizer==3.4.1
     # via requests
 click==8.1.8
+    # via nltk
     # via prisma
     # via uvicorn
-contourpy==1.3.1
-    # via matplotlib
-cycler==0.12.1
-    # via matplotlib
-decorator==5.2.1
-    # via ipython
-    # via librosa
-deprecated==1.2.18
-    # via pykakasi
-descript-audio-codec==1.0.0
-    # via parler-tts
-descript-audiotools @ git+https://github.com/descriptinc/audiotools@348ebf2034ce24e2a91a553e3171cb00c0c71678
-    # via descript-audio-codec
-    # via parler-tts
+cmudict==1.0.32
+    # via style-bert-vits2
+cn2an==0.5.23
+    # via style-bert-vits2
+colorama==0.4.6
+    # via click
+    # via loguru
+    # via tqdm
+distance==0.1.3
+    # via g2p-en
 distro==1.9.0
     # via anthropic
     # via openai
+docopt==0.6.2
+    # via num2words
 docstring-parser==0.16
-    # via argbind
     # via google-cloud-aiplatform
 dydantic==0.0.8
     # via trustcall
-einops==0.8.1
-    # via descript-audio-codec
-executing==2.2.0
-    # via stack-data
 fastapi==0.115.11
     # via ai-assistant
-ffmpy==0.5.0
-    # via descript-audiotools
 filelock==3.18.0
     # via huggingface-hub
     # via torch
     # via transformers
 filetype==1.2.0
     # via langchain-google-genai
-fire==0.7.0
-    # via randomname
-flatten-dict==0.4.2
-    # via descript-audiotools
-fonttools==4.56.0
-    # via matplotlib
 fsspec==2025.3.0
     # via huggingface-hub
     # via torch
-future==1.0.0
-    # via pyloudnorm
+g2p-en==2.1.0
+    # via style-bert-vits2
 google-ai-generativelanguage==0.6.17
     # via langchain-google-genai
 google-api-core==2.24.2
@@ -129,6 +104,8 @@ googleapis-common-protos==1.69.2
     # via google-api-core
     # via grpc-google-iam-v1
     # via grpcio-status
+greenlet==3.1.1
+    # via sqlalchemy
 grpc-google-iam-v1==0.14.2
     # via google-cloud-resource-manager
 grpcio==1.71.0
@@ -136,7 +113,6 @@ grpcio==1.71.0
     # via googleapis-common-protos
     # via grpc-google-iam-v1
     # via grpcio-status
-    # via tensorboard
 grpcio-status==1.62.3
     # via google-api-core
 h11==0.14.0
@@ -160,16 +136,14 @@ idna==3.10
     # via anyio
     # via httpx
     # via requests
+importlib-metadata==8.6.1
+    # via cmudict
 importlib-resources==6.5.2
-    # via descript-audiotools
-ipython==9.0.2
-    # via descript-audiotools
-ipython-pygments-lexers==1.1.1
-    # via ipython
-jaconv==0.4.0
-    # via pykakasi
-jedi==0.19.2
-    # via ipython
+    # via cmudict
+inflect==7.5.0
+    # via g2p-en
+jieba==0.42.1
+    # via style-bert-vits2
 jinja2==3.1.6
     # via prisma
     # via torch
@@ -177,17 +151,12 @@ jiter==0.9.0
     # via anthropic
     # via openai
 joblib==1.4.2
-    # via librosa
-    # via scikit-learn
+    # via nltk
 jsonpatch==1.33
     # via langchain-core
     # via trustcall
 jsonpointer==3.0.0
     # via jsonpatch
-julius==0.2.7
-    # via descript-audiotools
-kiwisolver==1.4.8
-    # via matplotlib
 langchain==0.3.20
     # via ai-assistant
     # via langmem
@@ -234,57 +203,38 @@ langsmith==0.3.15
     # via langchain
     # via langchain-core
     # via langmem
-lazy-loader==0.4
-    # via librosa
-librosa==0.11.0
-    # via descript-audiotools
 llvmlite==0.44.0
     # via numba
-markdown==3.7
-    # via tensorboard
-markdown-it-py==3.0.0
-    # via rich
-markdown2==2.5.3
-    # via descript-audiotools
+loguru==0.7.3
+    # via style-bert-vits2
 markupsafe==3.0.2
     # via jinja2
-    # via werkzeug
-matplotlib==3.10.1
-    # via descript-audiotools
-matplotlib-inline==0.1.7
-    # via ipython
-mdurl==0.1.2
-    # via markdown-it-py
-mecab-python3==1.0.10
-    # via rubyinserter
+more-itertools==10.6.0
+    # via inflect
 mpmath==1.3.0
     # via sympy
 msgpack==1.1.0
     # via langgraph-checkpoint
-    # via librosa
 networkx==3.4.2
     # via torch
+nltk==3.9.1
+    # via g2p-en
 nodeenv==1.9.1
     # via prisma
+num2words==0.5.14
+    # via style-bert-vits2
 numba==0.61.0
-    # via librosa
-numpy==2.0.0
+    # via style-bert-vits2
+numpy==1.26.4
     # via ai-assistant
-    # via contourpy
-    # via descript-audio-codec
-    # via descript-audiotools
-    # via librosa
-    # via matplotlib
+    # via g2p-en
     # via numba
-    # via pyloudnorm
-    # via pystoi
-    # via scikit-learn
+    # via pyopenjtalk-dict
+    # via pyworld-prebuilt
     # via scipy
     # via shapely
-    # via soundfile
-    # via soxr
-    # via tensorboard
-    # via torch-stoi
+    # via style-bert-vits2
+    # via torchvision
     # via transformers
 openai==1.66.3
     # via langchain-openai
@@ -298,34 +248,19 @@ packaging==24.2
     # via huggingface-hub
     # via langchain-core
     # via langsmith
-    # via lazy-loader
-    # via matplotlib
-    # via pooch
-    # via tensorboard
     # via transformers
-parler-tts @ git+https://github.com/huggingface/parler-tts.git@d108732cd57788ec86bc857d99a6cabd66663d68
-    # via ai-assistant
-parso==0.8.4
-    # via jedi
-pexpect==4.9.0
-    # via ipython
 pillow==11.1.0
-    # via matplotlib
-platformdirs==4.3.7
-    # via pooch
-pooch==1.8.2
-    # via librosa
+    # via torchvision
 prisma==0.15.0
     # via ai-assistant
-prompt-toolkit==3.0.50
-    # via ipython
+proces==0.1.7
+    # via cn2an
 proto-plus==1.26.1
     # via google-ai-generativelanguage
     # via google-api-core
     # via google-cloud-aiplatform
     # via google-cloud-resource-manager
 protobuf==4.25.6
-    # via descript-audiotools
     # via google-ai-generativelanguage
     # via google-api-core
     # via google-cloud-aiplatform
@@ -333,9 +268,7 @@ protobuf==4.25.6
     # via googleapis-common-protos
     # via grpc-google-iam-v1
     # via grpcio-status
-    # via parler-tts
     # via proto-plus
-    # via tensorboard
 psycopg==3.2.6
     # via ai-assistant
     # via langgraph-checkpoint-postgres
@@ -344,17 +277,11 @@ psycopg-binary==3.2.6
 psycopg-pool==3.2.6
     # via langgraph-checkpoint-postgres
     # via psycopg
-ptyprocess==0.7.0
-    # via pexpect
-pure-eval==0.2.3
-    # via stack-data
 pyasn1==0.6.1
     # via pyasn1-modules
     # via rsa
 pyasn1-modules==0.4.1
     # via google-auth
-pycparser==2.22
-    # via cffi
 pydantic==2.10.6
     # via anthropic
     # via dydantic
@@ -368,39 +295,30 @@ pydantic==2.10.6
     # via langsmith
     # via openai
     # via prisma
+    # via style-bert-vits2
 pydantic-core==2.27.2
     # via pydantic
 pydub==0.25.1
     # via ai-assistant
-pygments==2.19.1
-    # via ipython
-    # via ipython-pygments-lexers
-    # via rich
-pykakasi==2.3.0
-    # via rubyinserter
-pyloudnorm==0.1.1
-    # via descript-audiotools
-pyparsing==3.2.2
-    # via matplotlib
-pystoi==0.4.1
-    # via descript-audiotools
-    # via torch-stoi
+pyopenjtalk-dict==0.3.4.dev2
+    # via style-bert-vits2
+pypinyin==0.53.0
+    # via style-bert-vits2
 python-dateutil==2.9.0.post0
     # via google-cloud-bigquery
-    # via matplotlib
 python-dotenv==1.0.1
     # via prisma
 python-multipart==0.0.20
     # via ai-assistant
+pyworld-prebuilt==0.3.4.4
+    # via style-bert-vits2
 pyyaml==6.0.2
-    # via argbind
     # via huggingface-hub
     # via langchain
     # via langchain-core
     # via transformers
-randomname==0.2.1
-    # via descript-audiotools
 regex==2024.11.6
+    # via nltk
     # via tiktoken
     # via transformers
 requests==2.32.3
@@ -410,109 +328,76 @@ requests==2.32.3
     # via huggingface-hub
     # via langchain
     # via langsmith
-    # via pooch
     # via requests-toolbelt
     # via tiktoken
     # via transformers
 requests-toolbelt==1.0.0
     # via langsmith
-rich==13.9.4
-    # via descript-audiotools
 rsa==4.9
     # via google-auth
-rubyinserter @ git+https://github.com/getuka/RubyInserter.git@0b0420b3f9828bbcd2475b2a1df2019fd17febf9
-    # via ai-assistant
 ruff==0.11.0
 safetensors==0.5.3
+    # via style-bert-vits2
     # via transformers
-scikit-learn==1.6.1
-    # via librosa
 scipy==1.15.2
-    # via descript-audiotools
-    # via librosa
-    # via pyloudnorm
-    # via pystoi
-    # via scikit-learn
-sentencepiece==0.2.0
-    # via parler-tts
+    # via ai-assistant
 setuptools==78.0.2
-    # via tensorboard
+    # via ai-assistant
 shapely==2.0.7
     # via google-cloud-aiplatform
 six==1.17.0
-    # via flatten-dict
+    # via pyopenjtalk-dict
     # via python-dateutil
-    # via tensorboard
 sniffio==1.3.1
     # via anthropic
     # via anyio
     # via openai
-soundfile==0.13.1
-    # via descript-audiotools
-    # via librosa
-soxr==0.5.0.post1
-    # via librosa
 speechrecognition==3.14.1
     # via ai-assistant
 sqlalchemy==2.0.39
     # via langchain
-stack-data==0.6.3
-    # via ipython
 starlette==0.46.1
     # via fastapi
+style-bert-vits2==2.5.0
+    # via ai-assistant
 sympy==1.13.1
     # via torch
 tenacity==9.0.0
     # via langchain-core
-tensorboard==2.19.0
-    # via descript-audiotools
-tensorboard-data-server==0.7.2
-    # via tensorboard
-termcolor==2.5.0
-    # via fire
-threadpoolctl==3.6.0
-    # via scikit-learn
 tiktoken==0.9.0
     # via langchain-openai
 tokenizers==0.20.3
     # via transformers
 tomlkit==0.13.2
     # via prisma
-torch==2.6.0
-    # via descript-audio-codec
-    # via descript-audiotools
-    # via julius
-    # via parler-tts
-    # via torch-stoi
+torch==2.6.0+cu126
+    # via ai-assistant
+    # via style-bert-vits2
     # via torchaudio
-torch-stoi==0.2.3
-    # via descript-audiotools
+    # via torchvision
 torchaudio==2.6.0
-    # via descript-audio-codec
-    # via descript-audiotools
-    # via torch-stoi
+    # via ai-assistant
+torchvision==0.21.0+cu126
+    # via ai-assistant
 tqdm==4.67.1
-    # via descript-audio-codec
-    # via descript-audiotools
     # via huggingface-hub
+    # via nltk
     # via openai
+    # via pyopenjtalk-dict
     # via transformers
-traitlets==5.14.3
-    # via ipython
-    # via matplotlib-inline
 transformers==4.46.1
-    # via parler-tts
+    # via style-bert-vits2
 trustcall==0.0.38
     # via langmem
+typeguard==4.4.2
+    # via inflect
 typing-extensions==4.12.2
     # via anthropic
     # via anyio
     # via fastapi
     # via google-cloud-aiplatform
     # via huggingface-hub
-    # via ipython
     # via langchain-core
-    # via librosa
     # via openai
     # via prisma
     # via psycopg
@@ -522,17 +407,16 @@ typing-extensions==4.12.2
     # via speechrecognition
     # via sqlalchemy
     # via torch
-unidic-lite==1.0.8
-    # via rubyinserter
+    # via typeguard
+tzdata==2025.2
+    # via psycopg
 urllib3==2.3.0
     # via requests
 uvicorn==0.34.0
     # via ai-assistant
-wcwidth==0.2.13
-    # via prompt-toolkit
-werkzeug==3.1.3
-    # via tensorboard
-wrapt==1.17.2
-    # via deprecated
+win32-setctime==1.2.0
+    # via loguru
+zipp==3.21.0
+    # via importlib-metadata
 zstandard==0.23.0
     # via langsmith

@@ -48,24 +48,24 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
         { error: errorResponse.detail },
         { status: res.status }
       );
+    } else {
+      const json = await res.json();
+
+      //バリデーション
+      const parsed = ResponseSchema.safeParse(json);
+      if (!parsed.success) {
+        return Response.json(
+          {
+            error: getErrorMessages(parsed.error.flatten().fieldErrors),
+          },
+          { status: 400 }
+        );
+      }
+
+      return Response.json(parsed.data, {
+        status: 200,
+      });
     }
-
-    const json = await res.json();
-
-    //バリデーション
-    const parsed = ResponseSchema.safeParse(json);
-    if (!parsed.success) {
-      return Response.json(
-        {
-          error: getErrorMessages(parsed.error.flatten().fieldErrors),
-        },
-        { status: 400 }
-      );
-    }
-
-    return Response.json(parsed.data, {
-      status: 200,
-    });
   } catch (e) {
     return Response.json({ error: "An error has occurred." }, { status: 500 });
   }
@@ -120,24 +120,24 @@ export async function action({ params, request }: ActionFunctionArgs) {
         { error: errorResponse.detail },
         { status: res.status }
       );
+    } else {
+      const json = await res.json();
+
+      //バリデーション
+      const parsed = ResponseSchema.safeParse(json);
+      if (!parsed.success) {
+        return Response.json(
+          {
+            error: getErrorMessages(parsed.error.flatten().fieldErrors),
+          },
+          { status: 400 }
+        );
+      }
+
+      return Response.json(parsed.data, {
+        status: 200,
+      });
     }
-
-    const json = await res.json();
-
-    //バリデーション
-    const parsed = ResponseSchema.safeParse(json);
-    if (!parsed.success) {
-      return Response.json(
-        {
-          error: getErrorMessages(parsed.error.flatten().fieldErrors),
-        },
-        { status: 400 }
-      );
-    }
-
-    return Response.json(parsed.data, {
-      status: 200,
-    });
   } catch (e) {
     return Response.json({ error: "An error has occurred." }, { status: 500 });
   }

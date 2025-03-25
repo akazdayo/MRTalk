@@ -17,15 +17,22 @@ import {
   RecastNavMeshFactory,
 } from "~/lib/xr/navigation/NavigationManager";
 import { init } from "@recast-navigation/core";
+import { VRM as VRMType } from "@pixiv/three-vrm";
+import { Buffer } from "buffer";
 
 export default function VRM({ character }: { character: Character }) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [text, setText] = useState<string>("話しかけてみましょう！");
 
+  const timeDomainData = new Float32Array(2048);
+
   const isCompleteSetup = useRef<boolean>(false);
   const chatRef = useRef(new Chat(character.id));
   const movementManager = useRef<MovementManager | null>(null);
   const animationManager = useRef<AnimationManager | null>(null);
+
+  const audioCtx = useRef<AudioContext | null>(null);
+  const analyser = useRef<AnalyserNode | null>(null);
 
   const { gl } = useThree();
   const meshes = useMeshStore((state) => state.meshes);
@@ -53,7 +60,25 @@ export default function VRM({ character }: { character: Character }) {
       const audio = new Audio();
       audio.src = sound;
 
-      audio.play();
+      const buffer = Buffer.from(res.voice, "base64");
+
+      if (audioCtx.current) {
+        audioCtx.current.decodeAudioData(
+          buffer.buffer.slice(
+            buffer.byteOffset,
+            buffer.byteOffset + buffer.byteLength
+          ),
+          (audioBuffer) => {
+            if (analyser.current && audioCtx.current) {
+              const bufferSource = audioCtx.current.createBufferSource();
+              bufferSource.buffer = audioBuffer;
+              bufferSource.connect(audioCtx.current.destination);
+              bufferSource.connect(analyser.current);
+              bufferSource.start();
+            }
+          }
+        );
+      }
 
       //感情スコアをソート
       const arr = Object.entries(res.emotion);
@@ -109,7 +134,7 @@ export default function VRM({ character }: { character: Character }) {
       setTimeout(() => {
         setText("考え中...");
         stopRecording();
-      }, 1000); //すぐに終了しないように1秒あける
+      }, 500); //すぐに終了しないように500msあける
     },
     [controller]
   );
@@ -141,6 +166,17 @@ export default function VRM({ character }: { character: Character }) {
       animation.playAnimation("idle");
     } catch (e) {
       alert("モデルのロードに失敗しました。");
+    }
+
+    try {
+      const ctx = new window.AudioContext();
+      const a = ctx.createAnalyser();
+
+      audioCtx.current = ctx;
+      analyser.current = a;
+      window.Buffer = Buffer;
+    } catch (e) {
+      alert("Audio Analyserのセットアップに失敗しました。");
     }
   };
 
@@ -184,6 +220,25 @@ export default function VRM({ character }: { character: Character }) {
 
     if (movementManager.current) {
       movementManager.current.update();
+    }
+
+    //リップシンク(仮)
+    if (analyser.current && gltf) {
+      analyser.current.getFloatTimeDomainData(timeDomainData);
+
+      let volume = 0.0;
+      for (let i = 0; i < 2048; i++) {
+        volume = Math.max(volume, Math.abs(timeDomainData[i]));
+      }
+
+      volume = 1 / (1 + Math.exp(-45 * volume + 5));
+      if (volume < 0.1) volume = 0;
+
+      console.log(volume);
+
+      const vrm: VRMType = gltf.userData.vrm;
+
+      vrm.expressionManager?.setValue("aa", volume);
     }
   });
 

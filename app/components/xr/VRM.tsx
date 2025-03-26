@@ -234,8 +234,6 @@ export default function VRM({ character }: { character: Character }) {
       volume = 1 / (1 + Math.exp(-45 * volume + 5));
       if (volume < 0.1) volume = 0;
 
-      console.log(volume);
-
       const vrm: VRMType = gltf.userData.vrm;
 
       vrm.expressionManager?.setValue("aa", volume);

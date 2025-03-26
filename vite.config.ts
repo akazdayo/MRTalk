@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["relations-stainless-library-specify.trycloudflare.com"],
+    allowedHosts: [],
   },
 });

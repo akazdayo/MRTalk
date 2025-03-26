@@ -30,7 +30,7 @@ structured_llm = llm.with_structured_output(EmotionMessage)
 
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
 memory_manager = create_memory_store_manager(
-    "gpt-4o-mini",
+    llm,
     namespace=("memories", "{user_id}", "{character_id}"),
 )
 

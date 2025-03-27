@@ -1,7 +1,7 @@
 import { Character } from "@prisma/client";
 import { Form, useNavigate } from "@remix-run/react";
 import { SaveIcon, TrashIcon } from "lucide-react";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import {
@@ -21,38 +21,35 @@ export default function EditCharacterContainer({
   character: Character;
 }) {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
+    setIsLoading(true);
+
     const formData = new FormData(event.target as HTMLFormElement);
-    const name = formData.get("name") as string;
-    const model_url = formData.get("model_url") as string;
-    const personality = formData.get("personality") as string;
-    const story = formData.get("story") as string;
+    formData.set("id", character.id);
 
     const res = await fetch("/api/character/", {
       method: "PUT",
-      body: JSON.stringify({
-        id: character.id,
-        name,
-        model_url,
-        personality,
-        story,
-      }),
+      body: formData,
     });
 
     if (!res.ok) {
       const error = await res.json();
-
       toast(error.error);
+      setIsLoading(false);
     } else {
       const json = await res.json();
-
+      setIsLoading(false);
       navigate(`/character/${json.id}`);
     }
   };
 
   const onDelete = async () => {
+    setIsLoading(true);
+
     const res = await fetch("/api/character/", {
       method: "DELETE",
       body: JSON.stringify({
@@ -62,9 +59,10 @@ export default function EditCharacterContainer({
 
     if (!res.ok) {
       const error = await res.json();
-
       toast(error.error);
+      setIsLoading(false);
     } else {
+      setIsLoading(false);
       navigate(`/`);
     }
   };
@@ -74,7 +72,7 @@ export default function EditCharacterContainer({
       <h1 className="font-bold text-3xl text-center">
         {character.name}の情報を編集
       </h1>
-      <Form method="post" className="py-10 space-y-6" onSubmit={onSubmit}>
+      <Form className="py-10 space-y-6" onSubmit={onSubmit}>
         <div>
           <label htmlFor="name">キャラクター名</label>
           <Input
@@ -85,16 +83,7 @@ export default function EditCharacterContainer({
             required
           />
         </div>
-        <div>
-          <label htmlFor="model_url">モデルURL</label>
-          <Input
-            type="text"
-            name="model_url"
-            id="model_url"
-            defaultValue={character.model_url}
-            required
-          />
-        </div>
+
         <div>
           <label htmlFor="personality">人格、性格など</label>
           <textarea
@@ -105,6 +94,7 @@ export default function EditCharacterContainer({
             required
           />
         </div>
+
         <div>
           <label htmlFor="story">背景ストーリーなど</label>
           <textarea
@@ -115,6 +105,7 @@ export default function EditCharacterContainer({
             required
           />
         </div>
+
         <div className="flex justify-between">
           <Button type="submit" className="bg-blue-500 text-white">
             <SaveIcon className="mr-2" />
@@ -148,6 +139,18 @@ export default function EditCharacterContainer({
           </Dialog>
         </div>
       </Form>
+
+      {isLoading ? (
+        <Dialog open={true}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Loading...</DialogTitle>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

@@ -3,6 +3,8 @@ import {
   createCharacter,
   updateCharacter,
   deleteCharacter,
+  checkPermission,
+  getCharacter,
 } from "~/lib/api/character";
 import { getServerSession } from "~/lib/auth/session";
 import {
@@ -11,18 +13,24 @@ import {
   UpdateCharacterSchema,
 } from "~/lib/api/character/schema";
 import { getErrorMessages } from "~/utils/zod/getErrorMessages";
+import { deleteFile, uploadFile } from "~/lib/api/storage";
 
 export const action: ActionFunction = async ({ request }) => {
   const method = request.method;
-  const body = await request.json();
-  const user = await getServerSession(request.headers);
+  const session = await getServerSession(request.headers);
 
-  if (!user) return Response.json({ error: "Unauthorized." }, { status: 401 });
+  if (!session)
+    return Response.json({ error: "Unauthorized." }, { status: 401 });
 
   try {
     switch (method) {
       case "POST": {
-        const parsed = CreateCharacterSchema.safeParse(body);
+        const body = await request.formData();
+
+        const parsed = CreateCharacterSchema.safeParse(
+          Object.fromEntries(body)
+        );
+
         if (!parsed.success) {
           return Response.json(
             {
@@ -32,19 +40,27 @@ export const action: ActionFunction = async ({ request }) => {
           );
         }
 
-        const { name, personality, story, model_url } = parsed.data;
+        const { name, personality, story, model } = parsed.data;
+
+        const model_url = await uploadFile(model);
+
         const character = await createCharacter({
           name,
           personality,
           story,
           model_url,
-          postedBy: user.user.id,
+          postedBy: session.user.id,
         });
         return Response.json(character, { status: 201 });
       }
       case "PUT": {
-        const parsed = UpdateCharacterSchema.safeParse(body);
+        const body = await request.formData();
+
+        const parsed = UpdateCharacterSchema.safeParse(
+          Object.fromEntries(body)
+        );
         if (!parsed.success) {
+          console.log(parsed.error.message);
           return Response.json(
             {
               error: getErrorMessages(parsed.error.flatten().fieldErrors),
@@ -53,20 +69,32 @@ export const action: ActionFunction = async ({ request }) => {
           );
         }
 
-        const { id, name, personality, story, model_url } = parsed.data;
-        const character = await updateCharacter(
-          {
+        const { id, name, personality, story } = parsed.data;
+
+        const permission = await checkPermission(id, session.user.id);
+
+        if (!permission) {
+          return Response.json(
+            {
+              error: "You do not have permission to control this character.",
+            },
+            { status: 400 }
+          );
+        } else {
+          const character = await updateCharacter({
             id,
             name,
             personality,
             story,
-            model_url,
-          },
-          user.user.id
-        );
-        return Response.json(character);
+          });
+          return Response.json(character);
+        }
+
+        break;
       }
       case "DELETE": {
+        const body = await request.json();
+
         const parsed = DeleteCharacterSchema.safeParse(body);
         if (!parsed.success) {
           return Response.json(
@@ -77,24 +105,34 @@ export const action: ActionFunction = async ({ request }) => {
           );
         }
 
-        await deleteCharacter(parsed.data.id, user.user.id);
-        return Response.json(null);
+        const { id } = parsed.data;
+
+        const permission = await checkPermission(id, session.user.id);
+
+        if (!permission) {
+          return Response.json(
+            {
+              error: "You do not have permission to control this character.",
+            },
+            { status: 400 }
+          );
+        } else {
+          const character = await getCharacter(id, false);
+
+          if (character) {
+            await deleteFile(character.model_url);
+            await deleteCharacter(id);
+          }
+
+          return Response.json(null);
+        }
+
+        break;
       }
       default:
         return Response.json({ error: "Method not allowed." }, { status: 405 });
     }
   } catch (e) {
-    switch (e) {
-      case e === "Character not found.":
-        return Response.json({ error: e }, { status: 400 });
-      case e ===
-        "The requesting user does not have permission to edit the character.":
-        return Response.json({ error: e }, { status: 403 });
-      default:
-        return Response.json(
-          { error: "An error has occurred." },
-          { status: 500 }
-        );
-    }
+    return Response.json({ error: "An error has occurred." }, { status: 500 });
   }
 };

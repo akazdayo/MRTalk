@@ -12,31 +12,27 @@ export default function CharacterCard({
   postedby: User;
 }) {
   return (
-    <div className="min-w-44">
-      <a href={`/character/${id}`}>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold">{name}</CardTitle>
-          </CardHeader>
+    <div>
+      <Card>
+        <CardHeader className="p-4">
+          <CardTitle className="text-2xl font-bold text-gray-900 truncate">
+            <a href={`/character/${id}`}>{name}</a>
+          </CardTitle>
+        </CardHeader>
 
-          <CardFooter>
-            <div>
-              <p>by {postedby.name}</p>
-            </div>
+        <CardFooter className="p-4 flex items-center justify-between bg-gray-50">
+          <p className="text-sm text-gray-600">by {postedby.name}</p>
 
-            <div>
-              <a href={`/user/${postedby.id}`}>
-                <Avatar>
-                  <AvatarImage src={postedby.image!} alt={postedby.name} />
-                  <AvatarFallback>
-                    {postedby.name.toUpperCase()[0]}
-                  </AvatarFallback>
-                </Avatar>
-              </a>
-            </div>
-          </CardFooter>
-        </Card>
-      </a>
+          <a href={`/user/${postedby.id}`} className="flex items-center">
+            <Avatar className="w-10 h-10">
+              <AvatarImage src={postedby.image!} alt={postedby.name} />
+              <AvatarFallback className="bg-gray-300 text-gray-700 text-lg">
+                {postedby.name.toUpperCase()[0]}
+              </AvatarFallback>
+            </Avatar>
+          </a>
+        </CardFooter>
+      </Card>
     </div>
   );
 }

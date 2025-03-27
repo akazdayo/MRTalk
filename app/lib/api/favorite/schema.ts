@@ -2,6 +2,8 @@ import { z } from "zod";
 
 export const FavoriteSchema = z
   .object({
-    characterId: z.string().min(1, "Character ID is required"),
+    characterId: z
+      .string({ required_error: "Character ID is required" })
+      .min(1, "Character ID is required"),
   })
   .strict();

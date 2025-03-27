@@ -33,48 +33,37 @@ export const createCharacter = async (
 };
 
 export const updateCharacter = async (
-  character: Omit<Character, "postedBy" | "createdAt" | "updatedAt">,
-  userId: string
+  character: Omit<
+    Character,
+    "postedBy" | "createdAt" | "updatedAt" | "model_url"
+  >
 ) => {
-  const existingCharacter = await prisma.character.findUnique({
-    where: { id: character.id },
-  });
-
-  if (!existingCharacter) {
-    throw new Error("Character not found.");
-  }
-
-  if (existingCharacter.postedBy !== userId) {
-    throw new Error(
-      "The requesting user does not have permission to edit the character."
-    );
-  }
-
   return await prisma.character.update({
     where: { id: character.id },
     data: {
       name: character.name,
       personality: character.personality,
       story: character.story,
-      model_url: character.model_url,
     },
   });
 };
 
-export const deleteCharacter = async (id: string, user: string) => {
+export const deleteCharacter = async (id: string) => {
+  await prisma.character.delete({ where: { id } });
+};
+
+export const checkPermission = async (characterId: string, userId: string) => {
   const existingCharacter = await prisma.character.findUnique({
-    where: { id },
+    where: { id: characterId },
   });
 
   if (!existingCharacter) {
-    throw new Error("Character not found.");
+    return false;
   }
 
-  if (existingCharacter.postedBy !== user) {
-    throw new Error(
-      "The requesting user does not have permission to edit the character."
-    );
+  if (existingCharacter.postedBy !== userId) {
+    return false;
+  } else {
+    return true;
   }
-
-  await prisma.character.delete({ where: { id } });
 };

@@ -7,12 +7,14 @@ type Props = {
 
 export default function CharacterList(props: Props) {
   return (
-    <div className="mt-8">
-      <div className="mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold">{props.title}</h2>
+    <div className="container mx-auto px-4 py-6">
+      <div className="mb-6 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+          {props.title}
+        </h2>
       </div>
 
-      <div className="flex overflow-x-auto md:grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-6 items-center">
         {props.children}
       </div>
     </div>

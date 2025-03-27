@@ -27,7 +27,7 @@ export default function VRM({ character }: { character: Character }) {
   const timeDomainData = new Float32Array(2048);
 
   const isCompleteSetup = useRef<boolean>(false);
-  const chatRef = useRef(new Chat(character.id));
+  const chat = useRef(new Chat(character.id));
   const movementManager = useRef<MovementManager | null>(null);
   const animationManager = useRef<AnimationManager | null>(null);
 
@@ -52,7 +52,7 @@ export default function VRM({ character }: { character: Character }) {
     }
 
     try {
-      const res = await chatRef.current.voiceChat(blob);
+      const res = await chat.current.voiceChat(blob);
 
       setText(res.content);
 
@@ -150,7 +150,7 @@ export default function VRM({ character }: { character: Character }) {
       await init();
       const loader = new VRMLoader();
 
-      const { gltf } = await loader.load("/models/AliciaSolid-1.0.vrm");
+      const { gltf } = await loader.load(character.model_url);
       setGltf(gltf);
 
       const animation = new AnimationManager(gltf);

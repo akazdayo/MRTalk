@@ -2,8 +2,10 @@ import { z } from "zod";
 
 export const InputSchema = z
   .object({
-    id: z.string().min(1, "ID is required"),
-    text: z.string().min(1, "Text is required"),
+    id: z.string({ required_error: "ID is required" }).min(1, "ID is required"),
+    text: z
+      .string({ required_error: "Text is required" })
+      .min(1, "Text is required"),
   })
   .strict();
 
@@ -38,9 +40,16 @@ export const EmotionSchema = z
 
 export const ResponseSchema = z
   .object({
-    role: z.string().min(1, "Role is required"),
-    content: z.string().min(1, "Content is required"),
+    role: z
+      .string({ required_error: "Role is required" })
+      .min(1, "Role is required"),
+    content: z
+      .string({ required_error: "Content is required" })
+      .min(1, "Content is required"),
     emotion: EmotionSchema,
-    voice: z.string().base64(),
+    voice: z
+      .string({ required_error: "Voice is required" })
+      .base64()
+      .min(1, "Voice is required"),
   })
   .strict();

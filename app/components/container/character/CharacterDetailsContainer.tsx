@@ -59,50 +59,58 @@ export default function CharacterDetailsContainer({
   return (
     <div className="space-y-4">
       <h1 className="font-bold text-3xl">{data.character.name}</h1>
-      <div className="flex space-x-4 items-center">
-        {session ? (
-          <Button
-            onClick={toggleFavorite}
-            className={`${isFavorite ? "bg-yellow-400" : ""}`}
-          >
-            <Star />
-            Favorite
-          </Button>
-        ) : (
-          ""
-        )}
+      <div className="md:flex md:space-x-4 md:space-y-0 items-center space-y-4">
+        <div>
+          {session ? (
+            <Button
+              onClick={toggleFavorite}
+              className={`${isFavorite ? "bg-yellow-400" : ""}`}
+            >
+              <Star />
+              Favorite
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
 
-        {session && session.user.id === data.character.postedBy ? (
-          <a href={`/character/edit/${data.character.id}`}>
+        <div>
+          {session && session.user.id === data.character.postedBy ? (
+            <a href={`/character/edit/${data.character.id}`}>
+              <Button>
+                <Edit />
+                編集
+              </Button>
+            </a>
+          ) : (
+            ""
+          )}
+        </div>
+
+        <div>
+          <a href={`/talk/${data.character.id}`}>
             <Button>
-              <Edit />
-              編集
+              <BoxIcon />
+              MRモード(Meta Quest3が必要です)
             </Button>
           </a>
-        ) : (
-          ""
-        )}
+        </div>
 
-        <a href={`/talk/${data.character.id}`}>
-          <Button>
-            <BoxIcon />
-            MRモード(Meta Quest3が必要です)
-          </Button>
-        </a>
+        <div className="flex items-center">
+          <p>{data.character.user.name}が投稿</p>
 
-        <p>{data.character.user.name}が投稿</p>
-
-        <a href={`/user/${data.character.user.id}`}>
-          <Avatar>
-            <AvatarImage
-              src={data.character.user.image!}
-              alt={data.character.user.name}
-            />
-            <AvatarFallback>
-              {data.character.user.name.toUpperCase()[0]}
-            </AvatarFallback>
-          </Avatar>
-        </a>
+          <a href={`/user/${data.character.user.id}`}>
+            <Avatar>
+              <AvatarImage
+                src={data.character.user.image!}
+                alt={data.character.user.name}
+              />
+              <AvatarFallback>
+                {data.character.user.name.toUpperCase()[0]}
+              </AvatarFallback>
+            </Avatar>
+          </a>
+        </div>
       </div>
       <p>性格</p>
       <div>{data.character.personality}</div>

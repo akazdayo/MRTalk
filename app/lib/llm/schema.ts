@@ -47,6 +47,11 @@ export const ResponseSchema = z
       .string({ required_error: "Content is required" })
       .min(1, "Content is required"),
     emotion: EmotionSchema,
+    event: z.union([
+      z.literal("sit"),
+      z.literal("go_to_user_position"),
+      z.null(),
+    ]),
     voice: z
       .string({ required_error: "Voice is required" })
       .base64()

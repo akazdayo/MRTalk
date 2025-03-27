@@ -10,7 +10,7 @@ export class Chat {
     this.apiEndpoint = `/api/chat/${characterId}`;
   }
 
-  async talk(text: string) {
+  async chat(text: string) {
     const res = await fetch(this.apiEndpoint + `?text=${text}`, {});
 
     if (!res.ok) {

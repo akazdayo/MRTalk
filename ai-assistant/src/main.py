@@ -6,12 +6,11 @@ from typing import Any, Dict
 
 from fastapi import Depends, FastAPI, HTTPException, Header, Request
 from fastapi.responses import JSONResponse
-from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.embeddings import init_embeddings
 from langgraph.func import entrypoint
 from langgraph.store.postgres import AsyncPostgresStore
 from langmem import create_memory_store_manager
+from psycopg import AsyncConnection
 
 from prisma import Prisma
 from prisma.models import Character, User
@@ -19,13 +18,15 @@ import speech_recognition as sr
 from pydub import AudioSegment
 
 from src.tts import TTS
-from src.schema import EmotionMessage
+from src.schema import EmotionMessage, Response
+
 
 r = sr.Recognizer()
 tts = TTS()
 app = FastAPI()
-llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash')
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 structured_llm = llm.with_structured_output(EmotionMessage)
+db_url = os.getenv("DATABASE_URL") or ""
 
 
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
@@ -38,7 +39,9 @@ memory_manager = create_memory_store_manager(
 # 音声ファイルを文字起こし
 async def get_audio_text(request: Request) -> str:
     form = await request.form()
-    file = form['file']
+    file = form["file"]
+
+    assert not isinstance(file, str)
     file_content = await file.read()
 
     audio_file = io.BytesIO(file_content)
@@ -52,17 +55,17 @@ async def get_audio_text(request: Request) -> str:
         audio_data = r.record(source)
 
     try:
-        text = r.recognize_google(audio_data, language='ja-JP')
+        text = r.recognize_google(audio_data, language="ja-JP")  # type:ignore
 
         return text
     except sr.UnknownValueError:
         raise HTTPException(status_code=400, detail="音声を理解できませんでした")
-    except sr.RequestError as e:
+    except sr.RequestError:
         raise HTTPException(status_code=400, detail="エラーが発生しました。")
 
 
 # セッショントークンからユーザーを取得
-async def get_current_user(authorization: str = Header(None)) -> User:
+async def get_current_user(authorization: str = Header(None)) -> User | None:
     if not authorization:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
@@ -89,8 +92,7 @@ async def get_character(id: str) -> Character | None:
     character = await prisma.character.find_unique(where={"id": id})
 
     if not character:
-        raise HTTPException(
-            status_code=400, detail="Character not found")
+        raise HTTPException(status_code=400, detail="Character not found")
 
     await prisma.disconnect()
     return character
@@ -99,57 +101,68 @@ async def get_character(id: str) -> Character | None:
 # 記憶を保存
 async def save_memory(messages, user_id, character_id, response_content):
     async with AsyncPostgresStore.from_conn_string(
-        os.getenv("DATABASE_URL"),
+        db_url,
         index={
             "dims": 1536,
-            "embed": init_embeddings("openai:text-embedding-3-small"),
+            "embed": "openai:text-embedding-3-small",
             "fields": ["text"],
         },
     ) as store:
+        assert isinstance(store.conn, AsyncConnection)
         await store.conn.execute("SET search_path TO memories")
         await store.setup()
 
         @entrypoint(store=store)
-        async def save_to_memory(params: Dict[str, Any]):
+        async def save(params: Dict[str, Any]):
             await memory_manager.ainvoke(
-                {"messages": params["messages"] + [{"role": "assistant",
-                                                    "content": params["response_content"]}]},
-                config={"configurable": {
-                    "user_id": params["user_id"], "character_id": params["character_id"]}},
+                {
+                    "messages": params["messages"]
+                    + [{"role": "assistant", "content": params["response_content"]}],
+                    "max_steps": 3,
+                },
+                config={
+                    "configurable": {
+                        "user_id": params["user_id"],
+                        "character_id": params["character_id"],
+                    }
+                },
             )
 
-        await save_to_memory.ainvoke({
-            "messages": messages,
-            "user_id": user_id,
-            "character_id": character_id,
-            "response_content": response_content
-        })
+        await save.ainvoke(
+            {
+                "messages": messages,
+                "user_id": user_id,
+                "character_id": character_id,
+                "response_content": response_content,
+            }
+        )
 
 
-async def talk(text: str, current_user: User, character_id: str):
+async def chat(text: str, current_user: User, character_id: str):
     async with AsyncPostgresStore.from_conn_string(
-        os.getenv("DATABASE_URL"),
+        db_url,
         index={
             "dims": 1536,
-            "embed": init_embeddings("openai:text-embedding-3-small"),
+            "embed": "openai:text-embedding-3-small",
             "fields": ["text"],
         },
     ) as store:
+        assert isinstance(store.conn, AsyncConnection)
         await store.conn.execute("SET search_path TO memories")
         await store.setup()
 
         @entrypoint(store=store)
-        async def chat(params: Dict[str, Any]):
+        async def generate(params: Dict[str, Any]) -> Response | None:
             messages = params["messages"]
             user_id = params["user_id"]
             character_id = params["character_id"]
 
             character = await get_character(character_id)
+            if not (character):
+                return
 
-            memories = await store.asearch(
-                ("memories", user_id, character_id))
-            memory_text = "\n".join(
-                m.value["content"]["content"] for m in memories)
+            memories = await store.asearch(("memories", user_id, character_id))
+            memory_text = "\n".join(m.value["content"]["content"] for m in memories)
 
             system_prompt = f"""
           今の時間は <time>{datetime.datetime.now(datetime.timezone.utc)}</time> です。
@@ -177,7 +190,7 @@ async def talk(text: str, current_user: User, character_id: str):
           {memory_text}
           </memories>
 
-          応答は必ず以下のJSON形式で返してください：
+          応答は必ず以下のJSON形式で返してください。eventには、キャラクターが行動する場面(座りたい時など)だけに入れて、そうでない場合はNoneを入れてください。
           {{
             "role":"assistant",
             "content": "キャラクターの返答メッセージ",
@@ -187,25 +200,30 @@ async def talk(text: str, current_user: User, character_id: str):
               "sad": 0.1から1.0の数値,
               "angry": 0.1から1.0の数値
             }}
+            "event": {{
+              "type":"sit" | "go_to_user_position" | None
+            }}
           }}
           """
 
             response = structured_llm.invoke(
                 [{"role": "system", "content": system_prompt}, *messages]
             )
+            assert isinstance(response, EmotionMessage)
 
             base64_voice = tts.generate(response.content)
 
-            emotion_message = EmotionMessage(
+            res = Response(
                 role=response.role,
                 content=response.content,
                 emotion=response.emotion,
-                voice=base64_voice
+                event=response.event,
+                voice=base64_voice,
             )
 
-            return emotion_message
+            return res
 
-        response = await chat.ainvoke(
+        response = await generate.ainvoke(
             {
                 "messages": [{"role": "user", "content": text}],
                 "user_id": current_user.id,
@@ -213,13 +231,15 @@ async def talk(text: str, current_user: User, character_id: str):
             }
         )
 
+        assert isinstance(response, Response)
+
         # 並列で記憶を保存
         asyncio.create_task(
             save_memory(
                 [{"role": "user", "content": text}],
                 current_user.id,
                 character_id,
-                response.content
+                response.content,
             )
         )
 
@@ -231,10 +251,11 @@ async def chat_get(
     text: str,
     character_id: str,
     current_user: User = Depends(get_current_user),
-) -> Dict[str, str]:
+):
     print(text)
-    response = await talk(character_id=character_id,
-                          current_user=current_user, text=text)
+    response = await chat(
+        character_id=character_id, current_user=current_user, text=text
+    )
     return JSONResponse(content=response.dict())
 
 
@@ -243,7 +264,8 @@ async def chat_post(
     character_id: str,
     current_user: User = Depends(get_current_user),
     text: str = Depends(get_audio_text),
-) -> Dict[str, str]:
-    response = await talk(character_id=character_id,
-                          current_user=current_user, text=text)
+):
+    response = await chat(
+        character_id=character_id, current_user=current_user, text=text
+    )
     return JSONResponse(content=response.dict())

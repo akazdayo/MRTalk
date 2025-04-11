@@ -14,7 +14,7 @@ export interface INavMeshFactory {
 export class RecastNavMeshFactory implements INavMeshFactory {
   createNavMesh(meshes: Mesh[]): NavMesh | null {
     const { navMesh } = threeToSoloNavMesh(meshes, {
-      walkableClimb: 1,
+      walkableClimb: 1.5,
     }); //家具貫通防止
     return navMesh || null;
   }

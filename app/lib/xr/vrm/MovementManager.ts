@@ -4,7 +4,8 @@ import { VRM } from "@pixiv/three-vrm";
 import { Mesh, Vector3 } from "three";
 import { AnimationManager } from "./AnimationManager";
 
-export type StateType = "walking" | "sitting" | "talking";
+export type StateType = "idle" | "walking";
+export type EventType = "sit" | "go_to_user_position";
 
 export class MovementManager {
   private state: StateType;
@@ -16,15 +17,18 @@ export class MovementManager {
   private getMeshByLabel: (label: string) => Mesh | undefined;
   private player: Vector3;
 
+  private xr: XRSession;
+
+  private isTalking: boolean;
+
   constructor(
-    state: StateType,
     gltf: GLTF,
     animation: AnimationManager,
     agent: AgentManager,
     getMeshByLabel: (label: string) => Mesh | undefined,
-    player: Vector3
+    player: Vector3,
+    xr: XRSession
   ) {
-    this.state = state;
     this.gltf = gltf;
 
     this.animation = animation;
@@ -33,11 +37,11 @@ export class MovementManager {
     this.getMeshByLabel = getMeshByLabel;
     this.player = player;
 
-    this.walk(this.agent.getRandomPoint(this.player));
+    this.animation.playAnimation("idle");
+    this.state = "idle";
 
-    setInterval(() => {
-      this.walk(this.agent.getRandomPoint(this.player));
-    }, 10000);
+    this.xr = xr;
+    this.isTalking = false;
   }
 
   lookAt(targetVec: Vector3) {
@@ -45,7 +49,7 @@ export class MovementManager {
 
     const distance = this.gltf.scene.position.distanceTo(targetVec);
 
-    if (distance > 2) {
+    if (distance > 1.5) {
       vrm.lookAt?.reset();
       return;
     }
@@ -54,48 +58,37 @@ export class MovementManager {
     vrm.lookAt?.lookAt(targetVec);
   }
 
+  idle() {
+    this.animation.stopAllAnimation();
+    this.animation.playAnimation("idle");
+  }
+
   walk(pointVec: Vector3) {
-    if (this.state === "walking" && this.agent && this.player) {
-      this.agent.moveTo(pointVec);
-    }
+    this.agent.moveTo(pointVec);
   }
 
-  walking(targetVec: Vector3) {
-    const crowd = this.agent.getCrowd();
-    const agent = this.agent.getAgent();
-
-    const distanceToTarget = new Vector3(
-      agent.position().x,
-      agent.position().y,
-      agent.position().z
-    ).distanceTo(targetVec);
-
-    crowd.update(1 / 60);
-    const { x, z } = agent.position();
-    this.gltf.scene.position.set(x, 0, z);
-
-    const thresholdDistance = 0.1;
-
-    if (distanceToTarget > thresholdDistance) {
-      // 歩きアニメーション再生
-      this.animation.playAnimation("walk");
-      this.animation.stopAnimation("idle");
-
-      // 目的地を向く
-      this.gltf.scene.lookAt(agent.target().x, 0, agent.target().z);
-    } else {
-      this.animation.playAnimation("idle");
-      this.animation.stopAnimation("walk");
-    }
-  }
-
-  sitting(couchVec: Vector3, lookAt: Vector3) {
+  sit(couchVec: Vector3, lookAt: Vector3) {
+    this.animation.stopAllAnimation();
+    this.animation.playAnimation("sit");
     this.gltf.scene.position.set(couchVec.x, 0, couchVec.z);
-
     this.gltf.scene.lookAt(lookAt.x, 0, lookAt.z);
   }
 
-  talking(lookAt: Vector3) {
+  updateWalking() {
+    const crowd = this.agent.getCrowd();
+    const agent = this.agent.getAgent();
+
+    crowd.update(1 / 60);
+    const { x, z } = agent.position();
+
+    this.gltf.scene.position.set(x, 0, z);
+
+    this.animation.playAnimation("walk");
+
+    this.gltf.scene.lookAt(agent.target().x, 0, agent.target().z);
+  }
+
+  headBoneLookAt(lookAt: Vector3) {
     const vrm: VRM = this.gltf.userData.vrm;
     const headBone = vrm.humanoid.getNormalizedBoneNode("head");
     if (!headBone) return;
@@ -103,69 +96,107 @@ export class MovementManager {
     vrm.lookAt?.lookAt(lookAt);
 
     const originalRotation = headBone.quaternion.clone();
-
     headBone.lookAt(lookAt);
-
     const targetRotation = headBone.quaternion.clone();
-
     headBone.quaternion.copy(originalRotation);
 
     headBone.quaternion.slerpQuaternions(originalRotation, targetRotation, 0.5);
   }
 
-  update() {
-    this.lookAt(this.player);
-
-    switch (this.state) {
-      case "walking": {
-        const targetPosition = this.agent.getTargetPosition();
-
-        if (targetPosition) this.walking(targetPosition);
+  setEvent(event: EventType) {
+    switch (event) {
+      case "sit":
+        this.handleSitEvent();
         break;
-      }
-      case "sitting": {
-        const couch = this.getMeshByLabel("couch");
-        const screen = this.getMeshByLabel("screen");
+      case "go_to_user_position":
+        this.handleGoToUserPositionEvent();
+        break;
+    }
+  }
 
-        const couchVec = couch
-          ? new Vector3().setFromMatrixPosition(couch.matrixWorld)
-          : this.gltf.scene.position;
+  handleSitEvent() {
+    this.animation.stopAllAnimation();
 
+    const couch = this.getMeshByLabel("couch");
+    const screen = this.getMeshByLabel("screen");
+
+    if (!couch) {
+      return;
+    }
+
+    const couchVec = new Vector3().setFromMatrixPosition(couch.matrixWorld);
+
+    this.agent.moveTo(couchVec);
+
+    const checkDistance = () => {
+      const agent = this.agent.getAgent();
+
+      const distance = new Vector3(
+        agent.position().x,
+        agent.position().y,
+        agent.position().z
+      ).distanceTo(couchVec);
+
+      if (distance < 1) {
+        //椅子に近づき終わったとき
         const lookAt = screen
           ? new Vector3().setFromMatrixPosition(screen.matrixWorld)
           : this.player;
 
-        this.sitting(couchVec, lookAt);
-        break;
+        this.state = "idle";
+        this.sit(couchVec, lookAt);
+      } else {
+        this.state = "walking";
+        this.xr.requestAnimationFrame(checkDistance);
       }
-      case "talking": {
-        this.talking(this.player);
-        break;
-      }
-    }
+    };
+
+    checkDistance();
   }
 
-  switchState(state: StateType) {
-    this.state = state;
+  handleGoToUserPositionEvent() {
+    this.animation.stopAllAnimation();
 
-    switch (state) {
-      case "walking":
-        this.animation.stopAllAnimation();
+    this.agent.moveTo(this.player);
 
-        this.animation.playAnimation("walk");
-        this.walk(this.agent.getRandomPoint(this.player));
-        break;
-      case "sitting":
-        this.animation.stopAllAnimation();
+    const checkDistance = () => {
+      const agent = this.agent.getAgent();
+      const pos = this.agent.getTargetPosition();
 
-        this.animation.playAnimation("sit");
-        break;
-      case "talking":
-        break;
-    }
+      const distance = new Vector3(
+        agent.position().x,
+        agent.position().y,
+        agent.position().z
+      ).distanceTo(pos);
+
+      if (distance < 1) {
+        //プレイヤーに近づき終わったとき
+        this.state = "idle";
+        this.idle();
+      } else {
+        this.state = "walking";
+        this.xr.requestAnimationFrame(checkDistance);
+      }
+    };
+
+    checkDistance();
   }
 
-  getState() {
-    return this.state;
+  toggleTalking() {
+    this.isTalking = !this.isTalking;
+  }
+
+  update() {
+    if (this.state === "walking") {
+      //歩き
+      this.updateWalking();
+    }
+
+    if (this.isTalking) {
+      //プレイヤーの方に頭を向ける
+      this.headBoneLookAt(this.player);
+    }
+
+    this.lookAt(this.player);
   }
 }

@@ -7,6 +7,7 @@ from typing import Any, Dict
 from fastapi import Depends, FastAPI, HTTPException, Header, Request
 from fastapi.responses import JSONResponse
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.schema import HumanMessage, AIMessage
 from langgraph.func import entrypoint
 from langgraph.store.postgres import AsyncPostgresStore
 from langmem import create_memory_store_manager
@@ -99,7 +100,9 @@ async def get_character(id: str) -> Character | None:
 
 
 # 記憶を保存
-async def save_memory(messages, user_id, character_id, response_content):
+async def save_memory(
+    user_input: str, user_id: str, character_id: str, response_content: str
+):
     async with AsyncPostgresStore.from_conn_string(
         db_url,
         index={
@@ -114,11 +117,14 @@ async def save_memory(messages, user_id, character_id, response_content):
 
         @entrypoint(store=store)
         async def save(params: Dict[str, Any]):
+            messages = [
+                HumanMessage(content=params["user_input"]),
+                AIMessage(content=params["response_content"]),
+            ]
+
             await memory_manager.ainvoke(
                 {
-                    "messages": params["messages"]
-                    + [{"role": "assistant", "content": params["response_content"]}],
-                    "max_steps": 3,
+                    "messages": messages,
                 },
                 config={
                     "configurable": {
@@ -130,7 +136,7 @@ async def save_memory(messages, user_id, character_id, response_content):
 
         await save.ainvoke(
             {
-                "messages": messages,
+                "user_input": user_input,
                 "user_id": user_id,
                 "character_id": character_id,
                 "response_content": response_content,
@@ -165,8 +171,6 @@ async def chat(text: str, current_user: User, character_id: str):
             memory_text = "\n".join(m.value["content"]["content"] for m in memories)
 
             system_prompt = f"""
-          今の時間は <time>{datetime.datetime.now(datetime.timezone.utc)}</time> です。
-
           あなたは、キャラクターになりきってユーザーと共に暮らしながら会話をするAIエージェントです。メッセージは100字以内の日常会話らしい短くシンプルなものにしましょう。
 
           <important>
@@ -236,7 +240,7 @@ async def chat(text: str, current_user: User, character_id: str):
         # 並列で記憶を保存
         asyncio.create_task(
             save_memory(
-                [{"role": "user", "content": text}],
+                text,
                 current_user.id,
                 character_id,
                 response.content,
@@ -256,7 +260,7 @@ async def chat_get(
     response = await chat(
         character_id=character_id, current_user=current_user, text=text
     )
-    return JSONResponse(content=response.dict())
+    return JSONResponse(content=response.model_dump())
 
 
 @app.post("/chat")
@@ -268,4 +272,4 @@ async def chat_post(
     response = await chat(
         character_id=character_id, current_user=current_user, text=text
     )
-    return JSONResponse(content=response.dict())
+    return JSONResponse(content=response.model_dump())

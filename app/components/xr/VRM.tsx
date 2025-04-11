@@ -1,11 +1,14 @@
 import { useMeshStore } from "./XRMeshes";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useXRInputSourceEvent, useXRInputSourceState } from "@react-three/xr";
+import {
+  useXR,
+  useXRInputSourceEvent,
+  useXRInputSourceState,
+} from "@react-three/xr";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { Character } from "@prisma/client";
 import TextBox from "./TextBox";
-import SettingsPanel from "./SettingsPanel";
-import { MovementManager, StateType } from "~/lib/xr/vrm/MovementManager";
+import { MovementManager } from "~/lib/xr/vrm/MovementManager";
 import { AnimationManager } from "~/lib/xr/vrm/AnimationManager";
 import { VRMLoader } from "~/lib/xr/vrm/VRMLoader";
 import { useEffect, useRef, useState } from "react";
@@ -19,10 +22,13 @@ import {
 import { init } from "@recast-navigation/core";
 import { VRM as VRMType } from "@pixiv/three-vrm";
 import { Buffer } from "buffer";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function VRM({ character }: { character: Character }) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [text, setText] = useState<string>("話しかけてみましょう！");
+
+  const xr = useXR();
 
   const timeDomainData = new Float32Array(2048);
 
@@ -45,7 +51,7 @@ export default function VRM({ character }: { character: Character }) {
     },
   });
 
-  async function onResult(blob: Blob) {
+  const onResult = useDebouncedCallback(async (blob: Blob) => {
     //考え中アニメーションを再生
     if (animationManager.current) {
       animationManager.current.playAnimation("thinking");
@@ -80,6 +86,10 @@ export default function VRM({ character }: { character: Character }) {
         );
       }
 
+      if (movementManager.current && res.event) {
+        movementManager.current.setEvent(res.event);
+      }
+
       //感情スコアをソート
       const arr = Object.entries(res.emotion);
 
@@ -95,13 +105,12 @@ export default function VRM({ character }: { character: Character }) {
 
       //talkingモード(プレイヤーのほうを向く)に切り替える
       if (movementManager.current) {
-        const currentState = movementManager.current.getState(); //talkingの前のstateを保持しておく
-
-        movementManager.current.switchState("talking");
+        movementManager.current.toggleTalking();
 
         //10秒後に戻す
         setTimeout(() => {
-          movementManager.current?.switchState(currentState);
+          movementManager.current?.toggleTalking();
+
           animationManager.current?.resetEmotion();
         }, 10000);
       }
@@ -113,7 +122,7 @@ export default function VRM({ character }: { character: Character }) {
         setText(e.message);
       }
     }
-  }
+  });
 
   const controller = useXRInputSourceState("hand", "left");
 
@@ -139,12 +148,6 @@ export default function VRM({ character }: { character: Character }) {
     [controller]
   );
 
-  const toggleMode = (state: StateType) => {
-    if (!movementManager.current) return;
-
-    movementManager.current.switchState(state);
-  };
-
   const onSessionStart = async () => {
     try {
       await init();
@@ -162,8 +165,6 @@ export default function VRM({ character }: { character: Character }) {
       });
 
       animationManager.current = animation;
-
-      animation.playAnimation("idle");
     } catch (e) {
       alert("モデルのロードに失敗しました。");
     }
@@ -180,11 +181,15 @@ export default function VRM({ character }: { character: Character }) {
     }
   };
 
-  gl.xr.addEventListener("sessionstart", onSessionStart);
-
-  useEffect(() => {
+  const setupNavMesh = () => {
     try {
-      if (isCompleteSetup.current || !gltf || !animationManager.current) return;
+      if (
+        isCompleteSetup.current ||
+        !gltf ||
+        !animationManager.current ||
+        !xr.session
+      )
+        return;
 
       //NavMeshをベイク
       const navigation = new NavMeshManager(new RecastNavMeshFactory());
@@ -197,12 +202,12 @@ export default function VRM({ character }: { character: Character }) {
       const agent = new AgentManager(navMesh);
 
       const movement = new MovementManager(
-        "walking",
         gltf,
         animationManager.current,
         agent,
         getMeshByLabel,
-        gl.xr.getCamera().position
+        gl.xr.getCamera().position,
+        xr.session
       );
 
       movementManager.current = movement;
@@ -211,6 +216,12 @@ export default function VRM({ character }: { character: Character }) {
     } catch (e) {
       alert("部屋の解析に失敗しました。");
     }
+  };
+
+  gl.xr.addEventListener("sessionstart", onSessionStart);
+
+  useEffect(() => {
+    setupNavMesh();
   }, [meshes]);
 
   useFrame(() => {
@@ -248,8 +259,6 @@ export default function VRM({ character }: { character: Character }) {
             <primitive object={gltf.scene} scale={0.85} />
             <directionalLight position={[0, 10, 0]} />
           </group>
-
-          <SettingsPanel onClick={toggleMode} camera={gl.xr.getCamera()} />
 
           <TextBox text={text} camera={gl.xr.getCamera()} gltf={gltf} />
         </>

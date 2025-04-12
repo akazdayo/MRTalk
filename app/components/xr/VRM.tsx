@@ -22,7 +22,6 @@ import {
 import { init } from "@recast-navigation/core";
 import { VRM as VRMType } from "@pixiv/three-vrm";
 import { Buffer } from "buffer";
-import { useDebouncedCallback } from "use-debounce";
 
 export default function VRM({ character }: { character: Character }) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
@@ -33,6 +32,8 @@ export default function VRM({ character }: { character: Character }) {
   const timeDomainData = new Float32Array(2048);
 
   const isCompleteSetup = useRef<boolean>(false);
+  const isThinking = useRef<boolean>(false);
+
   const chat = useRef(new Chat(character.id));
   const movementManager = useRef<MovementManager | null>(null);
   const animationManager = useRef<AnimationManager | null>(null);
@@ -51,7 +52,9 @@ export default function VRM({ character }: { character: Character }) {
     },
   });
 
-  const onResult = useDebouncedCallback(async (blob: Blob) => {
+  const onResult = async (blob: Blob) => {
+    isThinking.current = true;
+
     //考え中アニメーションを再生
     if (animationManager.current) {
       animationManager.current.playAnimation("thinking");
@@ -107,6 +110,8 @@ export default function VRM({ character }: { character: Character }) {
       if (movementManager.current) {
         movementManager.current.toggleTalking();
 
+        isThinking.current = false;
+
         //10秒後に戻す
         setTimeout(() => {
           movementManager.current?.toggleTalking();
@@ -122,7 +127,7 @@ export default function VRM({ character }: { character: Character }) {
         setText(e.message);
       }
     }
-  });
+  };
 
   const controller = useXRInputSourceState("hand", "left");
 
@@ -130,8 +135,10 @@ export default function VRM({ character }: { character: Character }) {
     controller?.inputSource,
     "selectstart",
     () => {
-      setText("録音中...");
-      startRecording();
+      if (!isThinking.current) {
+        setText("録音中...");
+        startRecording();
+      }
     },
     [controller]
   );
@@ -140,10 +147,12 @@ export default function VRM({ character }: { character: Character }) {
     controller?.inputSource,
     "selectend",
     () => {
-      setTimeout(() => {
-        setText("考え中...");
-        stopRecording();
-      }, 500); //すぐに終了しないように500msあける
+      if (!isThinking.current) {
+        setTimeout(() => {
+          setText("考え中...");
+          stopRecording();
+        }, 500); //すぐに終了しないように500msあける
+      }
     },
     [controller]
   );

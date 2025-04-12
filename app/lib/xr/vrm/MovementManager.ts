@@ -4,7 +4,7 @@ import { VRM } from "@pixiv/three-vrm";
 import { Mesh, Vector3 } from "three";
 import { AnimationManager } from "./AnimationManager";
 
-export type StateType = "idle" | "walking";
+export type StateType = "idle" | "walking" | "sitting";
 export type EventType = "sit" | "go_to_user_position";
 
 export class MovementManager {
@@ -42,6 +42,12 @@ export class MovementManager {
 
     this.xr = xr;
     this.isTalking = false;
+
+    setInterval(() => {
+      if (this.state !== "sitting" || !this.isTalking) {
+        this.randomMove();
+      }
+    }, 20000);
   }
 
   lookAt(targetVec: Vector3) {
@@ -86,6 +92,34 @@ export class MovementManager {
     this.animation.playAnimation("walk");
 
     this.gltf.scene.lookAt(agent.target().x, 0, agent.target().z);
+  }
+
+  randomMove() {
+    this.animation.stopAllAnimation();
+
+    this.agent.moveTo(this.agent.getRandomPoint(this.player));
+
+    const checkDistance = () => {
+      const agent = this.agent.getAgent();
+      const pos = this.agent.getTargetPosition();
+
+      const distance = new Vector3(
+        agent.position().x,
+        agent.position().y,
+        agent.position().z
+      ).distanceTo(pos);
+
+      if (distance < 0.1) {
+        //プレイヤーに近づき終わったとき
+        this.state = "idle";
+        this.idle();
+      } else {
+        this.state = "walking";
+        this.xr.requestAnimationFrame(checkDistance);
+      }
+    };
+
+    checkDistance();
   }
 
   headBoneLookAt(lookAt: Vector3) {
@@ -137,13 +171,13 @@ export class MovementManager {
         agent.position().z
       ).distanceTo(couchVec);
 
-      if (distance < 1) {
+      if (distance < 0.8) {
         //椅子に近づき終わったとき
         const lookAt = screen
           ? new Vector3().setFromMatrixPosition(screen.matrixWorld)
           : this.player;
 
-        this.state = "idle";
+        this.state = "sitting";
         this.sit(couchVec, lookAt);
       } else {
         this.state = "walking";

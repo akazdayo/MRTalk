@@ -22,6 +22,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
-    allowedHosts: ["today-qualities-properly-scheduled.trycloudflare.com"],
+    allowedHosts: [""],
   },
 });

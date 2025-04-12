@@ -35,11 +35,3 @@ export const UpdateCharacterSchema = z
       .min(1, "Story is required"),
   })
   .strict();
-
-export const DeleteCharacterSchema = z
-  .object({
-    id: z
-      .string({ required_error: "Character ID is Required" })
-      .min(1, "Character ID is required"),
-  })
-  .strict();

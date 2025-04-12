@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const FavoriteSchema = z
+export const CharacterIdSchema = z
   .object({
     characterId: z
       .string({ required_error: "Character ID is required" })

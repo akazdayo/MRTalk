@@ -9,11 +9,11 @@ import {
 import { getServerSession } from "~/lib/auth/session";
 import {
   CreateCharacterSchema,
-  DeleteCharacterSchema,
   UpdateCharacterSchema,
 } from "~/lib/api/character/schema";
 import { getErrorMessages } from "~/utils/zod/getErrorMessages";
 import { deleteFile, uploadFile } from "~/lib/api/storage";
+import { CharacterIdSchema } from "~/lib/api/favorite/schema";
 
 export const action: ActionFunction = async ({ request }) => {
   const method = request.method;
@@ -95,7 +95,7 @@ export const action: ActionFunction = async ({ request }) => {
       case "DELETE": {
         const body = await request.json();
 
-        const parsed = DeleteCharacterSchema.safeParse(body);
+        const parsed = CharacterIdSchema.safeParse(body);
         if (!parsed.success) {
           return Response.json(
             {
@@ -105,9 +105,9 @@ export const action: ActionFunction = async ({ request }) => {
           );
         }
 
-        const { id } = parsed.data;
+        const { characterId } = parsed.data;
 
-        const permission = await checkPermission(id, session.user.id);
+        const permission = await checkPermission(characterId, session.user.id);
 
         if (!permission) {
           return Response.json(
@@ -117,11 +117,11 @@ export const action: ActionFunction = async ({ request }) => {
             { status: 400 }
           );
         } else {
-          const character = await getCharacter(id, false);
+          const character = await getCharacter(characterId, false);
 
           if (character) {
             await deleteFile(character.model_url);
-            await deleteCharacter(id);
+            await deleteCharacter(characterId);
           }
 
           return Response.json(null);

@@ -1,20 +1,21 @@
 import type { ActionFunction } from "@remix-run/node";
 import { createFavorite, deleteFavorite } from "~/lib/api/favorite";
-import { FavoriteSchema } from "~/lib/api/favorite/schema";
+import { CharacterIdSchema } from "~/lib/api/favorite/schema";
 import { getServerSession } from "~/lib/auth/session";
 import { getErrorMessages } from "~/utils/zod/getErrorMessages";
 
 export const action: ActionFunction = async ({ request }) => {
   const method = request.method;
   const body = await request.json();
-  const user = await getServerSession(request.headers);
+  const session = await getServerSession(request.headers);
 
-  if (!user) return Response.json({ error: "Unauthorized." }, { status: 401 });
+  if (!session)
+    return Response.json({ error: "Unauthorized." }, { status: 401 });
 
   try {
     switch (method) {
       case "POST": {
-        const parsed = FavoriteSchema.safeParse(body);
+        const parsed = CharacterIdSchema.safeParse(body);
 
         if (!parsed.success) {
           return Response.json(
@@ -26,12 +27,12 @@ export const action: ActionFunction = async ({ request }) => {
         }
 
         const { characterId } = parsed.data;
-        const favorite = await createFavorite(user.user.id, characterId);
+        const favorite = await createFavorite(session.user.id, characterId);
         return Response.json(favorite, { status: 201 });
       }
 
       case "DELETE": {
-        const parsed = FavoriteSchema.safeParse(body);
+        const parsed = CharacterIdSchema.safeParse(body);
         if (!parsed.success) {
           return Response.json(
             {
@@ -42,7 +43,7 @@ export const action: ActionFunction = async ({ request }) => {
         }
 
         const { characterId } = parsed.data;
-        await deleteFavorite(user.user.id, characterId);
+        await deleteFavorite(session.user.id, characterId);
         return Response.json(null);
       }
       default:

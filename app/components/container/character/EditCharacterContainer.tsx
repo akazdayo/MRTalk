@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { toast } from "sonner";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export default function EditCharacterContainer({
   character,
@@ -53,7 +54,7 @@ export default function EditCharacterContainer({
     const res = await fetch("/api/character/", {
       method: "DELETE",
       body: JSON.stringify({
-        id: character.id,
+        characterId: character.id,
       }),
     });
 
@@ -64,6 +65,26 @@ export default function EditCharacterContainer({
     } else {
       setIsLoading(false);
       navigate(`/`);
+    }
+  };
+
+  const onReset = async () => {
+    setIsLoading(true);
+
+    const res = await fetch("/api/memory/reset/", {
+      method: "DELETE",
+      body: JSON.stringify({
+        characterId: character.id,
+      }),
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      toast(error.error);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+      toast("記憶がリセットされました。");
     }
   };
 
@@ -106,37 +127,73 @@ export default function EditCharacterContainer({
           />
         </div>
 
-        <div className="flex justify-between">
-          <Button type="submit" className="bg-blue-500 text-white">
-            <SaveIcon className="mr-2" />
-            更新する
-          </Button>
+        <div>
+          <div>
+            <Button type="submit" className="bg-blue-500 text-white">
+              <SaveIcon className="mr-2" />
+              更新する
+            </Button>
+          </div>
 
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button type="button" className="bg-red-600 text-white">
-                <TrashIcon className="mr-2" />
-                削除する
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>本当に削除しますか?</DialogTitle>
-              </DialogHeader>
-              <DialogFooter className="sm:justify-start">
-                <DialogClose asChild>
-                  <Button
-                    type="button"
-                    className="bg-red-600 text-white"
-                    onClick={onDelete}
-                  >
-                    <TrashIcon className="mr-2" />
-                    削除する
+          <div className="my-24 space-y-6">
+            <h1 className="text-3xl font-bold">危険な設定</h1>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <div>
+                  <Button type="button" className="bg-red-600 text-white">
+                    <ReloadIcon className="mr-2" />
+                    キャラクターの記憶をリセットする
                   </Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+                </div>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>本当にリセットしますか?</DialogTitle>
+                </DialogHeader>
+                <DialogFooter className="sm:justify-start">
+                  <DialogClose asChild>
+                    <Button
+                      type="button"
+                      className="bg-red-600 text-white"
+                      onClick={onReset}
+                    >
+                      <TrashIcon className="mr-2" />
+                      リセット
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <div>
+                  <Button type="button" className="bg-red-600 text-white">
+                    <TrashIcon className="mr-2" />
+                    キャラクターを削除する
+                  </Button>
+                </div>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>本当に削除しますか?</DialogTitle>
+                </DialogHeader>
+                <DialogFooter className="sm:justify-start">
+                  <DialogClose asChild>
+                    <Button
+                      type="button"
+                      className="bg-red-600 text-white"
+                      onClick={onDelete}
+                    >
+                      <TrashIcon className="mr-2" />
+                      削除する
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </Form>
 

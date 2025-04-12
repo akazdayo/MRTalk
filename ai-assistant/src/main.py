@@ -112,7 +112,6 @@ async def save_memory(
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
-        await store.conn.execute("SET search_path TO memories")
         await store.setup()
 
         @entrypoint(store=store)
@@ -154,7 +153,6 @@ async def chat(text: str, current_user: User, character_id: str):
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
-        await store.conn.execute("SET search_path TO memories")
         await store.setup()
 
         @entrypoint(store=store)

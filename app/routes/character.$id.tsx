@@ -7,7 +7,7 @@ import Main from "~/components/layout/main";
 import CharacterDetailsContainer from "~/components/container/character/CharacterDetailsContainer";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
-  const user = await getServerSession(request.headers);
+  const session = await getServerSession(request.headers);
 
   if (!params.id) {
     return null;
@@ -17,8 +17,8 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   if (!character) return null;
 
   let favorite = null;
-  if (user) {
-    favorite = await getFavorite(user.user.id, params.id);
+  if (session) {
+    favorite = await getFavorite(session.user.id, params.id);
   }
 
   return {

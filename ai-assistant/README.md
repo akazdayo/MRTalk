@@ -1,9 +1,9 @@
 # ai-assistant
 
-## dev
+## Usage
 
 ```bash
 $ rye sync
-$ echo 'OPENAI_API_KEY="YOUR TOKEN"' >> .env
+$ echo 'GOOGLE_API_KEY="YOUR TOKEN"' >> .env
 $ rye run dev
 ```

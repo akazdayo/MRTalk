@@ -213,7 +213,7 @@ async def chat(text: str, current_user: User, character_id: str):
             )
             assert isinstance(response, EmotionMessage)
 
-            base64_voice = tts.generate(response.content)
+            base64_voice = tts.generate(character_id, response.content)
 
             res = Response(
                 role=response.role,

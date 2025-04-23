@@ -1,43 +1,21 @@
 import base64
 import io
-from pathlib import Path
-
-from scipy.io import wavfile
-
-from style_bert_vits2.tts_model import TTSModel
-from style_bert_vits2.nlp import bert_models
-from style_bert_vits2.constants import Languages
+import requests
+from pydub import AudioSegment
 
 
 class TTS:
-    def __init__(self):
-        bert_models.load_model(
-            Languages.JP, "ku-nlp/deberta-v2-large-japanese-char-wwm")
-        bert_models.load_tokenizer(
-            Languages.JP, "ku-nlp/deberta-v2-large-japanese-char-wwm")
+    def generate(self, id: str, text: str):
+        res = requests.get(f"http://localhost:8000/?id={id}&text={text}")
 
-        model_file = "Anneli/Anneli_e116_s32000.safetensors"
-        config_file = "Anneli/config.json"
-        style_file = "Anneli/style_vectors.npy"
+        audio_file = io.BytesIO(res.content)
 
-        assets_root = Path("model_assets")
+        audio = AudioSegment.from_file(audio_file)
+        wav_audio = io.BytesIO()
 
-        self.model = TTSModel(
-            model_path=assets_root / model_file,
-            config_path=assets_root / config_file,
-            style_vec_path=assets_root / style_file,
-            device="cuda",
-        )
+        audio.export(wav_audio, format="wav")
+        wav_audio.seek(0)
 
-    def generate(self, prompt: str):
-        sr, audio = self.model.infer(text=prompt)
-
-        buffer = io.BytesIO()
-
-        wavfile.write(buffer, sr, audio)
-
-        buffer.seek(0)
-
-        base64_audio = base64.b64encode(buffer.read()).decode('utf-8')
+        base64_audio = base64.b64encode(wav_audio.read()).decode("utf-8")
 
         return base64_audio

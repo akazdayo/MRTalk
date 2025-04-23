@@ -14,6 +14,13 @@ export const CreateCharacterSchema = z
       if (!file) return false;
       return file.name.endsWith(".vrm");
     }, "Invalid file type. Only .vrm files are allowed"),
+    voice: z.custom<File>().refine((file) => {
+      if (!file) return false;
+      return file.name.endsWith(".wav");
+    }, "Invalid file type. Only .wav files are allowed"),
+    transcript: z
+      .string({ required_error: "Transcript is Required" })
+      .min(1, "Transcript is required"),
   })
   .strict();
 

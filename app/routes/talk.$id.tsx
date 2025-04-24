@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { redirect, useLoaderData } from "@remix-run/react";
 import TalkSceneContainer from "~/components/container/TalkSceneContainer";
 import Main from "~/components/layout/main";
 import { getCharacter } from "~/lib/api/character";
@@ -8,6 +8,7 @@ import { getServerSession } from "~/lib/auth/session";
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const id = params.id;
   const session = await getServerSession(request.headers);
+  if (!session) return redirect("/login");
 
   if (id) {
     try {

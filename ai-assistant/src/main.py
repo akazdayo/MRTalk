@@ -112,7 +112,6 @@ async def save_memory(
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
-        await store.setup()
 
         @entrypoint(store=store)
         async def save(params: Dict[str, Any]):
@@ -151,7 +150,6 @@ async def chat(text: str, current_user: User, character_id: str):
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
-        await store.setup()
 
         @entrypoint(store=store)
         async def generate(params: Dict[str, Any]) -> Response | None:
@@ -161,7 +159,10 @@ async def chat(text: str, current_user: User, character_id: str):
 
             character = await get_character(character_id)
             if not (character):
-                return
+                raise HTTPException(status_code=400, detail="Character Not Found")
+
+            if not character.is_public and character.postedBy != user_id:
+                raise HTTPException(status_code=400, detail="Character Not Found")
 
             memories = await store.asearch(("memories", user_id, character_id))
             memory_text = "\n".join(m.value["content"]["content"] for m in memories)

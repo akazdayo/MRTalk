@@ -73,7 +73,6 @@ export const action: ActionFunction = async ({ request }) => {
           Object.fromEntries(body)
         );
         if (!parsed.success) {
-          console.log(parsed.error.message);
           return Response.json(
             {
               error: getErrorMessages(parsed.error.flatten().fieldErrors),
@@ -150,7 +149,6 @@ export const action: ActionFunction = async ({ request }) => {
         return Response.json({ error: "Method not allowed." }, { status: 405 });
     }
   } catch (e) {
-    console.log(e);
     return Response.json({ error: "An error has occurred." }, { status: 500 });
   }
 };

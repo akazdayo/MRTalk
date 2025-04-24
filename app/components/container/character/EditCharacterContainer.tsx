@@ -15,6 +15,7 @@ import {
 } from "~/components/ui/dialog";
 import { toast } from "sonner";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { Checkbox } from "~/components/ui/checkbox";
 
 export default function EditCharacterContainer({
   character,
@@ -94,6 +95,16 @@ export default function EditCharacterContainer({
         {character.name}の情報を編集
       </h1>
       <Form className="py-10 space-y-6" onSubmit={onSubmit}>
+        <div>
+          <label htmlFor="isPublic">キャラクターを公開する</label>
+          <Checkbox
+            name="isPublic"
+            id="isPublic"
+            className="block my-2"
+            defaultChecked={character.is_public}
+          />
+        </div>
+
         <div>
           <label htmlFor="name">キャラクター名</label>
           <Input

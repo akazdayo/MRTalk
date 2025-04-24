@@ -1,7 +1,7 @@
 import { Character, Favorite } from "@prisma/client";
 import { useDebouncedCallback } from "use-debounce";
 import { Button } from "~/components/ui/button";
-import { BoxIcon, Edit, Star } from "lucide-react";
+import { BoxIcon, Edit, Eye, EyeClosed, Star } from "lucide-react";
 import { useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "~/components/ui/avatar";
 import { Session, User } from "better-auth";
@@ -58,7 +58,24 @@ export default function CharacterDetailsContainer({
 
   return (
     <div className="space-y-4">
-      <h1 className="font-bold text-3xl">{data.character.name}</h1>
+      <div className="flex items-center justify-between w-full space-x-2">
+        <h1 className="font-bold text-3xl">{data.character.name}</h1>
+        <div className="flex items-center space-x-2">
+          <p>{data.character.user.name}</p>
+
+          <a href={`/user/${data.character.user.id}`}>
+            <Avatar>
+              <AvatarImage
+                src={data.character.user.image!}
+                alt={data.character.user.name}
+              />
+              <AvatarFallback>
+                {data.character.user.name.toUpperCase()[0]}
+              </AvatarFallback>
+            </Avatar>
+          </a>
+        </div>
+      </div>
       <div className="md:flex md:space-x-4 md:space-y-0 items-center space-y-4">
         {session ? (
           <div>
@@ -96,25 +113,23 @@ export default function CharacterDetailsContainer({
           </a>
         </div>
 
-        <div className="flex items-center">
-          <p>{data.character.user.name}が投稿</p>
-
-          <a href={`/user/${data.character.user.id}`}>
-            <Avatar>
-              <AvatarImage
-                src={data.character.user.image!}
-                alt={data.character.user.name}
-              />
-              <AvatarFallback>
-                {data.character.user.name.toUpperCase()[0]}
-              </AvatarFallback>
-            </Avatar>
-          </a>
+        <div className="w-32">
+          {data.character.is_public ? (
+            <div className="flex items-center">
+              <Eye />
+              <h1>公開中</h1>
+            </div>
+          ) : (
+            <div className="flex items-center">
+              <EyeClosed />
+              <h1>非公開</h1>
+            </div>
+          )}
         </div>
       </div>
-      <p>性格</p>
+      <p className="font-bold text-2xl">性格</p>
       <div>{data.character.personality}</div>
-      <p>背景ストーリー</p>
+      <p className="font-bold text-2xl">背景ストーリー</p>
       <div>{data.character.story}</div>
     </div>
   );

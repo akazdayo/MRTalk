@@ -6,7 +6,7 @@ from pydub import AudioSegment
 
 class TTS:
     def generate(self, id: str, text: str):
-        res = requests.get(f"http://localhost:8000/?id={id}&text={text}")
+        res = requests.get(f"http://localhost:9000/tts?id={id}&text={text}")
 
         audio_file = io.BytesIO(res.content)
 

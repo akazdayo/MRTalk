@@ -122,9 +122,7 @@ async def save_memory(
             ]
 
             await memory_manager.ainvoke(
-                {
-                    "messages": messages,
-                },
+                {"messages": messages},
                 config={
                     "configurable": {
                         "user_id": params["user_id"],

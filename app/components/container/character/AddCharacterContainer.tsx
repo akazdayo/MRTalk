@@ -74,6 +74,18 @@ export default function AddCharacterContainer() {
           />
         </div>
 
+        <div>
+          <label htmlFor="voice">
+            キャラクターのボイスサンプル(3~10秒ほど)
+          </label>
+          <Input type="file" name="voice" id="voice" required />
+        </div>
+
+        <div>
+          <label htmlFor="transcript">ボイスサンプルの書き起こし</label>
+          <Input type="text" name="transcript" id="transcript" required />
+        </div>
+
         <Button type="submit" className="bg-green-500 text-black my-12">
           <PlusIcon />
           投稿する

@@ -27,7 +27,7 @@ export const getAllCharactersByUser = async (
 };
 
 export const createCharacter = async (
-  character: Omit<Character, "id" | "createdAt" | "updatedAt">
+  character: Omit<Character, "createdAt" | "updatedAt">
 ) => {
   return await prisma.character.create({ data: character });
 };

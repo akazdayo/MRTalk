@@ -42,12 +42,6 @@ export class MovementManager {
 
     this.xr = xr;
     this.isTalking = false;
-
-    setInterval(() => {
-      if (this.state !== "sitting" || !this.isTalking) {
-        this.randomMove();
-      }
-    }, 20000);
   }
 
   lookAt(targetVec: Vector3) {

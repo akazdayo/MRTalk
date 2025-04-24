@@ -14,6 +14,8 @@ import {
 import { getErrorMessages } from "~/utils/zod/getErrorMessages";
 import { deleteFile, uploadFile } from "~/lib/api/storage";
 import { CharacterIdSchema } from "~/lib/api/favorite/schema";
+import { registerVoice } from "~/lib/api/voice/register";
+import { randomUUID } from "node:crypto";
 
 export const action: ActionFunction = async ({ request }) => {
   const method = request.method;
@@ -40,17 +42,23 @@ export const action: ActionFunction = async ({ request }) => {
           );
         }
 
-        const { name, personality, story, model } = parsed.data;
+        const id = randomUUID();
 
+        const { name, personality, story, model, voice, transcript } =
+          parsed.data;
+
+        await registerVoice(id, voice, transcript);
         const model_url = await uploadFile(model);
 
         const character = await createCharacter({
+          id,
           name,
           personality,
           story,
           model_url,
           postedBy: session.user.id,
         });
+
         return Response.json(character, { status: 201 });
       }
       case "PUT": {

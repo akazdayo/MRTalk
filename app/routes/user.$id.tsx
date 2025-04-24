@@ -7,15 +7,17 @@ import Main from "~/components/layout/main";
 import { getAllCharactersByUser } from "~/lib/api/character";
 import { getUserFavorites } from "~/lib/api/favorite";
 import { getUserProfile } from "~/lib/api/user";
+import { getServerSession } from "~/lib/auth/session";
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export async function loader({ params, request }: LoaderFunctionArgs) {
   const id = params.id;
+  const session = await getServerSession(request.headers);
 
   if (!id) return null;
 
   const profile = await getUserProfile(id);
-  const uploadedCharacter = await getAllCharactersByUser(id, true);
-  const favorite = await getUserFavorites(id);
+  const uploadedCharacter = await getAllCharactersByUser(id, session, true);
+  const favorite = await getUserFavorites(id, session);
 
   return { profile, uploadedCharacter, favorite };
 }

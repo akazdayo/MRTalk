@@ -2,6 +2,10 @@ import { z } from "zod";
 
 export const CreateCharacterSchema = z
   .object({
+    isPublic: z.preprocess(
+      (val) => val === "on",
+      z.boolean({ required_error: "isPublic is Required" })
+    ),
     name: z
       .string({ required_error: "Name is Required" })
       .min(1, "Name is required")
@@ -30,6 +34,10 @@ export const UpdateCharacterSchema = z
       .string({ required_error: "Character ID is Required" })
       .uuid()
       .min(1, "Character ID is required"),
+    isPublic: z.preprocess(
+      (val) => val === "on",
+      z.boolean({ required_error: "isPublic is Required" })
+    ),
     name: z
       .string({ required_error: "Name is Required" })
       .min(1, "Name is required")

@@ -3,5 +3,5 @@ export const getErrorMessages = (error: {
 }) => {
   const errorMessages = Object.values(error).flat().join(", ");
 
-  return "Validation Error:" + errorMessages;
+  return "フォームの値が不正です。";
 };

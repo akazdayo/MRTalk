@@ -13,7 +13,8 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     return null;
   }
 
-  const character = await getCharacter(params.id, true);
+  const character = await getCharacter(params.id, session!, true);
+
   if (!character) return null;
 
   let favorite = null;

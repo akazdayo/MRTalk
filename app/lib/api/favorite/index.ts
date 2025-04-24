@@ -1,3 +1,4 @@
+import { Session, User } from "better-auth";
 import { prisma } from "~/lib/db/db";
 
 export const getFavorite = async (userId: string, characterId: string) => {
@@ -6,11 +7,29 @@ export const getFavorite = async (userId: string, characterId: string) => {
   });
 };
 
-export const getUserFavorites = async (userId: string) => {
-  return await prisma.favorite.findMany({
+export const getUserFavorites = async (
+  userId: string,
+  session: { user: User; session: Session } | null
+) => {
+  const data = await prisma.favorite.findMany({
     where: { userId },
     include: { character: { include: { user: true } } },
   });
+
+  const publicFavorites = data.filter((f) => {
+    return f.character.is_public === true;
+  });
+
+  if (!session) {
+    return publicFavorites;
+  } else {
+    if (userId === session.user.id) {
+      return data;
+    }
+    {
+      return publicFavorites;
+    }
+  }
 };
 
 export const createFavorite = async (userId: string, characterId: string) => {

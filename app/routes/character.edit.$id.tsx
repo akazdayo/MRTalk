@@ -11,7 +11,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
   if (!params.id) return null;
 
-  const character = await getCharacter(params.id, false);
+  const character = await getCharacter(params.id, session, false);
   if (!character) return null;
 
   if (session.user.id !== character.postedBy) {

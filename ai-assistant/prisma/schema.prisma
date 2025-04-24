@@ -1,11 +1,13 @@
 generator client {
   provider             = "prisma-client-py"
+  previewFeatures      = ["postgresqlExtensions"]
   recursive_type_depth = "5"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector(schema: "public")]
 }
 
 model User {
@@ -77,6 +79,7 @@ model Character {
   model_url   String
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now()) @updatedAt
+  is_public   Boolean
   user        User       @relation(fields: [postedBy], references: [id], onDelete: Cascade)
   Favorite    Favorite[]
 

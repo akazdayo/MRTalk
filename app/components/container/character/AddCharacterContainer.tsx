@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "~/components/ui/dialog";
+import { Checkbox } from "~/components/ui/checkbox";
 
 export default function AddCharacterContainer() {
   const navigate = useNavigate();
@@ -43,6 +44,11 @@ export default function AddCharacterContainer() {
 
       <Form className="py-10 space-y-6" onSubmit={onSubmit}>
         <div>
+          <label htmlFor="isPublic">キャラクターを公開する</label>
+          <Checkbox name="isPublic" id="isPublic" className="block my-2" />
+        </div>
+
+        <div>
           <label htmlFor="name">キャラクター名</label>
           <Input type="text" name="name" id="name" required />
         </div>
@@ -51,7 +57,7 @@ export default function AddCharacterContainer() {
           <label htmlFor="model">
             VRMモデル(VRM 1.xのモデルにのみ対応しています。)
           </label>
-          <Input type="file" name="model" id="model" required />
+          <Input type="file" name="model" id="model" accept=".vrm" required />
         </div>
 
         <div>
@@ -78,7 +84,13 @@ export default function AddCharacterContainer() {
           <label htmlFor="voice">
             キャラクターのボイスサンプル(3~10秒ほど)
           </label>
-          <Input type="file" name="voice" id="voice" required />
+          <Input
+            type="file"
+            name="voice"
+            id="voice"
+            accept="audio/wav"
+            required
+          />
         </div>
 
         <div>

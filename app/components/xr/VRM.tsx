@@ -162,7 +162,7 @@ export default function VRM({ character }: { character: Character }) {
       await init();
       const loader = new VRMLoader();
 
-      const { gltf } = await loader.load(character.model_url);
+      const { gltf } = await loader.load(character.modelUrl);
       setGltf(gltf);
 
       const animation = new AnimationManager(gltf);

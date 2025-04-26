@@ -17,7 +17,7 @@ export const getUserFavorites = async (
   });
 
   const publicFavorites = data.filter((f) => {
-    return f.character.is_public === true;
+    return f.character.isPublic === true;
   });
 
   if (!session) {

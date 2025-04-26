@@ -14,7 +14,6 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { toast } from "sonner";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import { Checkbox } from "~/components/ui/checkbox";
 
 export default function EditCharacterContainer({
@@ -69,26 +68,6 @@ export default function EditCharacterContainer({
     }
   };
 
-  const onReset = async () => {
-    setIsLoading(true);
-
-    const res = await fetch("/api/memory/reset/", {
-      method: "DELETE",
-      body: JSON.stringify({
-        characterId: character.id,
-      }),
-    });
-
-    if (!res.ok) {
-      const error = await res.json();
-      toast(error.error);
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-      toast("記憶がリセットされました。");
-    }
-  };
-
   return (
     <div>
       <h1 className="font-bold text-3xl text-center">
@@ -101,7 +80,7 @@ export default function EditCharacterContainer({
             name="isPublic"
             id="isPublic"
             className="block my-2"
-            defaultChecked={character.is_public}
+            defaultChecked={character.isPublic}
           />
         </div>
 
@@ -148,34 +127,6 @@ export default function EditCharacterContainer({
 
           <div className="my-24 space-y-6">
             <h1 className="text-3xl font-bold">危険な設定</h1>
-
-            <Dialog>
-              <DialogTrigger asChild>
-                <div>
-                  <Button type="button" className="bg-red-600 text-white">
-                    <ReloadIcon className="mr-2" />
-                    キャラクターの記憶をリセットする
-                  </Button>
-                </div>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>本当にリセットしますか?</DialogTitle>
-                </DialogHeader>
-                <DialogFooter className="sm:justify-start">
-                  <DialogClose asChild>
-                    <Button
-                      type="button"
-                      className="bg-red-600 text-white"
-                      onClick={onReset}
-                    >
-                      <TrashIcon className="mr-2" />
-                      リセット
-                    </Button>
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
 
             <Dialog>
               <DialogTrigger asChild>

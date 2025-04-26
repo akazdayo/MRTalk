@@ -14,8 +14,7 @@ import {
 import { getErrorMessages } from "~/utils/zod/getErrorMessages";
 import { deleteFile, uploadFile } from "~/lib/api/storage";
 import { CharacterIdSchema } from "~/lib/api/favorite/schema";
-import { registerVoice } from "~/lib/api/voice/register";
-import { randomUUID } from "node:crypto";
+import { getVoice, registerVoice, unregisterVoice } from "~/lib/api/voice";
 
 export const action: ActionFunction = async ({ request }) => {
   const method = request.method;
@@ -43,25 +42,27 @@ export const action: ActionFunction = async ({ request }) => {
           );
         }
 
-        const id = randomUUID();
-
         const { isPublic, name, personality, story, model, voice, transcript } =
           parsed.data;
 
-        //音声とモデルをアップロード
-        await registerVoice(id, voice, transcript);
-        const model_url = await uploadFile(model);
+        const modelUrl = await uploadFile(model);
 
         //キャラクターを作成
         const character = await createCharacter({
-          id,
           name,
           personality,
           story,
-          model_url,
-          is_public: isPublic,
+          modelUrl,
+          isPublic,
           postedBy: session.user.id,
         });
+
+        await registerVoice(
+          character.id,
+          voice,
+          transcript,
+          session.session.token
+        );
 
         return Response.json(character, { status: 201 });
       }
@@ -96,7 +97,7 @@ export const action: ActionFunction = async ({ request }) => {
         } else {
           const character = await updateCharacter({
             id,
-            is_public: isPublic,
+            isPublic,
             name,
             personality,
             story,
@@ -134,9 +135,11 @@ export const action: ActionFunction = async ({ request }) => {
           );
         } else {
           const character = await getCharacter(characterId, session, false);
+          const voice = await getVoice(characterId);
 
-          if (character) {
-            await deleteFile(character.model_url);
+          if (character && voice) {
+            await deleteFile(character.modelUrl);
+            await unregisterVoice(voice.id, session.session.token);
             await deleteCharacter(characterId);
           }
 

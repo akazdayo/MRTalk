@@ -114,7 +114,7 @@ export default function CharacterDetailsContainer({
         </div>
 
         <div className="w-32">
-          {data.character.is_public ? (
+          {data.character.isPublic ? (
             <div className="flex items-center">
               <Eye />
               <h1>公開中</h1>

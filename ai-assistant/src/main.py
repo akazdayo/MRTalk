@@ -14,7 +14,7 @@ from langmem import create_memory_store_manager
 from psycopg import AsyncConnection
 
 from prisma import Prisma
-from prisma.models import Character, User
+from prisma.models import Character, Session
 import speech_recognition as sr
 from pydub import AudioSegment
 
@@ -65,8 +65,8 @@ async def get_audio_text(request: Request) -> str:
         raise HTTPException(status_code=400, detail="エラーが発生しました。")
 
 
-# セッショントークンからユーザーを取得
-async def get_current_user(authorization: str = Header(None)) -> User | None:
+# セッションを取得
+async def get_session(authorization: str = Header(None)) -> Session:
     if not authorization:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
@@ -84,13 +84,15 @@ async def get_current_user(authorization: str = Header(None)) -> User | None:
     if not session or session.expiresAt < datetime.datetime.now(datetime.timezone.utc):
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
-    return session.user
+    return session
 
 
 async def get_character(id: str) -> Character | None:
     prisma = Prisma()
     await prisma.connect()
-    character = await prisma.character.find_unique(where={"id": id})
+    character = await prisma.character.find_unique(
+        where={"id": id}, include={"voice": True}
+    )
 
     if not character:
         raise HTTPException(status_code=400, detail="Character not found")
@@ -112,6 +114,8 @@ async def save_memory(
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
+        await store.conn.execute("SET search_path TO memories")
+        await store.setup()
 
         @entrypoint(store=store)
         async def save(params: Dict[str, Any]):
@@ -140,7 +144,7 @@ async def save_memory(
         )
 
 
-async def chat(text: str, current_user: User, character_id: str):
+async def chat(text: str, session: Session, character_id: str):
     async with AsyncPostgresStore.from_conn_string(
         db_url,
         index={
@@ -150,6 +154,8 @@ async def chat(text: str, current_user: User, character_id: str):
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
+        await store.conn.execute("SET search_path TO memories")
+        await store.setup()
 
         @entrypoint(store=store)
         async def generate(params: Dict[str, Any]) -> Response | None:
@@ -161,7 +167,7 @@ async def chat(text: str, current_user: User, character_id: str):
             if not (character):
                 raise HTTPException(status_code=400, detail="Character Not Found")
 
-            if not character.is_public and character.postedBy != user_id:
+            if not character.isPublic and character.postedBy != user_id:
                 raise HTTPException(status_code=400, detail="Character Not Found")
 
             memories = await store.asearch(("memories", user_id, character_id))
@@ -211,8 +217,11 @@ async def chat(text: str, current_user: User, character_id: str):
                 [{"role": "system", "content": system_prompt}, *messages]
             )
             assert isinstance(response, EmotionMessage)
+            assert character.voice
 
-            base64_voice = tts.generate(character_id, response.content)
+            base64_voice = tts.generate(
+                character.voice.id, response.content, session.token
+            )
 
             res = Response(
                 role=response.role,
@@ -224,10 +233,13 @@ async def chat(text: str, current_user: User, character_id: str):
 
             return res
 
+        if not session.user:
+            raise HTTPException(status_code=400, detail="Invalid session")
+
         response = await generate.ainvoke(
             {
                 "messages": [{"role": "user", "content": text}],
-                "user_id": current_user.id,
+                "user_id": session.user.id,
                 "character_id": character_id,
             }
         )
@@ -238,7 +250,7 @@ async def chat(text: str, current_user: User, character_id: str):
         asyncio.create_task(
             save_memory(
                 text,
-                current_user.id,
+                session.user.id,
                 character_id,
                 response.content,
             )
@@ -251,22 +263,18 @@ async def chat(text: str, current_user: User, character_id: str):
 async def chat_get(
     text: str,
     character_id: str,
-    current_user: User = Depends(get_current_user),
+    session: Session = Depends(get_session),
 ):
     print(text)
-    response = await chat(
-        character_id=character_id, current_user=current_user, text=text
-    )
+    response = await chat(character_id=character_id, session=session, text=text)
     return JSONResponse(content=response.model_dump())
 
 
 @app.post("/chat")
 async def chat_post(
     character_id: str,
-    current_user: User = Depends(get_current_user),
+    session: Session = Depends(get_session),
     text: str = Depends(get_audio_text),
 ):
-    response = await chat(
-        character_id=character_id, current_user=current_user, text=text
-    )
+    response = await chat(character_id=character_id, session=session, text=text)
     return JSONResponse(content=response.model_dump())

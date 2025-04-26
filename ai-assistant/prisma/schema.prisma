@@ -19,9 +19,10 @@ model User {
   createdAt     DateTime
   updatedAt     DateTime
   accounts      Account[]
-  Character     Character[]
-  Favorite      Favorite[]
+  character     Character[]
+  favorite      Favorite[]
   sessions      Session[]
+  voice         Voice[]
 
   @@map("user")
 }
@@ -76,12 +77,13 @@ model Character {
   personality String
   story       String
   postedBy    String
-  model_url   String
+  modelUrl   String
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now()) @updatedAt
-  is_public   Boolean
+  isPublic   Boolean    @default(false)
   user        User       @relation(fields: [postedBy], references: [id], onDelete: Cascade)
-  Favorite    Favorite[]
+  favorite    Favorite[]
+  voice       Voice?
 
   @@map("character")
 }
@@ -99,37 +101,15 @@ model Favorite {
   @@map("favorite")
 }
 
-model store {
-  prefix        String
-  key           String
-  value         Json
-  created_at    DateTime?       @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime?       @default(now()) @db.Timestamptz(6)
-  expires_at    DateTime?       @db.Timestamptz(6)
-  ttl_minutes   Int?
-  store_vectors store_vectors[]
+model Voice {
+  id          String    @id @default(uuid())
+  characterId String    @unique
+  userId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([prefix, key])
-  @@index([prefix])
-}
-
-model store_migrations {
-  v Int @id
-}
-
-model store_vectors {
-  prefix     String
-  key        String
-  field_name String
-  embedding  Unsupported("vector")?
-  created_at DateTime?              @default(now()) @db.Timestamptz(6)
-  updated_at DateTime?              @default(now()) @db.Timestamptz(6)
-  store      store                  @relation(fields: [prefix, key], references: [prefix, key], onDelete: Cascade, onUpdate: NoAction)
-
-  @@id([prefix, key, field_name])
-  @@index([embedding])
-}
-
-model vector_migrations {
-  v Int @id
+  @@unique([userId, characterId])
+  @@map("voice")
 }

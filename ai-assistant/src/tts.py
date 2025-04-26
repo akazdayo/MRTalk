@@ -2,11 +2,18 @@ import base64
 import io
 import requests
 from pydub import AudioSegment
+from fastapi import HTTPException
 
 
 class TTS:
-    def generate(self, id: str, text: str):
-        res = requests.get(f"http://localhost:9000/tts?id={id}&text={text}")
+    def generate(self, id: str, text: str, token: str):
+        res = requests.get(
+            f"http://localhost:9000/tts?id={id}&text={text}",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+
+        if res.status_code != 200:
+            raise HTTPException(status_code=400, detail="Failed to generate voice")
 
         audio_file = io.BytesIO(res.content)
 

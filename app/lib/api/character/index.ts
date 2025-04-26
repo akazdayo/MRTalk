@@ -17,7 +17,7 @@ export const getCharacter = async (
   //非ログイン時
   if (!session) {
     //publicなキャラクターであれば返す
-    if (character.is_public === true) {
+    if (character.isPublic === true) {
       return character;
     } else {
       return null;
@@ -25,10 +25,7 @@ export const getCharacter = async (
     //ログイン時
   } else {
     //キャラクターがpublicか自分の投稿したものであれば返す
-    if (
-      character.is_public === true ||
-      character.postedBy === session.user.id
-    ) {
+    if (character.isPublic === true || character.postedBy === session.user.id) {
       return character;
     } else {
       return null;
@@ -39,7 +36,7 @@ export const getCharacter = async (
 export const getAllCharacters = async (isIncludePostedBy: boolean) => {
   //publicなものだけ取得
   return await prisma.character.findMany({
-    where: { is_public: true },
+    where: { isPublic: true },
     include: { user: isIncludePostedBy },
     orderBy: { updatedAt: "desc" },
   });
@@ -58,7 +55,7 @@ export const getAllCharactersByUser = async (
 
   //publicなもの
   const publicCharacters = data.filter((c) => {
-    return c.is_public === true;
+    return c.isPublic === true;
   });
 
   //非ログイン時
@@ -76,7 +73,7 @@ export const getAllCharactersByUser = async (
 };
 
 export const createCharacter = async (
-  character: Omit<Character, "createdAt" | "updatedAt">
+  character: Omit<Character, "id" | "createdAt" | "updatedAt">
 ) => {
   return await prisma.character.create({ data: character });
 };
@@ -84,7 +81,7 @@ export const createCharacter = async (
 export const updateCharacter = async (
   character: Omit<
     Character,
-    "postedBy" | "createdAt" | "updatedAt" | "model_url"
+    "postedBy" | "createdAt" | "updatedAt" | "modelUrl"
   >
 ) => {
   return await prisma.character.update({
@@ -93,7 +90,7 @@ export const updateCharacter = async (
       name: character.name,
       personality: character.personality,
       story: character.story,
-      is_public: character.is_public,
+      isPublic: character.isPublic,
     },
   });
 };

@@ -42,6 +42,8 @@ export class MovementManager {
 
     this.xr = xr;
     this.isTalking = false;
+
+    this.handleSitEvent();
   }
 
   lookAt(targetVec: Vector3) {
@@ -70,8 +72,8 @@ export class MovementManager {
   sit(couchVec: Vector3, lookAt: Vector3) {
     this.animation.stopAllAnimation();
     this.animation.playAnimation("sit");
-    this.gltf.scene.position.set(couchVec.x, 0, couchVec.z);
-    this.gltf.scene.lookAt(lookAt.x, 0, lookAt.z);
+    this.gltf.scene.position.set(couchVec.x, -0.3, couchVec.z);
+    this.gltf.scene.lookAt(lookAt.x, this.gltf.scene.position.y, lookAt.z);
   }
 
   updateWalking() {
@@ -197,7 +199,7 @@ export class MovementManager {
         agent.position().z
       ).distanceTo(pos);
 
-      if (distance < 1) {
+      if (distance < 0.8) {
         //プレイヤーに近づき終わったとき
         this.state = "idle";
         this.idle();

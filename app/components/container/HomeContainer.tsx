@@ -1,6 +1,6 @@
-import { Box, PersonStanding, PlusIcon } from "lucide-react";
+import { Box, LogIn, PersonStanding, PlusIcon } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import { ChatBubbleIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { ChatBubbleIcon } from "@radix-ui/react-icons";
 import FeatureCard from "../card/FeatureCard";
 import { useOutletContext } from "@remix-run/react";
 import { Session, User } from "better-auth";
@@ -58,8 +58,8 @@ export default function HomeContainer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <FeatureCard
             step="1"
-            title="Githubアカウントでログイン"
-            icon={<GitHubLogoIcon className="w-8 h-8" />}
+            title="Googleアカウントでログイン"
+            icon={<LogIn className="w-8 h-8" />}
           />
           <FeatureCard
             step="2"

@@ -22,7 +22,13 @@ export const useMeshStore = create<MeshStore>((set) => ({
     useMeshStore.getState().meshes.get(label),
 }));
 
-export default function XRMeshes() {
+export default function XRMeshes({
+  transparent,
+  opacity,
+}: {
+  transparent: boolean;
+  opacity: number;
+}) {
   const meshes = useXRMeshes();
   const setMeshes = useMeshStore((state) => state.setMeshes);
 
@@ -56,8 +62,8 @@ export default function XRMeshes() {
           >
             <meshPhongMaterial
               color={getColorByLabel(mesh.semanticLabel!)}
-              opacity={0}
-              transparent
+              opacity={opacity}
+              transparent={transparent}
             />
           </XRMeshModel>
         </XRSpace>

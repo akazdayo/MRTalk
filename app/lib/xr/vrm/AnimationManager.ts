@@ -24,7 +24,7 @@ export class AnimationManager {
       const data = animations[name];
 
       const anim = await loadVRM(data.path);
-      const vrmAnim = anim.userData.vrmAnimations?.[0];
+      const vrmAnim = anim.gltf.userData.vrmAnimations?.[0];
 
       if (vrmAnim) {
         const clip = createVRMAnimationClip(vrmAnim, this.gltf.userData.vrm);

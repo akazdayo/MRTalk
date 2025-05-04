@@ -7,3 +7,5 @@ node_modules
 .DS_Store
 */.DS_Store
 .vercel
+
+public/AliciaSolid-1.0.vrm

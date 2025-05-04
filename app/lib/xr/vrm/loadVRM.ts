@@ -3,10 +3,13 @@ import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as THREE from "three";
 import { VRMAnimationLoaderPlugin } from "@pixiv/three-vrm-animation";
 
-export function loadVRM(path: string): Promise<GLTF> {
+export function loadVRM(
+  path: string
+): Promise<{ gltf: GLTF; helperRoot: THREE.Group }> {
   const loader = new GLTFLoader();
   loader.crossOrigin = "anonymous";
   const helperRoot = new THREE.Group();
+  helperRoot.renderOrder = 10000;
 
   loader.register((parser) => {
     return new VRMLoaderPlugin(parser, {
@@ -29,7 +32,7 @@ export function loadVRM(path: string): Promise<GLTF> {
           );
         }
 
-        resolve(gltf);
+        resolve({ gltf, helperRoot });
       },
       (progress: { loaded: number; total: number }) =>
         console.log(

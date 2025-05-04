@@ -31,12 +31,12 @@ export default function TalkSceneContainer({
 
   return (
     <Main>
-      <Button onClick={() => store.enterAR()}>Enter AR</Button>
+      <Button onClick={() => store.enterAR()}>Enter MR</Button>
 
       <Canvas>
         <XR store={store}>
           <ambientLight />
-          <XRMeshesComponent />
+          <XRMeshesComponent transparent={true} opacity={0} />
           <VRM character={character} />
         </XR>
       </Canvas>

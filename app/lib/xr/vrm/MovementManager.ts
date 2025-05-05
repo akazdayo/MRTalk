@@ -15,7 +15,7 @@ export class MovementManager {
   private agent: AgentManager;
 
   private getMeshByLabel: (label: string) => Mesh | undefined;
-  private player: Vector3;
+  private getPlayerPosition: () => Vector3;
 
   private xr: XRSession;
 
@@ -26,7 +26,7 @@ export class MovementManager {
     animation: AnimationManager,
     agent: AgentManager,
     getMeshByLabel: (label: string) => Mesh | undefined,
-    player: Vector3,
+    getPlayerPosition: () => Vector3,
     xr: XRSession
   ) {
     this.gltf = gltf;
@@ -35,7 +35,7 @@ export class MovementManager {
     this.agent = agent;
 
     this.getMeshByLabel = getMeshByLabel;
-    this.player = player;
+    this.getPlayerPosition = getPlayerPosition;
 
     this.animation.playAnimation("idle");
     this.state = "idle";
@@ -43,15 +43,36 @@ export class MovementManager {
     this.xr = xr;
     this.isTalking = false;
 
-    this.handleSitEvent();
+    setInterval(() => {
+      if (!this.isTalking) {
+        const couch = this.getMeshByLabel("couch");
+        if (!couch) {
+          return;
+        }
+
+        const couchVec = new Vector3().setFromMatrixPosition(couch.matrixWorld);
+
+        if (
+          this.distanceXZ(getPlayerPosition(), couchVec) < 0.5 &&
+          this.state !== "sitting"
+        ) {
+          this.handleSitEvent();
+        }
+      }
+    }, 5000);
+  }
+
+  distanceXZ(a: Vector3, b: Vector3) {
+    const dx = b.x - a.x;
+    const dz = b.z - a.z;
+    return Math.sqrt(dx * dx + dz * dz);
   }
 
   lookAt(targetVec: Vector3) {
     const vrm: VRM = this.gltf.userData.vrm;
 
-    const distance = this.gltf.scene.position.distanceTo(targetVec);
-
-    if (distance > 1.5) {
+    const distance = this.distanceXZ(this.gltf.scene.position, targetVec);
+    if (distance > 0.5) {
       vrm.lookAt?.reset();
       return;
     }
@@ -72,7 +93,7 @@ export class MovementManager {
   sit(couchVec: Vector3, lookAt: Vector3) {
     this.animation.stopAllAnimation();
     this.animation.playAnimation("sit");
-    this.gltf.scene.position.set(couchVec.x, -0.3, couchVec.z);
+    this.gltf.scene.position.set(couchVec.x, -0.2, couchVec.z);
     this.gltf.scene.lookAt(lookAt.x, this.gltf.scene.position.y, lookAt.z);
   }
 
@@ -93,17 +114,16 @@ export class MovementManager {
   randomMove() {
     this.animation.stopAllAnimation();
 
-    this.agent.moveTo(this.agent.getRandomPoint(this.player));
+    this.agent.moveTo(this.agent.getRandomPoint(this.getPlayerPosition()));
 
     const checkDistance = () => {
       const agent = this.agent.getAgent();
       const pos = this.agent.getTargetPosition();
 
-      const distance = new Vector3(
-        agent.position().x,
-        agent.position().y,
-        agent.position().z
-      ).distanceTo(pos);
+      const distance = this.distanceXZ(
+        new Vector3(agent.position().x, agent.position().y, agent.position().z),
+        pos
+      );
 
       if (distance < 0.1) {
         //プレイヤーに近づき終わったとき
@@ -161,17 +181,16 @@ export class MovementManager {
     const checkDistance = () => {
       const agent = this.agent.getAgent();
 
-      const distance = new Vector3(
-        agent.position().x,
-        agent.position().y,
-        agent.position().z
-      ).distanceTo(couchVec);
+      const distance = this.distanceXZ(
+        new Vector3(agent.position().x, agent.position().y, agent.position().z),
+        couchVec
+      );
 
       if (distance < 0.8) {
         //椅子に近づき終わったとき
         const lookAt = screen
           ? new Vector3().setFromMatrixPosition(screen.matrixWorld)
-          : this.player;
+          : this.getPlayerPosition();
 
         this.state = "sitting";
         this.sit(couchVec, lookAt);
@@ -187,17 +206,16 @@ export class MovementManager {
   handleGoToUserPositionEvent() {
     this.animation.stopAllAnimation();
 
-    this.agent.moveTo(this.player);
+    this.agent.moveTo(this.getPlayerPosition());
 
     const checkDistance = () => {
       const agent = this.agent.getAgent();
       const pos = this.agent.getTargetPosition();
 
-      const distance = new Vector3(
-        agent.position().x,
-        agent.position().y,
-        agent.position().z
-      ).distanceTo(pos);
+      const distance = this.distanceXZ(
+        new Vector3(agent.position().x, agent.position().y, agent.position().z),
+        pos
+      );
 
       if (distance < 0.8) {
         //プレイヤーに近づき終わったとき
@@ -224,9 +242,9 @@ export class MovementManager {
 
     if (this.isTalking) {
       //プレイヤーの方に頭を向ける
-      this.headBoneLookAt(this.player);
+      this.headBoneLookAt(this.getPlayerPosition());
     }
 
-    this.lookAt(this.player);
+    this.lookAt(this.getPlayerPosition());
   }
 }

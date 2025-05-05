@@ -125,6 +125,7 @@ export default function VRM({ character }: { character: Character }) {
 
       if (e instanceof Error) {
         setText(e.message);
+        isThinking.current = false;
       }
     }
   };
@@ -157,6 +158,10 @@ export default function VRM({ character }: { character: Character }) {
     [controller]
   );
 
+  const getPlayerPosition = () => {
+    return gl.xr.getCamera().position;
+  };
+
   const onSessionStart = async () => {
     try {
       await init();
@@ -171,6 +176,7 @@ export default function VRM({ character }: { character: Character }) {
         walk: { path: "/anim/vrma/walk.vrma", isAdditive: false },
         sit: { path: "/anim/vrma/sit_anim.vrma", isAdditive: false },
         thinking: { path: "/anim/vrma/thinking.vrma", isAdditive: true },
+        looking: { path: "/anim/vrma/looking.vrma", isAdditive: false },
       });
 
       animationManager.current = animation;
@@ -215,7 +221,7 @@ export default function VRM({ character }: { character: Character }) {
         animationManager.current,
         agent,
         getMeshByLabel,
-        gl.xr.getCamera().position,
+        getPlayerPosition,
         xr.session
       );
 

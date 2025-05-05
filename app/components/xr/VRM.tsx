@@ -23,6 +23,7 @@ import { init } from "@recast-navigation/core";
 import { VRM as VRMType } from "@pixiv/three-vrm";
 import { Buffer } from "buffer";
 
+//TODO:リファクタする
 export default function VRM({ character }: { character: Character }) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [text, setText] = useState<string>("話しかけてみましょう！");
@@ -32,7 +33,6 @@ export default function VRM({ character }: { character: Character }) {
   const timeDomainData = new Float32Array(2048);
 
   const isCompleteSetup = useRef<boolean>(false);
-  const isThinking = useRef<boolean>(false);
 
   const chat = useRef(new Chat(character.id));
   const movementManager = useRef<MovementManager | null>(null);
@@ -53,16 +53,10 @@ export default function VRM({ character }: { character: Character }) {
   });
 
   const onResult = async (blob: Blob) => {
-    isThinking.current = true;
-
-    //考え中アニメーションを再生
-    if (animationManager.current) {
-      animationManager.current.playAnimation("thinking");
-    }
+    movementManager.current?.toggleThinking();
 
     try {
       const res = await chat.current.voiceChat(blob);
-
       setText(res.content);
 
       const sound = "data:audio/wav;base64," + res.voice;
@@ -93,39 +87,24 @@ export default function VRM({ character }: { character: Character }) {
         movementManager.current.setEvent(res.event);
       }
 
-      //感情スコアをソート
       const arr = Object.entries(res.emotion);
+      arr.sort((a, b) => b[1] - a[1]);
 
-      arr.sort((a, b) => {
-        return b[1] - a[1];
-      });
+      movementManager.current?.toggleThinking();
 
-      //返答が帰ってきたら考え中モーションを停止
-      if (animationManager.current) {
-        animationManager.current.setEmotion(arr[0][0]);
-        animationManager.current.stopAnimation("thinking");
-      }
+      animationManager.current?.setEmotion(arr[0][0]);
+      movementManager.current?.toggleTalking();
 
-      //talkingモード(プレイヤーのほうを向く)に切り替える
-      if (movementManager.current) {
-        movementManager.current.toggleTalking();
-
-        isThinking.current = false;
-
-        //10秒後に戻す
-        setTimeout(() => {
-          movementManager.current?.toggleTalking();
-
-          animationManager.current?.resetEmotion();
-        }, 10000);
-      }
+      setTimeout(() => {
+        movementManager.current?.toggleTalking();
+        animationManager.current?.resetEmotion();
+      }, 10000);
     } catch (e: unknown) {
-      animationManager.current?.stopAnimation("thinking");
+      movementManager.current?.toggleThinking();
       animationManager.current?.resetEmotion();
 
       if (e instanceof Error) {
         setText(e.message);
-        isThinking.current = false;
       }
     }
   };
@@ -136,7 +115,7 @@ export default function VRM({ character }: { character: Character }) {
     controller?.inputSource,
     "selectstart",
     () => {
-      if (!isThinking.current) {
+      if (!movementManager.current?.isThinking) {
         setText("録音中...");
         startRecording();
       }
@@ -148,11 +127,11 @@ export default function VRM({ character }: { character: Character }) {
     controller?.inputSource,
     "selectend",
     () => {
-      if (!isThinking.current) {
+      if (!movementManager.current?.isThinking) {
         setTimeout(() => {
           setText("考え中...");
           stopRecording();
-        }, 500); //すぐに終了しないように500msあける
+        }, 500);
       }
     },
     [controller]
@@ -167,7 +146,7 @@ export default function VRM({ character }: { character: Character }) {
       await init();
       const loader = new VRMLoader();
 
-      const { gltf } = await loader.load(character.modelUrl);
+      const { gltf } = await loader.load("/AliciaSolid-1.0.vrm");
       setGltf(gltf);
 
       const animation = new AnimationManager(gltf);
@@ -177,6 +156,7 @@ export default function VRM({ character }: { character: Character }) {
         sit: { path: "/anim/vrma/sit_anim.vrma", isAdditive: false },
         thinking: { path: "/anim/vrma/thinking.vrma", isAdditive: true },
         looking: { path: "/anim/vrma/looking.vrma", isAdditive: false },
+        stretch: { path: "/anim/vrma/stretch.vrma", isAdditive: false },
       });
 
       animationManager.current = animation;

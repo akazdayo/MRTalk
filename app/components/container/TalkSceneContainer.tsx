@@ -7,7 +7,10 @@ import VRM from "../xr/VRM";
 import { Character } from "@prisma/client";
 import { useEffect } from "react";
 
-const store = createXRStore();
+const store = createXRStore({
+  depthSensing: true,
+  hand: { teleportPointer: true, model: false },
+});
 
 export default function TalkSceneContainer({
   character,

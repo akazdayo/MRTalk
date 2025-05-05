@@ -8,6 +8,8 @@ export function loadVRM(
 ): Promise<{ gltf: GLTF; helperRoot: THREE.Group }> {
   const loader = new GLTFLoader();
   loader.crossOrigin = "anonymous";
+
+  //debug用のhelperRootを作成
   const helperRoot = new THREE.Group();
   helperRoot.renderOrder = 10000;
 

@@ -10,11 +10,21 @@ export class AnimationManager {
   private mixer: AnimationMixer;
   private clock: Clock;
 
+  private nextBlinkTime: number;
+  private blinkDuration: number;
+  private blinkElapsed: number;
+  private blinking: boolean;
+
   constructor(gltf: GLTF) {
     this.animations = new Map();
     this.gltf = gltf;
     this.mixer = new AnimationMixer(gltf.scene);
     this.clock = new Clock();
+
+    this.blinkDuration = 0.1;
+    this.nextBlinkTime = this.randomInterval();
+    this.blinkElapsed = 0;
+    this.blinking = false;
   }
 
   async load(
@@ -75,17 +85,11 @@ export class AnimationManager {
     const vrm: VRM = this.gltf.userData.vrm;
 
     switch (emotion) {
-      case "neutral":
-        vrm.expressionManager?.setValue("neutral", 1);
-
-        break;
       case "happy":
         vrm.expressionManager?.setValue("happy", 1);
-
         break;
       case "sad":
         vrm.expressionManager?.setValue("sad", 1);
-
         break;
       case "angry":
         vrm.expressionManager?.setValue("angry", 1);
@@ -96,11 +100,47 @@ export class AnimationManager {
 
   update() {
     const deltaTime = this.clock.getDelta();
-
     const vrm: VRM = this.gltf.userData.vrm;
 
     vrm.update(deltaTime);
-
     this.mixer.update(deltaTime);
+
+    this.updateBlink(deltaTime);
+  }
+
+  randomInterval(): number {
+    return 1 + Math.random() * 4;
+  }
+
+  updateBlink(delta: number) {
+    const vrm: VRM = this.gltf.userData.vrm;
+
+    if (!vrm.expressionManager) return;
+
+    if (!this.blinking) {
+      this.nextBlinkTime -= delta;
+      if (this.nextBlinkTime <= 0) {
+        this.blinking = true;
+        this.blinkElapsed = 0;
+      }
+    }
+
+    if (this.blinking) {
+      this.blinkElapsed += delta;
+      const half = this.blinkDuration / 2;
+      let weight: number;
+
+      if (this.blinkElapsed < half) {
+        weight = this.blinkElapsed / half;
+      } else if (this.blinkElapsed < this.blinkDuration) {
+        weight = 1 - (this.blinkElapsed - half) / half;
+      } else {
+        weight = 0;
+        this.blinking = false;
+        this.nextBlinkTime = this.randomInterval();
+      }
+
+      vrm.expressionManager.setValue("blink", weight);
+    }
   }
 }

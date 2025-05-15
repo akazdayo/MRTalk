@@ -15,6 +15,13 @@
 
 ## MRTalk
 
+### Google OAuth
+
+GCPでOAuthのクライアントIDを取得して、.envに設定してください。
+承認済みのリダイレクトURIは、`http://localhost:5173/api/auth/callback/google`を設定する必要があります
+
+### Setup
+
 ```bash
 $ mise i
 $ bun i

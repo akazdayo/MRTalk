@@ -17,8 +17,10 @@
 
 ### Google OAuth
 
-GCPでOAuthのクライアントIDを取得して、.envに設定してください。
-承認済みのリダイレクトURIは、`http://localhost:5173/api/auth/callback/google`を設定する必要があります
+GCPでOAuthのクライアントIDを取得して、.envに設定してください。\
+承認済みのリダイレクトURIは、`http://ドメイン名/api/auth/callback/google`を設定する必要があります。\
+cloudflare-tunnelまたはngrok等を用いてローカルホストを公開する必要があります。(VRからアクセスする場合)\
+ngrokを用いる場合は、ドメインを固定してください。 \
 
 ### Setup
 

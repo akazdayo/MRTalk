@@ -1,14 +1,19 @@
 import base64
 import io
+import os
+
 import requests
-from pydub import AudioSegment
 from fastapi import HTTPException
+from pydub import AudioSegment
+
+URL = os.getenv("TTS_URL", "http://localhost:9000")
 
 
 class TTS:
-    def generate(self, id: str, text: str, token: str):
+    @staticmethod
+    def generate(id: str, text: str, token: str):
         res = requests.get(
-            f"http://localhost:9000/tts?id={id}&text={text}",
+            f"{URL}/tts?id={id}&text={text}",
             headers={"Authorization": f"Bearer {token}"},
         )
 

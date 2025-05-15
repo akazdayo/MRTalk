@@ -13,19 +13,19 @@ rye sync
 .env にクレデンシャルを記入
 
 ```bash
-OPENAI_API_KEY=""
-GOOGLE_API_KEY=""
-DATABASE_URL=""
+$ cp .env.example .env
 ```
 
-初回のみ DB を setup(memories スキーマにテーブルを作成)
+初回のみ DB を setup(memories スキーマにテーブルを作成)\
+DBにはPostgreSQLにpgvectorが必要です。
 
 ```bash
-rye run python src/setup.py
+$ rye run prisma generate
+$ rye run python src/setup.py
 ```
 
 開発サーバーの起動
 
 ```bash
-rye run dev
+$ rye run dev
 ```

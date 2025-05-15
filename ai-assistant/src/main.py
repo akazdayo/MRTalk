@@ -1,29 +1,26 @@
-import datetime
-import os
-import io
 import asyncio
+import datetime
+import io
+import os
 from typing import Any, Dict
 
-from fastapi import Depends, FastAPI, HTTPException, Header, Request
+import speech_recognition as sr
+from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.responses import JSONResponse
+from langchain.schema import AIMessage, HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.schema import HumanMessage, AIMessage
 from langgraph.func import entrypoint
 from langgraph.store.postgres import AsyncPostgresStore
 from langmem import create_memory_store_manager
 from psycopg import AsyncConnection
+from pydub import AudioSegment
 
 from prisma import Prisma
 from prisma.models import Character, Session
-import speech_recognition as sr
-from pydub import AudioSegment
-
-from src.tts import TTS
 from src.schema import EmotionMessage, Response
-
+from src.tts import TTS
 
 r = sr.Recognizer()
-tts = TTS()
 app = FastAPI()
 llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 structured_llm = llm.with_structured_output(EmotionMessage)
@@ -219,7 +216,7 @@ async def chat(text: str, session: Session, character_id: str):
             assert isinstance(response, EmotionMessage)
             assert character.voice
 
-            base64_voice = tts.generate(
+            base64_voice = TTS.generate(
                 character.voice.id, response.content, session.token
             )
 

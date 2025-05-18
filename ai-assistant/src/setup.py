@@ -1,11 +1,11 @@
 import os
 
-from dotenv import load_dotenv
 from langgraph.store.postgres import PostgresStore
 
-load_dotenv()
 db_url = os.getenv("DATABASE_URL") or ""
 
 with PostgresStore.from_conn_string(db_url) as store:
-    store.conn.execute("SET search_path TO memories")
+    store.conn.execute("CREATE SCHEMA IF NOT EXISTS memories;")
+    store.conn.execute("CREATE EXTENSION IF NOT EXISTS vector;")
+    store.conn.execute("SET search_path TO memories;")
     store.setup()

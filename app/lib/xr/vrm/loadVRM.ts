@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { VRMAnimationLoaderPlugin } from "@pixiv/three-vrm-animation";
 
 export function loadVRM(
-  path: string
+  path: string,
 ): Promise<{ gltf: GLTF; helperRoot: THREE.Group }> {
   const loader = new GLTFLoader();
   loader.crossOrigin = "anonymous";
@@ -30,7 +30,7 @@ export function loadVRM(
         if (gltf.userData.gltfExtensions?.VRM) {
           //VRM-0.xのモデルかどうかチェックする
           reject(
-            "モデルのバージョンに互換性がありません。VRM-1.xのモデルを使用してください。"
+            "モデルのバージョンに互換性がありません。VRM-1.xのモデルを使用してください。",
           );
         }
 
@@ -40,11 +40,11 @@ export function loadVRM(
         console.log(
           "Loading model...",
           100.0 * (progress.loaded / progress.total),
-          "%"
+          "%",
         ),
       (error) => {
         reject(error);
-      }
+      },
     );
   });
 }

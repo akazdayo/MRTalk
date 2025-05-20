@@ -16,7 +16,6 @@ class TTS:
             f"{URL}/tts?id={id}&text={text}",
             headers={"Authorization": f"Bearer {token}"},
         )
-        print("リクエスト返ってきた", res)
 
         if res.status_code != 200:
             raise HTTPException(status_code=400, detail="Failed to generate voice")

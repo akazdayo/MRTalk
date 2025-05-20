@@ -89,11 +89,9 @@ async def get_session(authorization: str = Header(None)) -> Session:
 async def get_character(id: str) -> Character | None:
     prisma = Prisma()
     await prisma.connect()
-    print("connected prisma")
     character = await prisma.character.find_unique(
         where={"id": id}, include={"voice": True}
     )
-    print("character", character)
 
     if not character:
         raise HTTPException(status_code=400, detail="Character not found")
@@ -163,21 +161,15 @@ async def chat(text: str, session: Session, character_id: str):
             messages = params["messages"]
             user_id = params["user_id"]
             character_id = params["character_id"]
-            print("generate params: %s", params)
             character = await get_character(character_id)
-            print(f"generate start: character={character!r}, voice={character.voice!r}")
             if not (character):
-                print("character not found")
                 raise HTTPException(status_code=400, detail="Character Not Found")
 
             if not character.isPublic and character.postedBy != user_id:
-                print("character not public")
                 raise HTTPException(status_code=400, detail="Character Not Found")
 
             memories = await store.asearch(("memories", user_id, character_id))
-            print("memories", memories)
             memory_text = "\n".join(m.value["content"]["content"] for m in memories)
-            print("memory_text", memory_text)
 
             system_prompt = f"""
           あなたは、キャラクターになりきってユーザーと共に暮らしながら会話をするAIエージェントです。メッセージは100字以内の日常会話らしい短くシンプルなものにしましょう。
@@ -222,13 +214,11 @@ async def chat(text: str, session: Session, character_id: str):
             response = structured_llm.invoke(
                 [{"role": "system", "content": system_prompt}, *messages]
             )
-            print("llm_response", response)
             assert isinstance(response, EmotionMessage)
             if not character.voice:
                 raise HTTPException(
                     status_code=400, detail="Voice not configured for this character"
                 )
-            print("ヴォイス作るよ")
             base64_voice = TTS.generate(
                 character.voice.id, response.content, session.token
             )
@@ -275,7 +265,6 @@ async def chat_get(
     character_id: str,
     session: Session = Depends(get_session),
 ):
-    print(text)
     response = await chat(character_id=character_id, session=session, text=text)
     return JSONResponse(content=response.model_dump())
 

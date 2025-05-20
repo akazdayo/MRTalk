@@ -21,13 +21,11 @@ export default function AddCharacterContainer() {
     setIsLoading(true);
 
     const formData = new FormData(event.target as HTMLFormElement);
-    console.log("[AddCharacter] Request FormData:", Array.from(formData.entries()));
 
     const res = await fetch("/api/character/", {
       method: "POST",
       body: formData,
     });
-    console.log("[AddCharacter] Response status:", res.status);
 
     if (!res.ok) {
       const error = await res.json();

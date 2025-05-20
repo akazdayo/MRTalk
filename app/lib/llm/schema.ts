@@ -56,5 +56,10 @@ export const ResponseSchema = z
       .string({ required_error: "Voice is required" })
       .base64()
       .min(1, "Voice is required"),
+    game_ai_choice: z
+      .enum(["rock", "paper", "scissors"])
+      .optional()
+      .nullable(),
+    game_result: z.enum(["win", "lose", "draw"]).optional().nullable(),
   })
   .strict();

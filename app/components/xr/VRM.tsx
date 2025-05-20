@@ -57,7 +57,41 @@ export default function VRM({ character }: { character: Character }) {
 
     try {
       const res = await chat.current.voiceChat(blob);
-      setText(res.content);
+      // res will be of type Res from z.infer<typeof ResponseSchema>
+      // which now includes game_ai_choice and game_result thanks to prior schema update.
+
+      let displayText = res.content;
+      // Helper to translate choices/results if needed, or use raw values
+      const translateAIChoice = (choice: string | undefined | null) => {
+        if (!choice) return "";
+        // Simple mapping, can be expanded
+        const map: { [key: string]: string } = {
+          rock: "グー✊",
+          paper: "パー🖐️",
+          scissors: "チョキ✌️",
+        };
+        return map[choice] || choice;
+      };
+
+      const translateGameResult = (result: string | undefined | null) => {
+        if (!result) return "";
+        const map: { [key: string]: string } = {
+          win: "勝ち🎉",
+          lose: "負け😢",
+          draw: "引き分け🤝",
+        };
+        return map[result] || result;
+      };
+
+      if (res.game_ai_choice) {
+        displayText += `\n相手の手: ${translateAIChoice(
+          res.game_ai_choice
+        )}`;
+      }
+      if (res.game_result) {
+        displayText += `\n結果: あなたの${translateGameResult(res.game_result)}`;
+      }
+      setText(displayText);
 
       const sound = "data:audio/wav;base64," + res.voice;
       const audio = new Audio();

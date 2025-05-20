@@ -16,6 +16,12 @@ class EmotionMessage(BaseModel):
     event: Literal["sit", "go_to_user_position"] | None = Field(
         None, description="キャラクターの行動を示すテキスト"
     )
+    game_ai_choice: Literal["rock", "paper", "scissors"] | None = Field(
+        None, description="AIのじゃんけんの選択"
+    )
+    game_result: Literal["win", "lose", "draw"] | None = Field(
+        None, description="じゃんけんの結果（ユーザー視点）"
+    )
 
 
 class Response(BaseModel):
@@ -26,3 +32,9 @@ class Response(BaseModel):
         None, description="キャラクターの行動を示すテキスト"
     )
     voice: str = Field(description="Base64エンコードされた音声データ")
+    game_ai_choice: Literal["rock", "paper", "scissors"] | None = Field(
+        None, description="AIのじゃんけんの選択"
+    )
+    game_result: Literal["win", "lose", "draw"] | None = Field(
+        None, description="じゃんけんの結果（ユーザー視点）"
+    )

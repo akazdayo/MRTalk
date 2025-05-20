@@ -23,18 +23,16 @@ cloudflare-tunnelまたはngrok等を用いてローカルホストを公開す�
 ngrokを用いる場合は、ドメインを固定してください。 \
 
 ### Setup
-
+./ai-assistant/README.mdも参照してください。
 ```bash
 $ mise i
 $ bun i
 $ cp .env.example .env
-$ bun run dev
 
-$ cd ai-assistant
-$ rye sync
-$ cp .env.example .env
-$ rye run python src/setup.py
-$ rye run dev
+$ bun run prisma generate
+$ bun run prisma db push
+
+$ bun run dev
 ```
 
 ## MRTalk-GPT-SoVITS

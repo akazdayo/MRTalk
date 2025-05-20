@@ -24,3 +24,7 @@ $ rye run setup
 ```bash
 $ rye run dev
 ```
+
+デフォルトのOpenAI APIエンドポイントは https://models.github.ai/inference
+です。\
+必要に応じて環境変数 `OPENAI_BASE_URL` で上書きできます。

@@ -4,6 +4,7 @@ import io
 import os
 from typing import Any, Dict
 
+import openai
 import speech_recognition as sr
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.responses import JSONResponse
@@ -25,6 +26,7 @@ app = FastAPI()
 llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 structured_llm = llm.with_structured_output(EmotionMessage)
 db_url = os.getenv("DATABASE_URL") or ""
+openai.api_base = os.getenv("OPENAI_BASE_URL", "https://models.github.ai/inference")
 
 
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
@@ -87,9 +89,11 @@ async def get_session(authorization: str = Header(None)) -> Session:
 async def get_character(id: str) -> Character | None:
     prisma = Prisma()
     await prisma.connect()
+    print("connected prisma")
     character = await prisma.character.find_unique(
         where={"id": id}, include={"voice": True}
     )
+    print("character", character)
 
     if not character:
         raise HTTPException(status_code=400, detail="Character not found")
@@ -111,7 +115,7 @@ async def save_memory(
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
-        await store.conn.execute("SET search_path TO memories")
+        await store.conn.execute("SET search_path TO memories, public")
         await store.setup()
 
         @entrypoint(store=store)
@@ -151,7 +155,7 @@ async def chat(text: str, session: Session, character_id: str):
         },
     ) as store:
         assert isinstance(store.conn, AsyncConnection)
-        await store.conn.execute("SET search_path TO memories")
+        await store.conn.execute("SET search_path TO memories, public")
         await store.setup()
 
         @entrypoint(store=store)
@@ -159,16 +163,21 @@ async def chat(text: str, session: Session, character_id: str):
             messages = params["messages"]
             user_id = params["user_id"]
             character_id = params["character_id"]
-
+            print("generate params: %s", params)
             character = await get_character(character_id)
+            print(f"generate start: character={character!r}, voice={character.voice!r}")
             if not (character):
+                print("character not found")
                 raise HTTPException(status_code=400, detail="Character Not Found")
 
             if not character.isPublic and character.postedBy != user_id:
+                print("character not public")
                 raise HTTPException(status_code=400, detail="Character Not Found")
 
             memories = await store.asearch(("memories", user_id, character_id))
+            print("memories", memories)
             memory_text = "\n".join(m.value["content"]["content"] for m in memories)
+            print("memory_text", memory_text)
 
             system_prompt = f"""
           あなたは、キャラクターになりきってユーザーと共に暮らしながら会話をするAIエージェントです。メッセージは100字以内の日常会話らしい短くシンプルなものにしましょう。
@@ -213,9 +222,13 @@ async def chat(text: str, session: Session, character_id: str):
             response = structured_llm.invoke(
                 [{"role": "system", "content": system_prompt}, *messages]
             )
+            print("llm_response", response)
             assert isinstance(response, EmotionMessage)
-            assert character.voice
-
+            if not character.voice:
+                raise HTTPException(
+                    status_code=400, detail="Voice not configured for this character"
+                )
+            print("ヴォイス作るよ")
             base64_voice = TTS.generate(
                 character.voice.id, response.content, session.token
             )

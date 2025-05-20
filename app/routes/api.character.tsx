@@ -152,6 +152,7 @@ export const action: ActionFunction = async ({ request }) => {
         return Response.json({ error: "Method not allowed." }, { status: 405 });
     }
   } catch (e) {
+    console.error("[api.character] Error:", e);
     return Response.json({ error: "An error has occurred." }, { status: 500 });
   }
 };

@@ -4,7 +4,6 @@ import io
 import os
 from typing import Any, Dict
 
-import openai
 import speech_recognition as sr
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.responses import JSONResponse
@@ -26,8 +25,6 @@ app = FastAPI()
 llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 structured_llm = llm.with_structured_output(EmotionMessage)
 db_url = os.getenv("DATABASE_URL") or ""
-openai.api_base = os.getenv("OPENAI_BASE_URL", "https://models.github.ai/inference")
-
 
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
 memory_manager = create_memory_store_manager(

@@ -2,6 +2,28 @@
 
 [![technologies](https://skillicons.dev/icons?i=ts,tailwind,remix,threejs,prisma)](https://skillicons.dev)
 
+MRTalkは、WebXRとVRM技術を活用したMixed Reality (MR)
+対話アプリケーションです。革新的なハンドトラッキングメニューシステムにより、3D空間でキャラクターと直感的に対話できます。
+
+## 🌟 主要機能
+
+- **WebXRハンドトラッキング**: Rock'n rollジェスチャーによる3Dメニュー制御
+- **VRMキャラクター統合**: リアルタイムアニメーション・表情制御
+- **Mixed Reality対話**: 3D空間でのキャラクター情報表示
+- **高精度インタラクション**: ピンチ、スワイプ、長押しジェスチャー対応
+- **音声合成 (GPT-SoVITS)**: 高品質な音声生成システム
+
+## 🎮 WebXRメニューシステム
+
+革新的なハンドトラッキングメニューシステムを実装：
+
+- **Rock'n rollジェスチャー** でメニュー表示・非表示
+- **Point&Tap** でアイテム選択
+- **視線追従機能** で最適なメニュー配置
+- **60FPS** 安定動作と **200MB以下** のメモリ効率
+
+詳細な使用方法: [WebXRメニューシステム ガイド](docs/README_WEBXR_MENU.md)
+
 # DEMO
 
 ![demo](public/img/demo.png)
@@ -23,7 +45,9 @@ cloudflare-tunnelまたはngrok等を用いてローカルホストを公開す�
 ngrokを用いる場合は、ドメインを固定してください。 \
 
 ### Setup
+
 ./ai-assistant/README.mdも参照してください。
+
 ```bash
 $ mise i
 $ bun i

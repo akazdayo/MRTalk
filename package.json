@@ -28,8 +28,8 @@
     "@radix-ui/react-slot": "^1.1.2",
     "@react-three/drei": "^10.0.4",
     "@react-three/fiber": "^8.1.0",
-    "@react-three/uikit": "^0.8.12",
-    "@react-three/uikit-apfel": "^0.8.12",
+    "@react-three/uikit": "^0.8.19",
+    "@react-three/uikit-apfel": "^0.8.19",
     "@react-three/xr": "6.6.9",
     "@recast-navigation/three": "^0.39.0",
     "@remix-run/node": "^2.16.0",
@@ -56,6 +56,7 @@
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.174.0",
+    "three-stdlib": "^2.36.0",
     "use-debounce": "^10.0.4",
     "zod": "^3.24.2"
   },

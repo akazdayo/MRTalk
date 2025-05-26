@@ -24,6 +24,7 @@ import { VRM as VRMType } from "@pixiv/three-vrm";
 import { Buffer } from "buffer";
 
 //TODO:リファクタする
+//-> リファクタして
 export default function VRM({ character }: { character: Character }) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [text, setText] = useState<string>("話しかけてみましょう！");

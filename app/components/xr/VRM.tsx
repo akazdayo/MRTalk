@@ -13,7 +13,7 @@ import { AnimationManager } from "~/lib/xr/vrm/AnimationManager";
 import { VRMLoader } from "~/lib/xr/vrm/VRMLoader";
 import { useEffect, useRef, useState } from "react";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { Chat } from "~/lib/llm/Chat";
+import { Chat, Res } from "~/lib/llm/Chat";
 import {
   AgentManager,
   NavMeshManager,
@@ -25,9 +25,16 @@ import { Buffer } from "buffer";
 
 //TODO:リファクタする
 //-> リファクタして
-export default function VRM({ character }: { character: Character }) {
+export default function VRM({
+  character,
+  onChatMessage
+}: {
+  character: Character;
+  onChatMessage?: (userMessage: string, assistantResponse: Res) => void;
+}) {
   const [gltf, setGltf] = useState<GLTF | null>(null);
   const [text, setText] = useState<string>("話しかけてみましょう！");
+  const [userInput, setUserInput] = useState<string>("");
 
   const xr = useXR();
 
@@ -59,6 +66,11 @@ export default function VRM({ character }: { character: Character }) {
     try {
       const res = await chat.current.voiceChat(blob);
       setText(res.content);
+
+      // チャット履歴に追加（音声入力の場合、userInputは音声として記録）
+      if (onChatMessage) {
+        onChatMessage(userInput || "音声入力", res);
+      }
 
       const sound = "data:audio/wav;base64," + res.voice;
       const audio = new Audio();
@@ -118,6 +130,7 @@ export default function VRM({ character }: { character: Character }) {
     () => {
       if (!movementManager.current?.isThinking) {
         setText("録音中...");
+        setUserInput("音声入力中...");
         startRecording();
       }
     },

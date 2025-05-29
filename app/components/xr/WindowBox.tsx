@@ -72,41 +72,31 @@ export function WindowBox({
             <Container
                 width={width}
                 height={height}
+                flexShrink={0}
+                overflow="visible"
                 {...props}
             >
-                <Card padding={5} borderRadius={5}>
-                    {/* タイトルバー */}
-                    <Container
-                        flexDirection="row"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        marginBottom={4}
-                        paddingBottom={1}
-                    >
-                        <Text fontSize={1} fontWeight="bold">
-                            {title}
-                        </Text>
-                        {closable && (
-                            <Button onClick={handleClose}>
-                                <Text fontSize={1}>x</Text>
-                            </Button>
-                        )}
-                    </Container>
-
+                <Card
+                    padding={2}
+                    borderRadius={8}
+                    backgroundColor="rgba(15, 23, 42, 0.85)"
+                    borderWidth={1}
+                    borderColor="rgba(255, 255, 255, 0.15)"
+                    flexGrow={1}
+                    flexShrink={0}
+                >
                     {/* コンテンツエリア */}
-                    <Container>
-                        {children || (
-                            <Container
-                                justifyContent="center"
-                                alignItems="center"
-                                padding={2}
-                            >
-                                <Text fontSize={1}>
-                                    MRTalk Window Content
-                                </Text>
-                            </Container>
-                        )}
-                    </Container>
+                    {children || (
+                        <Container
+                            justifyContent="center"
+                            alignItems="center"
+                            padding={2}
+                        >
+                            <Text fontSize={1}>
+                                MRTalk Window Content
+                            </Text>
+                        </Container>
+                    )}
                 </Card>
             </Container>
         </Root>

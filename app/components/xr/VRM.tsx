@@ -68,9 +68,8 @@ export default function VRM({
       setText(res.content);
 
       // チャット履歴に追加（音声入力の場合、userInputは音声として記録）
-      if (onChatMessage) {
-        onChatMessage(userInput || "音声入力", res);
-      }
+      onChatMessage!(userInput || "音声入力", res);
+
 
       const sound = "data:audio/wav;base64," + res.voice;
       const audio = new Audio();

@@ -11,24 +11,6 @@ import WindowBox from "../xr/WindowBox";
 import { Res } from "~/lib/llm/Chat";
 import XRInputHandler from "../xr/XRInputHandler";
 
-// タイムスタンプをフォーマットする関数
-function formatTimestamp(timestamp: Date): string {
-  const now = new Date();
-  const diff = now.getTime() - timestamp.getTime();
-
-  if (diff < 60000) { // 1分未満
-    return "今";
-  } else if (diff < 3600000) { // 1時間未満
-    const minutes = Math.floor(diff / 60000);
-    return `${minutes}分前`;
-  } else if (diff < 86400000) { // 24時間未満
-    const hours = Math.floor(diff / 3600000);
-    return `${hours}時間前`;
-  } else {
-    return timestamp.toLocaleDateString();
-  }
-}
-
 export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
@@ -60,38 +42,7 @@ export default function TalkSceneContainer({
     checkMicPermission();
   }, []);
 
-  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([
-    {
-      role: "user",
-      content: "Hello!",
-      timestamp: new Date(Date.now() - 300000) // 5分前
-    },
-    {
-      role: "assistant",
-      content: "Hello! How can I assist you today?",
-      timestamp: new Date(Date.now() - 280000) // 4分40秒前
-    },
-    {
-      role: "user",
-      content: "How was your day?",
-      timestamp: new Date(Date.now() - 200000) // 3分20秒前
-    },
-    {
-      role: "assistant",
-      content: "My day has been great, thank you! I just finished a long walk in the park.",
-      timestamp: new Date(Date.now() - 180000) // 3分前
-    },
-    {
-      role: "user",
-      content: "That sounds nice! I love walking in the park.",
-      timestamp: new Date(Date.now() - 60000) // 1分前
-    },
-    {
-      role: "assistant",
-      content: "Yes, it's very refreshing! Do you have a favorite park?",
-      timestamp: new Date(Date.now() - 30000) // 30秒前
-    }
-  ]);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 
   const addChatMessage = (userMessage: string, assistantResponse: Res) => {
     setChatHistory(prev => [

@@ -9,6 +9,7 @@ import { Character } from "@prisma/client";
 import { useEffect, useState } from "react";
 import WindowBox from "../xr/WindowBox";
 import { Res } from "~/lib/llm/Chat";
+import XRInputHandler from "../xr/XRInputHandler";
 
 // タイムスタンプをフォーマットする関数
 function formatTimestamp(timestamp: Date): string {
@@ -108,6 +109,11 @@ export default function TalkSceneContainer({
     ]);
   };
 
+  const [showChatLog, setShowChatLog] = useState(false);
+
+  const handleToggleChatLog = () => {
+    setShowChatLog((prev) => !prev);
+  };
 
   return (
     <Main>
@@ -115,29 +121,30 @@ export default function TalkSceneContainer({
 
       <Canvas>
         <XR store={store}>
+          <XRInputHandler onToggleChatLog={handleToggleChatLog} />
           <ambientLight />
           <XRMeshesComponent transparent={true} opacity={0} />
           <VRM character={character} onChatMessage={addChatMessage} />
-          <WindowBox
-            title="Chat History"
-            width={50}
-            height={50}
-            overlay={true}
-            distance={0.4}
-            followCamera={true}
-            verticalOffset={-0.25}
-            onClose={() => console.log('チャット履歴ウィンドウが閉じられました')}
-          >
-            <Container flexDirection="column" gap={0}>
-              {chatHistory.map((message, index) => (
-                <Container key={index} flexDirection="column" gap={0.2} padding={1}>
-                  <Text fontSize={1.5}>
-                    {String(`${message.role}: ${message.content}`)}
-                  </Text>
-                </Container>
-              ))}
-            </Container>
-          </WindowBox>
+          {showChatLog && (
+            <WindowBox
+              title="Chat History"
+              width={50}
+              height={50}
+              overlay={true}
+              distance={0.4}
+              followCamera={true}
+              verticalOffset={-0.25}
+            >
+              <Container flexDirection="column" gap={0}>
+                {chatHistory.map((message, index) => (
+                  <Container key={index} flexDirection="column" gap={0.2} padding={1}>
+                    <Text fontSize={1.5}>
+                      {String(`${message.role}: ${message.content}`)}
+                    </Text>
+                  </Container>
+                ))}
+              </Container>
+            </WindowBox>)}
         </XR>
       </Canvas>
     </Main>

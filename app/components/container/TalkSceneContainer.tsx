@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { XR, createXRStore } from "@react-three/xr";
-import { Container, Text } from "@react-three/uikit";
+import { Container, Text, FontFamilyProvider, } from "@react-three/uikit";
 import XRMeshesComponent from "../xr/XRMeshes";
 import { Button } from "../ui/button";
 import Main from "../layout/main";
@@ -87,13 +87,19 @@ export default function TalkSceneContainer({
               verticalOffset={-0.25}
             >
               <Container flexDirection="column" gap={0}>
-                {chatHistory.map((message, index) => (
-                  <Container key={index} flexDirection="column" gap={0.2} padding={1}>
-                    <Text fontSize={1.5}>
-                      {String(`${message.role}: ${message.content}`)}
-                    </Text>
-                  </Container>
-                ))}
+                <FontFamilyProvider
+                  keifont={{
+                    normal: "/fonts/keifont/keifont.json",
+                  }}
+                >
+                  {chatHistory.map((message, index) => (
+                    <Container key={index} flexDirection="column" gap={0.2} padding={1}>
+                      <Text fontSize={1.5} fontFamily="keifont">
+                        {String(`${message.role}: ${message.content}`)}
+                      </Text>
+                    </Container>
+                  ))}
+                </FontFamilyProvider>
               </Container>
             </WindowBox>)}
         </XR>

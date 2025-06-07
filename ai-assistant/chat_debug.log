@@ -1,0 +1,1578 @@
+2025-06-07 16:05:38,000 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:08:44,279 - src.main - ERROR - セッション取得中にエラーが発生: Could not connect to the query engine
+2025-06-07 16:11:28,622 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:11:57,210 - httpx - INFO - HTTP Request: GET http://localhost:58238/status "HTTP/1.1 200 OK"
+2025-06-07 16:11:57,537 - httpx - INFO - HTTP Request: POST http://localhost:58238/ "HTTP/1.1 200 OK"
+2025-06-07 16:11:57,538 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:11:57,538 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:11:57,804 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:11:58,286 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:11:58,286 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 6cabb424-80e5-4ef8-91ec-a305a13af418, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:11:58,286 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:12:00,705 - httpx - INFO - HTTP Request: GET http://localhost:58263/status "HTTP/1.1 200 OK"
+2025-06-07 16:12:01,048 - httpx - INFO - HTTP Request: POST http://localhost:58263/ "HTTP/1.1 200 OK"
+2025-06-07 16:12:01,049 - src.main - INFO - キャラクター取得成功 - Name: alice, ID: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:12:01,688 - httpx - INFO - HTTP Request: GET http://localhost:58282/status "HTTP/1.1 200 OK"
+2025-06-07 16:12:01,855 - httpx - INFO - HTTP Request: POST http://localhost:58282/ "HTTP/1.1 200 OK"
+2025-06-07 16:12:01,856 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 16:12:01,857 - src.main - ERROR - チャット処理中に予期しないエラーが発生: the connection is closed
+2025-06-07 16:12:01,857 - src.main - ERROR - POST /chat でエラーが発生: 500: チャット処理中にエラーが発生しました
+2025-06-07 16:14:31,036 - httpx - INFO - HTTP Request: GET http://localhost:58429/status "HTTP/1.1 200 OK"
+2025-06-07 16:14:31,036 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:14:31,037 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:14:49,755 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:14:51,863 - httpx - INFO - HTTP Request: GET http://localhost:58470/status "HTTP/1.1 200 OK"
+2025-06-07 16:14:51,863 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:14:51,863 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:15:01,266 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:15:04,355 - httpx - INFO - HTTP Request: GET http://localhost:58506/status "HTTP/1.1 200 OK"
+2025-06-07 16:15:04,356 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:15:04,356 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:15:53,728 - httpx - INFO - HTTP Request: POST http://localhost:58506/ "HTTP/1.1 200 OK"
+2025-06-07 16:15:53,730 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:15:53,730 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:15:56,940 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:15:57,543 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:15:57,543 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 6cabb424-80e5-4ef8-91ec-a305a13af418, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:15:57,543 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:15:59,468 - httpx - INFO - HTTP Request: POST http://localhost:58506/ "HTTP/1.1 200 OK"
+2025-06-07 16:15:59,468 - src.main - INFO - キャラクター取得成功 - Name: alice, ID: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:15:59,632 - httpx - INFO - HTTP Request: POST http://localhost:58506/ "HTTP/1.1 200 OK"
+2025-06-07 16:15:59,632 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 16:15:59,633 - src.main - ERROR - チャット処理中に予期しないエラーが発生: the connection is closed
+2025-06-07 16:15:59,633 - src.main - ERROR - POST /chat でエラーが発生: 500: チャット処理中にエラーが発生しました
+2025-06-07 16:21:44,799 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:21:45,767 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:21:45,767 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:21:45,771 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:21:45,771 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:21:45,771 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:21:45,771 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:21:45,784 - prisma.engine.utils - DEBUG - Version check took 0.0129s
+2025-06-07 16:21:45,784 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:21:45,784 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:21:45,784 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0175s
+2025-06-07 16:21:45,785 - prisma.engine._query - DEBUG - Running query engine on port 58898
+2025-06-07 16:21:45,785 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:21:45,789 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:45,789 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:45,789 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:45,814 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:45,815 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:45,815 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:45,916 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:45,916 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:45,916 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:45,917 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:45,918 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:45,918 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,019 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,019 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,019 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,019 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,020 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,021 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,122 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,122 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,122 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,122 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,123 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,123 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,225 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,225 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,225 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,225 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,226 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,227 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,328 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,328 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,328 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,328 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,335 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,345 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,447 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,447 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,447 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,447 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,449 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,449 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,550 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,550 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,550 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,551 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,552 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,552 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,653 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,653 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,653 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,654 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,655 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,655 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,756 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,756 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,756 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,757 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,758 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:21:46,758 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:21:46,859 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58898/status
+2025-06-07 16:21:46,859 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:21:46,859 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:21:46,859 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:21:46,861 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x109fd39d0>
+2025-06-07 16:21:46,861 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:21:46,861 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:21:46,861 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:21:46,861 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:21:46,861 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:21:46,862 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'8'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:21:46 GMT')])
+2025-06-07 16:21:46,862 - httpx - INFO - HTTP Request: GET http://localhost:58898/status "HTTP/1.1 200 OK"
+2025-06-07 16:21:46,862 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:21:46,862 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:21:46,862 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:21:46,862 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:21:46,862 - prisma.engine._http - DEBUG - GET http://localhost:58898/status returned status 200
+2025-06-07 16:21:46,862 - prisma.engine._http - DEBUG - GET http://localhost:58898/status returned {'status': 'ok'}
+2025-06-07 16:21:46,862 - prisma.engine._query - DEBUG - Connecting to query engine took 1.0955s
+2025-06-07 16:21:46,862 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:21:46,863 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:22:21,495 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 16:22:21,496 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 16:22:21,496 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 16:22:21,496 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:22:21,496 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58898/
+2025-06-07 16:22:21,496 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:21,497 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:22:21,497 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:22:21,497 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:22:21,497 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58898 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:21,498 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10a087d90>
+2025-06-07 16:22:21,498 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:22:21,498 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:22:21,498 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:22:21,498 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:22:21,498 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:22:21,903 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'404447'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 07:22:21 GMT')])
+2025-06-07 16:22:21,903 - httpx - INFO - HTTP Request: POST http://localhost:58898/ "HTTP/1.1 200 OK"
+2025-06-07 16:22:21,903 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:22:21,903 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:22:21,903 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:22:21,903 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:22:21,903 - prisma.engine._http - DEBUG - POST http://localhost:58898/ returned status 200
+2025-06-07 16:22:21,903 - prisma.engine._http - DEBUG - POST http://localhost:58898/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 16:22:21,904 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:22:21,904 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:27506]
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 16:22:21,904 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 16:22:21,904 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 16:22:21,904 - src.main - DEBUG - ファイルサイズ: 27381 bytes
+2025-06-07 16:22:22,046 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 16:22:22,110 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 16:22:22,111 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:22:22,613 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:22:22,613 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 6cabb424-80e5-4ef8-91ec-a305a13af418, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:22:22,613 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:22:22,613 - src.main - DEBUG - 入力テキスト: こんにちは
+2025-06-07 16:22:24,219 - src.main - DEBUG - チャット用メモリストアセットアップ完了
+2025-06-07 16:22:24,223 - src.main - DEBUG - レスポンス生成開始 - Messages: 1件
+2025-06-07 16:22:24,223 - src.main - DEBUG - キャラクター取得処理を開始 - ID: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:22:24,223 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquecharacter
+  (
+    where: {
+      id: "6cabb424-80e5-4ef8-91ec-a305a13af418"
+    }
+  )
+  {
+    id
+    name
+    personality
+    story
+    postedBy
+    modelUrl
+    createdAt
+    updatedAt
+    isPublic
+    voice {
+      id
+      characterId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:22:24,224 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58898/
+2025-06-07 16:22:24,224 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:24,224 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquecharacter\n  (\n    where: {\n      id: \"6cabb424-80e5-4ef8-91ec-a305a13af418\"\n    }\n  )\n  {\n    id\n    name\n    personality\n    story\n    postedBy\n    modelUrl\n    createdAt\n    updatedAt\n    isPublic\n    voice {\n      id\n      characterId\n      userId\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:22:24,224 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:22:24,224 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:22:24,224 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:22:24,224 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:22:24,224 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:22:24,555 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'621'), (b'x-elapsed', b'330846'), (b'content-length', b'621'), (b'date', b'Sat, 07 Jun 2025 07:22:24 GMT')])
+2025-06-07 16:22:24,556 - httpx - INFO - HTTP Request: POST http://localhost:58898/ "HTTP/1.1 200 OK"
+2025-06-07 16:22:24,556 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:22:24,557 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:22:24,557 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:22:24,557 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:22:24,557 - prisma.engine._http - DEBUG - POST http://localhost:58898/ returned status 200
+2025-06-07 16:22:24,557 - prisma.engine._http - DEBUG - POST http://localhost:58898/ returned {'data': {'result': {'id': '6cabb424-80e5-4ef8-91ec-a305a13af418', 'name': 'alice', 'personality': 'a', 'story': 'かわいい', 'postedBy': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'modelUrl': 'https://mrzy2osyec6ctjcg.public.blob.vercel-storage.com/AliciaSolid-1.0-RJyztgd2lLg0QaRuQpiPCnHe3QZ2Co.vrm?download=1', 'createdAt': '2025-06-07T06:42:12.568Z', 'updatedAt': '2025-06-07T06:42:12.568Z', 'isPublic': True, 'voice': {'id': '2898b8fb-0155-4589-8b68-bdd8b99278ca', 'characterId': '6cabb424-80e5-4ef8-91ec-a305a13af418', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'createdAt': '2025-06-07T06:42:16.920Z', 'updatedAt': '2025-06-07T06:42:16.920Z'}}}}
+2025-06-07 16:22:24,557 - src.main - INFO - キャラクター取得成功 - Name: alice, ID: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:22:24,557 - src.main - DEBUG - 今日の学習内容を取得中...
+2025-06-07 16:22:24,557 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findFirsttodays_study
+  (
+    where: {
+      id: "0"
+    }
+  )
+  {
+    id
+    createdAt
+    content
+  }
+}
+2025-06-07 16:22:24,557 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58898/
+2025-06-07 16:22:24,557 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:24,557 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findFirsttodays_study\n  (\n    where: {\n      id: \"0\"\n    }\n  )\n  {\n    id\n    createdAt\n    content\n  }\n}"}
+2025-06-07 16:22:24,558 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:22:24,558 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:22:24,558 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:22:24,558 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:22:24,558 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:22:24,723 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'135'), (b'x-elapsed', b'165058'), (b'content-length', b'135'), (b'date', b'Sat, 07 Jun 2025 07:22:24 GMT')])
+2025-06-07 16:22:24,723 - httpx - INFO - HTTP Request: POST http://localhost:58898/ "HTTP/1.1 200 OK"
+2025-06-07 16:22:24,724 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:22:24,724 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:22:24,724 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:22:24,724 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:22:24,724 - prisma.engine._http - DEBUG - POST http://localhost:58898/ returned status 200
+2025-06-07 16:22:24,724 - prisma.engine._http - DEBUG - POST http://localhost:58898/ returned {'data': {'result': {'id': '0', 'createdAt': '2025-06-03T05:49:20.328Z', 'content': "'今日は分散型SNSについて勉強するよ！'"}}}
+2025-06-07 16:22:24,726 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 16:22:24,726 - src.main - DEBUG - 過去の記憶を検索中...
+2025-06-07 16:22:24,727 - src.main - ERROR - チャット処理中に予期しないエラーが発生: the connection is closed
+2025-06-07 16:22:24,727 - src.main - ERROR - POST /chat でエラーが発生: 500: チャット処理中にエラーが発生しました
+2025-06-07 16:22:56,958 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:22:56,961 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:22:56,962 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:22:56,962 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:22:56,962 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:22:56,962 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:22:56,962 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:22:56,962 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:22:56,962 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:22:57,884 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:22:57,885 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:22:57,888 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:22:57,888 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:22:57,888 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:22:57,888 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:22:57,901 - prisma.engine.utils - DEBUG - Version check took 0.0129s
+2025-06-07 16:22:57,902 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:22:57,902 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:22:57,902 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0171s
+2025-06-07 16:22:57,902 - prisma.engine._query - DEBUG - Running query engine on port 58989
+2025-06-07 16:22:57,902 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:22:57,906 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58989/status
+2025-06-07 16:22:57,906 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:57,906 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:22:57,929 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:57,931 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:22:57,931 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:22:58,032 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58989/status
+2025-06-07 16:22:58,032 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:58,032 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:22:58,032 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:58,034 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:22:58,034 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:22:58,135 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58989/status
+2025-06-07 16:22:58,135 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:58,135 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:22:58,135 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:58,137 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:22:58,137 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:22:58,238 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58989/status
+2025-06-07 16:22:58,238 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:58,238 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:22:58,238 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:58,240 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:22:58,240 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:22:58,341 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58989/status
+2025-06-07 16:22:58,341 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:58,342 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:22:58,342 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:58,344 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:22:58,344 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:22:58,445 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58989/status
+2025-06-07 16:22:58,445 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:58,445 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:22:58,446 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:58,447 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:22:58,447 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:22:58,548 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:58989/status
+2025-06-07 16:22:58,548 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:22:58,548 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:22:58,549 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:22:58,551 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c8b5290>
+2025-06-07 16:22:58,551 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:22:58,551 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:22:58,551 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:22:58,551 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:22:58,552 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:22:58,552 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'13'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:22:58 GMT')])
+2025-06-07 16:22:58,552 - httpx - INFO - HTTP Request: GET http://localhost:58989/status "HTTP/1.1 200 OK"
+2025-06-07 16:22:58,553 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:22:58,553 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:22:58,553 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:22:58,553 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:22:58,553 - prisma.engine._http - DEBUG - GET http://localhost:58989/status returned status 200
+2025-06-07 16:22:58,553 - prisma.engine._http - DEBUG - GET http://localhost:58989/status returned {'status': 'ok'}
+2025-06-07 16:22:58,553 - prisma.engine._query - DEBUG - Connecting to query engine took 0.6688s
+2025-06-07 16:22:58,554 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:22:58,554 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:23:34,896 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 16:23:34,897 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 16:23:34,897 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 16:23:34,897 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:23:34,897 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58989/
+2025-06-07 16:23:34,897 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:23:34,897 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:23:34,897 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:23:34,898 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:23:34,898 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:23:34,899 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c902a90>
+2025-06-07 16:23:34,899 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:34,899 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:23:34,899 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:23:34,899 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:23:34,899 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:35,294 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'394311'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 07:23:34 GMT')])
+2025-06-07 16:23:35,294 - httpx - INFO - HTTP Request: POST http://localhost:58989/ "HTTP/1.1 200 OK"
+2025-06-07 16:23:35,294 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:23:35,294 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:23:35,294 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:23:35,294 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:23:35,294 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned status 200
+2025-06-07 16:23:35,294 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 16:23:35,295 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:23:35,295 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:73209]
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 16:23:35,295 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 16:23:35,295 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 16:23:35,295 - src.main - DEBUG - ファイルサイズ: 73084 bytes
+2025-06-07 16:23:35,445 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 16:23:35,514 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 16:23:35,515 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:23:36,214 - src.main - WARNING - 音声を理解できませんでした
+2025-06-07 16:23:43,912 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 16:23:43,912 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 16:23:43,912 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 16:23:43,913 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:23:43,913 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58989/
+2025-06-07 16:23:43,913 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:23:43,913 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:23:43,914 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:23:43,914 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:23:43,914 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:23:43,916 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c908090>
+2025-06-07 16:23:43,916 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:43,917 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:23:43,917 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:23:43,917 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:23:43,917 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:44,075 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'158037'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 07:23:43 GMT')])
+2025-06-07 16:23:44,075 - httpx - INFO - HTTP Request: POST http://localhost:58989/ "HTTP/1.1 200 OK"
+2025-06-07 16:23:44,076 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:23:44,076 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:23:44,076 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:23:44,076 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:23:44,076 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned status 200
+2025-06-07 16:23:44,076 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 16:23:44,076 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:23:44,076 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:23:44,076 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:27514]
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 16:23:44,077 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 16:23:44,077 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 16:23:44,077 - src.main - DEBUG - ファイルサイズ: 27389 bytes
+2025-06-07 16:23:44,149 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 16:23:44,210 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 16:23:44,210 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:23:44,668 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:23:44,669 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 6cabb424-80e5-4ef8-91ec-a305a13af418, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:23:44,669 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:23:44,669 - src.main - DEBUG - 入力テキスト: こんにちは
+2025-06-07 16:23:46,251 - src.main - DEBUG - チャット用メモリストアセットアップ完了
+2025-06-07 16:23:46,255 - src.main - DEBUG - レスポンス生成開始 - Messages: 1件
+2025-06-07 16:23:46,255 - src.main - DEBUG - キャラクター取得処理を開始 - ID: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:23:46,255 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquecharacter
+  (
+    where: {
+      id: "6cabb424-80e5-4ef8-91ec-a305a13af418"
+    }
+  )
+  {
+    id
+    name
+    personality
+    story
+    postedBy
+    modelUrl
+    createdAt
+    updatedAt
+    isPublic
+    voice {
+      id
+      characterId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:23:46,255 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58989/
+2025-06-07 16:23:46,255 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:23:46,255 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquecharacter\n  (\n    where: {\n      id: \"6cabb424-80e5-4ef8-91ec-a305a13af418\"\n    }\n  )\n  {\n    id\n    name\n    personality\n    story\n    postedBy\n    modelUrl\n    createdAt\n    updatedAt\n    isPublic\n    voice {\n      id\n      characterId\n      userId\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:23:46,256 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:46,256 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:23:46,256 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:23:46,256 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:23:46,256 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:46,572 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'621'), (b'x-elapsed', b'315236'), (b'content-length', b'621'), (b'date', b'Sat, 07 Jun 2025 07:23:46 GMT')])
+2025-06-07 16:23:46,572 - httpx - INFO - HTTP Request: POST http://localhost:58989/ "HTTP/1.1 200 OK"
+2025-06-07 16:23:46,574 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:23:46,575 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:23:46,575 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:23:46,575 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:23:46,575 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned status 200
+2025-06-07 16:23:46,576 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned {'data': {'result': {'id': '6cabb424-80e5-4ef8-91ec-a305a13af418', 'name': 'alice', 'personality': 'a', 'story': 'かわいい', 'postedBy': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'modelUrl': 'https://mrzy2osyec6ctjcg.public.blob.vercel-storage.com/AliciaSolid-1.0-RJyztgd2lLg0QaRuQpiPCnHe3QZ2Co.vrm?download=1', 'createdAt': '2025-06-07T06:42:12.568Z', 'updatedAt': '2025-06-07T06:42:12.568Z', 'isPublic': True, 'voice': {'id': '2898b8fb-0155-4589-8b68-bdd8b99278ca', 'characterId': '6cabb424-80e5-4ef8-91ec-a305a13af418', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'createdAt': '2025-06-07T06:42:16.920Z', 'updatedAt': '2025-06-07T06:42:16.920Z'}}}}
+2025-06-07 16:23:46,576 - src.main - INFO - キャラクター取得成功 - Name: alice, ID: 6cabb424-80e5-4ef8-91ec-a305a13af418
+2025-06-07 16:23:46,576 - src.main - DEBUG - 今日の学習内容を取得中...
+2025-06-07 16:23:46,576 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findFirsttodays_study
+  (
+    where: {
+      id: "0"
+    }
+  )
+  {
+    id
+    createdAt
+    content
+  }
+}
+2025-06-07 16:23:46,576 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58989/
+2025-06-07 16:23:46,576 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:23:46,576 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findFirsttodays_study\n  (\n    where: {\n      id: \"0\"\n    }\n  )\n  {\n    id\n    createdAt\n    content\n  }\n}"}
+2025-06-07 16:23:46,577 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:46,577 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:23:46,577 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:23:46,577 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:23:46,578 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:23:46,734 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'135'), (b'x-elapsed', b'156100'), (b'content-length', b'135'), (b'date', b'Sat, 07 Jun 2025 07:23:46 GMT')])
+2025-06-07 16:23:46,734 - httpx - INFO - HTTP Request: POST http://localhost:58989/ "HTTP/1.1 200 OK"
+2025-06-07 16:23:46,734 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:23:46,734 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:23:46,734 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:23:46,734 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:23:46,734 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned status 200
+2025-06-07 16:23:46,734 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned {'data': {'result': {'id': '0', 'createdAt': '2025-06-03T05:49:20.328Z', 'content': "'今日は分散型SNSについて勉強するよ！'"}}}
+2025-06-07 16:23:46,734 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 16:23:46,734 - src.main - DEBUG - LLMにプロンプトを送信中...
+2025-06-07 16:23:47,836 - src.main - INFO - LLMレスポンス取得完了 - Content: やっほー、君！今日も一緒にいられて嬉しいな！...
+2025-06-07 16:23:47,836 - src.main - DEBUG - テキスト変換処理中...
+2025-06-07 16:23:47,836 - src.main - DEBUG - 変換後テキスト: やっほー、君！今日も一緒にいられて嬉しいな！
+2025-06-07 16:23:47,837 - src.main - DEBUG - TTS音声生成中...
+2025-06-07 16:23:47,858 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): inspired-curiously-kingfish.ngrok-free.app:443
+2025-06-07 16:23:47,902 - urllib3.connectionpool - DEBUG - https://inspired-curiously-kingfish.ngrok-free.app:443 "GET /tts?id=2898b8fb-0155-4589-8b68-bdd8b99278ca&text=%E3%82%84%E3%81%A3%E3%81%BB%E3%83%BC%E3%80%81%E5%90%9B%EF%BC%81%E4%BB%8A%E6%97%A5%E3%82%82%E4%B8%80%E7%B7%92%E3%81%AB%E3%81%84%E3%82%89%E3%82%8C%E3%81%A6%E5%AC%89%E3%81%97%E3%81%84%E3%81%AA%EF%BC%81 HTTP/1.1" 404 None
+2025-06-07 16:23:47,905 - src.main - ERROR - POST /chat でエラーが発生: 400: Failed to generate voice
+2025-06-07 16:31:10,683 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 16:31:10,685 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 16:31:10,685 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 16:31:10,686 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:31:10,686 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58989/
+2025-06-07 16:31:10,686 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:10,687 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:31:10,688 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:31:10,688 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:31:10,688 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:10,690 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11d492e10>
+2025-06-07 16:31:10,690 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:31:10,691 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:31:10,691 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:31:10,691 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:31:10,691 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:31:11,604 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'904065'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 07:31:10 GMT')])
+2025-06-07 16:31:11,604 - httpx - INFO - HTTP Request: POST http://localhost:58989/ "HTTP/1.1 200 OK"
+2025-06-07 16:31:11,604 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:31:11,605 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:31:11,605 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:31:11,605 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:31:11,605 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned status 200
+2025-06-07 16:31:11,605 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 16:31:11,607 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:31:11,607 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:22641]
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 16:31:11,607 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 16:31:11,607 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 16:31:11,607 - src.main - DEBUG - ファイルサイズ: 22516 bytes
+2025-06-07 16:31:14,772 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 16:31:14,837 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 16:31:14,837 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:31:15,435 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:31:15,435 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 601a8335-b321-4f50-885a-da3d7b226764, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:31:15,436 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 601a8335-b321-4f50-885a-da3d7b226764
+2025-06-07 16:31:15,436 - src.main - DEBUG - 入力テキスト: こんにちは
+2025-06-07 16:31:16,769 - src.main - DEBUG - チャット用メモリストアセットアップ完了
+2025-06-07 16:31:16,775 - src.main - DEBUG - レスポンス生成開始 - Messages: 1件
+2025-06-07 16:31:16,775 - src.main - DEBUG - キャラクター取得処理を開始 - ID: 601a8335-b321-4f50-885a-da3d7b226764
+2025-06-07 16:31:16,775 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquecharacter
+  (
+    where: {
+      id: "601a8335-b321-4f50-885a-da3d7b226764"
+    }
+  )
+  {
+    id
+    name
+    personality
+    story
+    postedBy
+    modelUrl
+    createdAt
+    updatedAt
+    isPublic
+    voice {
+      id
+      characterId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:31:16,775 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:58989/
+2025-06-07 16:31:16,775 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:16,775 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquecharacter\n  (\n    where: {\n      id: \"601a8335-b321-4f50-885a-da3d7b226764\"\n    }\n  )\n  {\n    id\n    name\n    personality\n    story\n    postedBy\n    modelUrl\n    createdAt\n    updatedAt\n    isPublic\n    voice {\n      id\n      characterId\n      userId\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:31:16,776 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:31:16,776 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:31:16,776 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=58989 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:16,777 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11d497d10>
+2025-06-07 16:31:16,778 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:31:16,778 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:31:16,778 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:31:16,778 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:31:16,778 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:31:16,788 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'239'), (b'x-elapsed', b'9948'), (b'content-length', b'239'), (b'date', b'Sat, 07 Jun 2025 07:31:16 GMT')])
+2025-06-07 16:31:16,788 - httpx - INFO - HTTP Request: POST http://localhost:58989/ "HTTP/1.1 200 OK"
+2025-06-07 16:31:16,788 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:31:16,788 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:31:16,788 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:31:16,788 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:31:16,789 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned status 200
+2025-06-07 16:31:16,789 - prisma.engine._http - DEBUG - POST http://localhost:58989/ returned {'errors': [{'error': 'KnownError { message: "Server has closed the connection.", meta: Null, error_code: "P1017" }', 'user_facing_error': {'is_panic': False, 'message': 'Server has closed the connection.', 'meta': None, 'error_code': 'P1017'}}]}
+2025-06-07 16:31:16,789 - src.main - ERROR - キャラクター取得中にエラーが発生 - ID: 601a8335-b321-4f50-885a-da3d7b226764, Error: 'NoneType' object has no attribute 'get'
+2025-06-07 16:31:16,789 - src.main - ERROR - POST /chat でエラーが発生: 500: キャラクター取得中にエラーが発生しました
+2025-06-07 16:31:45,783 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:31:45,784 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:31:45,785 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:31:45,785 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:31:45,785 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:31:45,785 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:31:45,785 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:31:45,785 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:31:45,785 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:31:45,794 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:31:45,794 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:31:47,872 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:31:47,872 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:31:47,876 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:31:47,876 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:31:47,876 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:31:47,876 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:31:47,890 - prisma.engine.utils - DEBUG - Version check took 0.014s
+2025-06-07 16:31:47,891 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:31:47,891 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:31:47,891 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0186s
+2025-06-07 16:31:47,891 - prisma.engine._query - DEBUG - Running query engine on port 59626
+2025-06-07 16:31:47,891 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:31:47,895 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59626/status
+2025-06-07 16:31:47,895 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:47,895 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:31:47,917 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59626 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:47,919 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:31:47,919 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:31:48,020 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59626/status
+2025-06-07 16:31:48,020 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:48,020 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:31:48,020 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59626 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:48,022 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:31:48,022 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:31:48,123 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59626/status
+2025-06-07 16:31:48,123 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:48,123 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:31:48,124 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59626 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:48,141 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:31:48,141 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:31:48,242 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59626/status
+2025-06-07 16:31:48,242 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:48,242 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:31:48,243 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59626 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:48,244 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:31:48,244 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:31:48,345 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59626/status
+2025-06-07 16:31:48,345 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:48,345 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:31:48,346 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59626 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:48,351 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:31:48,351 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:31:48,453 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59626/status
+2025-06-07 16:31:48,453 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:48,453 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:31:48,453 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59626 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:48,455 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:31:48,455 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:31:48,556 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59626/status
+2025-06-07 16:31:48,556 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:31:48,556 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:31:48,557 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59626 local_address=None timeout=30 socket_options=None
+2025-06-07 16:31:48,558 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10bdf3d50>
+2025-06-07 16:31:48,559 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:31:48,559 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:31:48,559 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:31:48,559 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:31:48,559 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:31:48,560 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'230'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:31:48 GMT')])
+2025-06-07 16:31:48,560 - httpx - INFO - HTTP Request: GET http://localhost:59626/status "HTTP/1.1 200 OK"
+2025-06-07 16:31:48,560 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:31:48,560 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:31:48,560 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:31:48,560 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:31:48,561 - prisma.engine._http - DEBUG - GET http://localhost:59626/status returned status 200
+2025-06-07 16:31:48,561 - prisma.engine._http - DEBUG - GET http://localhost:59626/status returned {'status': 'ok'}
+2025-06-07 16:31:48,561 - prisma.engine._query - DEBUG - Connecting to query engine took 0.6888s
+2025-06-07 16:31:48,561 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:31:48,561 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:32:29,005 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:32:29,005 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:32:29,006 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:32:29,006 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:32:29,006 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:32:29,006 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:32:29,006 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:32:29,007 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:32:29,007 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:32:29,008 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:32:29,008 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:32:31,315 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:32:31,336 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:32:31,343 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:32:31,343 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:32:31,343 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:32:31,343 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:32:31,371 - prisma.engine.utils - DEBUG - Version check took 0.0277s
+2025-06-07 16:32:31,371 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:32:31,371 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:32:31,371 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0355s
+2025-06-07 16:32:31,372 - prisma.engine._query - DEBUG - Running query engine on port 59732
+2025-06-07 16:32:31,372 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:32:31,377 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59732/status
+2025-06-07 16:32:31,377 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:32:31,377 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:32:31,401 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:32:31,402 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:32:31,402 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:32:31,504 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59732/status
+2025-06-07 16:32:31,504 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:32:31,504 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:32:31,504 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:32:31,505 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:32:31,505 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:32:31,606 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59732/status
+2025-06-07 16:32:31,606 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:32:31,606 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:32:31,607 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:32:31,608 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:32:31,608 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:32:31,709 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59732/status
+2025-06-07 16:32:31,709 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:32:31,709 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:32:31,710 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:32:31,711 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:32:31,711 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:32:31,812 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59732/status
+2025-06-07 16:32:31,812 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:32:31,812 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:32:31,812 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:32:31,813 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:32:31,814 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:32:31,914 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59732/status
+2025-06-07 16:32:31,915 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:32:31,915 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:32:31,915 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:32:31,917 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:32:31,917 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:32:32,018 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:59732/status
+2025-06-07 16:32:32,018 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:32:32,018 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:32:32,018 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:32:32,020 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1170b3f10>
+2025-06-07 16:32:32,020 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:32:32,020 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:32:32,020 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:32:32,020 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:32:32,020 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:32:32,021 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'12'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:32:32 GMT')])
+2025-06-07 16:32:32,021 - httpx - INFO - HTTP Request: GET http://localhost:59732/status "HTTP/1.1 200 OK"
+2025-06-07 16:32:32,021 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:32:32,021 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:32:32,021 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:32:32,021 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:32:32,022 - prisma.engine._http - DEBUG - GET http://localhost:59732/status returned status 200
+2025-06-07 16:32:32,022 - prisma.engine._http - DEBUG - GET http://localhost:59732/status returned {'status': 'ok'}
+2025-06-07 16:32:32,022 - prisma.engine._query - DEBUG - Connecting to query engine took 0.6859s
+2025-06-07 16:32:32,022 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:32:32,022 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:34:22,993 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 16:34:22,993 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 16:34:22,993 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 16:34:22,996 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:34:22,996 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:59732/
+2025-06-07 16:34:22,996 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:34:22,996 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:34:22,997 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:34:22,997 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:34:22,997 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=59732 local_address=None timeout=30 socket_options=None
+2025-06-07 16:34:22,999 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1172b7dd0>
+2025-06-07 16:34:22,999 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:34:22,999 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:34:22,999 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:34:22,999 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:34:22,999 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:34:23,404 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'403568'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 07:34:23 GMT')])
+2025-06-07 16:34:23,406 - httpx - INFO - HTTP Request: POST http://localhost:59732/ "HTTP/1.1 200 OK"
+2025-06-07 16:34:23,407 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:34:23,407 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:34:23,407 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:34:23,407 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:34:23,408 - prisma.engine._http - DEBUG - POST http://localhost:59732/ returned status 200
+2025-06-07 16:34:23,408 - prisma.engine._http - DEBUG - POST http://localhost:59732/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 16:34:23,410 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:34:23,411 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:34:23,412 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 16:34:23,412 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 16:34:23,412 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 16:34:23,412 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:34:23,413 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 16:34:23,413 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 16:34:23,413 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:34:23,413 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 16:34:23,413 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:28693]
+2025-06-07 16:34:23,413 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 16:34:23,413 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 16:34:23,414 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 16:34:23,414 - src.main - DEBUG - ファイルサイズ: 28568 bytes
+2025-06-07 16:34:23,578 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 16:34:23,642 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 16:34:23,642 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:34:24,165 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:34:24,166 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 432629b9-7aa7-4c45-84ac-5034251d424a, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:34:24,166 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:34:24,166 - src.main - DEBUG - 入力テキスト: こんにちは
+2025-06-07 16:34:25,977 - src.main - DEBUG - チャット用メモリストアセットアップ完了
+2025-06-07 16:34:25,982 - src.main - DEBUG - レスポンス生成開始 - Messages: 1件
+2025-06-07 16:34:25,982 - src.main - DEBUG - キャラクター取得処理を開始 - ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:34:25,982 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquecharacter
+  (
+    where: {
+      id: "432629b9-7aa7-4c45-84ac-5034251d424a"
+    }
+  )
+  {
+    id
+    name
+    personality
+    story
+    postedBy
+    modelUrl
+    createdAt
+    updatedAt
+    isPublic
+    voice {
+      id
+      characterId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:34:25,982 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:59732/
+2025-06-07 16:34:25,982 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:34:25,983 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquecharacter\n  (\n    where: {\n      id: \"432629b9-7aa7-4c45-84ac-5034251d424a\"\n    }\n  )\n  {\n    id\n    name\n    personality\n    story\n    postedBy\n    modelUrl\n    createdAt\n    updatedAt\n    isPublic\n    voice {\n      id\n      characterId\n      userId\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:34:25,983 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:34:25,983 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:34:25,984 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:34:25,984 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:34:25,984 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:34:26,308 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'633'), (b'x-elapsed', b'324272'), (b'content-length', b'633'), (b'date', b'Sat, 07 Jun 2025 07:34:25 GMT')])
+2025-06-07 16:34:26,308 - httpx - INFO - HTTP Request: POST http://localhost:59732/ "HTTP/1.1 200 OK"
+2025-06-07 16:34:26,309 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:34:26,309 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:34:26,309 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:34:26,309 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:34:26,310 - prisma.engine._http - DEBUG - POST http://localhost:59732/ returned status 200
+2025-06-07 16:34:26,310 - prisma.engine._http - DEBUG - POST http://localhost:59732/ returned {'data': {'result': {'id': '432629b9-7aa7-4c45-84ac-5034251d424a', 'name': 'アリスたん', 'personality': 'あ', 'story': 'かわいい', 'postedBy': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'modelUrl': 'https://mrzy2osyec6ctjcg.public.blob.vercel-storage.com/AliciaSolid-1.0-cJCvhV5qNroeiZ9ARxHmfxNXwEMN31.vrm?download=1', 'createdAt': '2025-06-07T07:33:21.678Z', 'updatedAt': '2025-06-07T07:33:21.678Z', 'isPublic': True, 'voice': {'id': 'dc6fa73d-5542-4234-8b1d-d109d0cd18fd', 'characterId': '432629b9-7aa7-4c45-84ac-5034251d424a', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'createdAt': '2025-06-07T07:33:25.735Z', 'updatedAt': '2025-06-07T07:33:25.735Z'}}}}
+2025-06-07 16:34:26,310 - src.main - INFO - キャラクター取得成功 - Name: アリスたん, ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:34:26,310 - src.main - DEBUG - 今日の学習内容を取得中...
+2025-06-07 16:34:26,310 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findFirsttodays_study
+  (
+    where: {
+      id: "0"
+    }
+  )
+  {
+    id
+    createdAt
+    content
+  }
+}
+2025-06-07 16:34:26,310 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:59732/
+2025-06-07 16:34:26,310 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:34:26,310 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findFirsttodays_study\n  (\n    where: {\n      id: \"0\"\n    }\n  )\n  {\n    id\n    createdAt\n    content\n  }\n}"}
+2025-06-07 16:34:26,310 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:34:26,310 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:34:26,310 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:34:26,310 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:34:26,310 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:34:26,491 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'135'), (b'x-elapsed', b'180879'), (b'content-length', b'135'), (b'date', b'Sat, 07 Jun 2025 07:34:26 GMT')])
+2025-06-07 16:34:26,492 - httpx - INFO - HTTP Request: POST http://localhost:59732/ "HTTP/1.1 200 OK"
+2025-06-07 16:34:26,492 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:34:26,492 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:34:26,492 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:34:26,492 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:34:26,492 - prisma.engine._http - DEBUG - POST http://localhost:59732/ returned status 200
+2025-06-07 16:34:26,492 - prisma.engine._http - DEBUG - POST http://localhost:59732/ returned {'data': {'result': {'id': '0', 'createdAt': '2025-06-03T05:49:20.328Z', 'content': "'今日は分散型SNSについて勉強するよ！'"}}}
+2025-06-07 16:34:26,494 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 16:34:26,494 - src.main - DEBUG - LLMにプロンプトを送信中...
+2025-06-07 16:34:27,635 - src.main - INFO - LLMレスポンス取得完了 - Content: やっほー、君！今日も一緒にいられて、アリスはとっても嬉しいな！...
+2025-06-07 16:34:27,635 - src.main - DEBUG - テキスト変換処理中...
+2025-06-07 16:34:27,635 - src.main - DEBUG - 変換後テキスト: やっほー、君！今日も一緒にいられて、アリスはとっても嬉しいな！
+2025-06-07 16:34:27,636 - src.main - DEBUG - TTS音声生成中...
+2025-06-07 16:34:27,638 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): inspired-curiously-kingfish.ngrok-free.app:443
+2025-06-07 16:41:25,199 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:41:25,199 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:41:25,204 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:41:25,204 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:41:25,204 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:41:25,204 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:41:25,225 - prisma.engine.utils - DEBUG - Version check took 0.021s
+2025-06-07 16:41:25,226 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:41:25,226 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:41:25,226 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0267s
+2025-06-07 16:41:25,226 - prisma.engine._query - DEBUG - Running query engine on port 60573
+2025-06-07 16:41:25,226 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:41:25,231 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,231 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,231 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,256 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,258 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,258 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:25,359 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,362 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,362 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,362 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,373 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,373 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:25,475 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,475 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,475 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,475 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,476 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,476 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:25,577 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,577 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,577 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,577 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,579 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,579 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:25,680 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,680 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,680 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,681 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,683 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,683 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:25,784 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,784 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,784 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,784 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,786 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,786 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:25,887 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,889 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,889 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,889 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,891 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,893 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:25,995 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:25,995 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:25,995 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:25,995 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:25,996 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:25,996 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:26,098 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:26,098 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:26,098 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:26,098 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:26,099 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:41:26,099 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:41:26,200 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60573/status
+2025-06-07 16:41:26,200 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:41:26,200 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:41:26,201 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:41:26,202 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108870190>
+2025-06-07 16:41:26,203 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:41:26,203 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:41:26,203 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:41:26,203 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:41:26,203 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:41:26,205 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'202'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:41:26 GMT')])
+2025-06-07 16:41:26,205 - httpx - INFO - HTTP Request: GET http://localhost:60573/status "HTTP/1.1 200 OK"
+2025-06-07 16:41:26,205 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:41:26,205 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:41:26,205 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:41:26,205 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:41:26,205 - prisma.engine._http - DEBUG - GET http://localhost:60573/status returned status 200
+2025-06-07 16:41:26,205 - prisma.engine._http - DEBUG - GET http://localhost:60573/status returned {'status': 'ok'}
+2025-06-07 16:41:26,206 - prisma.engine._query - DEBUG - Connecting to query engine took 1.0066s
+2025-06-07 16:41:26,206 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:41:26,206 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:42:14,950 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 16:42:14,951 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 16:42:14,951 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 16:42:14,951 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:42:14,951 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:60573/
+2025-06-07 16:42:14,951 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:42:14,951 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:42:14,951 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:42:14,951 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:42:14,952 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60573 local_address=None timeout=30 socket_options=None
+2025-06-07 16:42:14,952 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10894f450>
+2025-06-07 16:42:14,953 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:14,953 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:42:14,953 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:42:14,953 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:42:14,953 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:15,374 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'420525'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 07:42:14 GMT')])
+2025-06-07 16:42:15,374 - httpx - INFO - HTTP Request: POST http://localhost:60573/ "HTTP/1.1 200 OK"
+2025-06-07 16:42:15,374 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:42:15,374 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:42:15,374 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:42:15,374 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:42:15,374 - prisma.engine._http - DEBUG - POST http://localhost:60573/ returned status 200
+2025-06-07 16:42:15,374 - prisma.engine._http - DEBUG - POST http://localhost:60573/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 16:42:15,374 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:42:15,374 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:42:15,374 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 16:42:15,374 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:25702]
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 16:42:15,375 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 16:42:15,375 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 16:42:15,375 - src.main - DEBUG - ファイルサイズ: 25577 bytes
+2025-06-07 16:42:15,520 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 16:42:15,583 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 16:42:15,584 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:42:16,051 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:42:16,051 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 432629b9-7aa7-4c45-84ac-5034251d424a, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:42:16,051 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:42:16,051 - src.main - DEBUG - 入力テキスト: こんにちは
+2025-06-07 16:42:17,905 - src.main - DEBUG - チャット用メモリストアセットアップ完了
+2025-06-07 16:42:17,911 - src.main - DEBUG - レスポンス生成開始 - Messages: 1件
+2025-06-07 16:42:17,911 - src.main - DEBUG - キャラクター取得処理を開始 - ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:42:17,912 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquecharacter
+  (
+    where: {
+      id: "432629b9-7aa7-4c45-84ac-5034251d424a"
+    }
+  )
+  {
+    id
+    name
+    personality
+    story
+    postedBy
+    modelUrl
+    createdAt
+    updatedAt
+    isPublic
+    voice {
+      id
+      characterId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:42:17,912 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:60573/
+2025-06-07 16:42:17,912 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:42:17,912 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquecharacter\n  (\n    where: {\n      id: \"432629b9-7aa7-4c45-84ac-5034251d424a\"\n    }\n  )\n  {\n    id\n    name\n    personality\n    story\n    postedBy\n    modelUrl\n    createdAt\n    updatedAt\n    isPublic\n    voice {\n      id\n      characterId\n      userId\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:42:17,912 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:17,913 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:42:17,913 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:42:17,913 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:42:17,913 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:18,237 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'633'), (b'x-elapsed', b'323969'), (b'content-length', b'633'), (b'date', b'Sat, 07 Jun 2025 07:42:17 GMT')])
+2025-06-07 16:42:18,237 - httpx - INFO - HTTP Request: POST http://localhost:60573/ "HTTP/1.1 200 OK"
+2025-06-07 16:42:18,238 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:42:18,238 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:42:18,239 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:42:18,239 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:42:18,239 - prisma.engine._http - DEBUG - POST http://localhost:60573/ returned status 200
+2025-06-07 16:42:18,239 - prisma.engine._http - DEBUG - POST http://localhost:60573/ returned {'data': {'result': {'id': '432629b9-7aa7-4c45-84ac-5034251d424a', 'name': 'アリスたん', 'personality': 'あ', 'story': 'かわいい', 'postedBy': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'modelUrl': 'https://mrzy2osyec6ctjcg.public.blob.vercel-storage.com/AliciaSolid-1.0-cJCvhV5qNroeiZ9ARxHmfxNXwEMN31.vrm?download=1', 'createdAt': '2025-06-07T07:33:21.678Z', 'updatedAt': '2025-06-07T07:33:21.678Z', 'isPublic': True, 'voice': {'id': 'dc6fa73d-5542-4234-8b1d-d109d0cd18fd', 'characterId': '432629b9-7aa7-4c45-84ac-5034251d424a', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'createdAt': '2025-06-07T07:33:25.735Z', 'updatedAt': '2025-06-07T07:33:25.735Z'}}}}
+2025-06-07 16:42:18,239 - src.main - INFO - キャラクター取得成功 - Name: アリスたん, ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:42:18,239 - src.main - DEBUG - 今日の学習内容を取得中...
+2025-06-07 16:42:18,239 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findFirsttodays_study
+  (
+    where: {
+      id: "0"
+    }
+  )
+  {
+    id
+    createdAt
+    content
+  }
+}
+2025-06-07 16:42:18,239 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:60573/
+2025-06-07 16:42:18,239 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:42:18,239 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findFirsttodays_study\n  (\n    where: {\n      id: \"0\"\n    }\n  )\n  {\n    id\n    createdAt\n    content\n  }\n}"}
+2025-06-07 16:42:18,239 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:18,239 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:42:18,240 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:42:18,240 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:42:18,240 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:18,401 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'135'), (b'x-elapsed', b'161432'), (b'content-length', b'135'), (b'date', b'Sat, 07 Jun 2025 07:42:17 GMT')])
+2025-06-07 16:42:18,402 - httpx - INFO - HTTP Request: POST http://localhost:60573/ "HTTP/1.1 200 OK"
+2025-06-07 16:42:18,402 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:42:18,402 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:42:18,402 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:42:18,402 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:42:18,402 - prisma.engine._http - DEBUG - POST http://localhost:60573/ returned status 200
+2025-06-07 16:42:18,402 - prisma.engine._http - DEBUG - POST http://localhost:60573/ returned {'data': {'result': {'id': '0', 'createdAt': '2025-06-03T05:49:20.328Z', 'content': "'今日は分散型SNSについて勉強するよ！'"}}}
+2025-06-07 16:42:18,403 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 16:42:18,403 - src.main - DEBUG - LLMにプロンプトを送信中...
+2025-06-07 16:42:25,271 - src.main - INFO - LLMレスポンス取得完了 - Content: やっほー、君！今日も一緒にいられてアリスは嬉しいな！...
+2025-06-07 16:42:25,272 - src.main - DEBUG - テキスト変換処理中...
+2025-06-07 16:42:25,272 - src.main - DEBUG - 変換後テキスト: やっほー、君！今日も一緒にいられてアリスは嬉しいな！
+2025-06-07 16:42:25,272 - src.main - DEBUG - TTS音声生成中...
+2025-06-07 16:42:25,272 - src.main - INFO - TTS音声生成完了（コメントアウト済み）
+2025-06-07 16:42:25,272 - src.main - DEBUG - レスポンス生成完了 - Emotion: neutral=0.7 happy=0.8 sad=0.1 angry=0.1, Event: None
+2025-06-07 16:42:25,273 - src.main - INFO - チャットレスポンス生成完了
+2025-06-07 16:42:25,273 - src.main - DEBUG - 記憶保存タスクを開始...
+2025-06-07 16:42:25,274 - src.main - INFO - POST /chat 正常完了
+2025-06-07 16:42:25,274 - src.main - INFO - 記憶保存処理を開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:42:26,724 - src.main - DEBUG - メモリストアセットアップ完了
+2025-06-07 16:42:26,731 - src.main - DEBUG - メッセージ保存中 - Input: こんにちは..., Response: やっほー、君！今日も一緒にいられてアリスは嬉しいな！...
+2025-06-07 16:42:26,873 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'idempotency_key': 'stainless-python-retry-615adcff-f73c-4e14-a07f-f607403e7306', 'post_parser': <function AsyncEmbeddings.create.<locals>.parser at 0x10d786ac0>, 'json_data': {'input': [[3134, 419, 57086, 4961, 36874, 69427, 71289, 42891, 2243, 119, 11972, 5486, 7305, 249, 6447, 37271, 9080, 32977, 15120, 163, 115, 240, 20230, 16995, 33503, 33121, 38144, 39880, 37823, 22398, 15682, 161, 105, 231, 15024, 16995, 26854, 6447]], 'model': 'text-embedding-3-small', 'encoding_format': 'base64'}}
+2025-06-07 16:42:26,874 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-06-07 16:42:26,874 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-06-07 16:42:26,904 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10d7f7b90>
+2025-06-07 16:42:26,904 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1060ec170> server_hostname='api.openai.com' timeout=None
+2025-06-07 16:42:26,919 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10d6d01d0>
+2025-06-07 16:42:26,919 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:26,919 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:42:26,919 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:42:26,919 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:42:26,919 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:42:27,913 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 07 Jun 2025 07:42:27 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-3-small'), (b'openai-organization', b'personal-fsowto'), (b'openai-processing-ms', b'78'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-58c5cc5755-2rs8v'), (b'x-envoy-upstream-service-time', b'82'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999961'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'2ms'), (b'x-request-id', b'req_779594a960cf92e2a52e60ea30597416'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=MjPJ20f1mYVOz8mdkogP8FnQkSoMCQgEYhajZxtHWOQ-1749282147-1.0.1.1-0nNMRwOTzgRdqdXBeHA2gfySxn1F0mOg8A_WE8ACqPIJWHLPI_WNQQWxeYnLcbsKol1CbM5yE7R0GmOkPk.eP4zCauUNW4_jOHdR1Tm3IzI; path=/; expires=Sat, 07-Jun-25 08:12:27 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=nHOesN.X9_ad7U4F6T4HdR7b9Q827n0RSZKnrroioUA-1749282147807-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'94be8349ede9e35a-NRT'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-06-07 16:42:27,914 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-07 16:42:27,914 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:42:27,914 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:42:27,914 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:42:27,914 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:42:27,915 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Sat, 07 Jun 2025 07:42:27 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-3-small'), ('openai-organization', 'personal-fsowto'), ('openai-processing-ms', '78'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-58c5cc5755-2rs8v'), ('x-envoy-upstream-service-time', '82'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999961'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '2ms'), ('x-request-id', 'req_779594a960cf92e2a52e60ea30597416'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=MjPJ20f1mYVOz8mdkogP8FnQkSoMCQgEYhajZxtHWOQ-1749282147-1.0.1.1-0nNMRwOTzgRdqdXBeHA2gfySxn1F0mOg8A_WE8ACqPIJWHLPI_WNQQWxeYnLcbsKol1CbM5yE7R0GmOkPk.eP4zCauUNW4_jOHdR1Tm3IzI; path=/; expires=Sat, 07-Jun-25 08:12:27 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=nHOesN.X9_ad7U4F6T4HdR7b9Q827n0RSZKnrroioUA-1749282147807-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '94be8349ede9e35a-NRT'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-06-07 16:42:27,915 - openai._base_client - DEBUG - request_id: req_779594a960cf92e2a52e60ea30597416
+2025-06-07 16:42:28,441 - grpc._cython.cygrpc - DEBUG - Using AsyncIOEngine.POLLER as I/O engine
+2025-06-07 16:42:29,242 - langsmith.utils - DEBUG - LangSmith tracing is not enabled, returning original function.
+2025-06-07 16:42:30,962 - src.main - INFO - 記憶保存完了
+2025-06-07 16:45:30,519 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:45:30,519 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:45:30,523 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:45:30,523 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:45:30,524 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:45:30,524 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:45:30,538 - prisma.engine.utils - DEBUG - Version check took 0.0138s
+2025-06-07 16:45:30,538 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:45:30,538 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:45:30,538 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0186s
+2025-06-07 16:45:30,538 - prisma.engine._query - DEBUG - Running query engine on port 60854
+2025-06-07 16:45:30,539 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:45:30,544 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60854/status
+2025-06-07 16:45:30,544 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:30,545 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:45:30,569 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:30,571 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:45:30,571 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:45:30,672 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60854/status
+2025-06-07 16:45:30,672 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:30,672 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:45:30,673 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:30,675 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:45:30,675 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:45:30,776 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60854/status
+2025-06-07 16:45:30,776 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:30,776 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:45:30,777 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:30,778 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:45:30,778 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:45:30,879 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60854/status
+2025-06-07 16:45:30,879 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:30,880 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:45:30,880 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:30,881 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:45:30,881 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:45:30,982 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60854/status
+2025-06-07 16:45:30,982 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:30,982 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:45:30,982 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:30,983 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:45:30,983 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:45:31,085 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60854/status
+2025-06-07 16:45:31,085 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:31,085 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:45:31,085 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:31,086 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:45:31,087 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:45:31,188 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:60854/status
+2025-06-07 16:45:31,188 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:31,188 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:45:31,188 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:31,191 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x12314c210>
+2025-06-07 16:45:31,191 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:45:31,191 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:45:31,191 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:45:31,192 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:45:31,192 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:45:31,192 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'12'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:45:31 GMT')])
+2025-06-07 16:45:31,193 - httpx - INFO - HTTP Request: GET http://localhost:60854/status "HTTP/1.1 200 OK"
+2025-06-07 16:45:31,193 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:45:31,193 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:45:31,193 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:45:31,193 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:45:31,194 - prisma.engine._http - DEBUG - GET http://localhost:60854/status returned status 200
+2025-06-07 16:45:31,194 - prisma.engine._http - DEBUG - GET http://localhost:60854/status returned {'status': 'ok'}
+2025-06-07 16:45:31,194 - prisma.engine._query - DEBUG - Connecting to query engine took 0.6743s
+2025-06-07 16:45:31,194 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:45:31,194 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:45:52,075 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 16:45:52,076 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 16:45:52,076 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 16:45:52,077 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:45:52,077 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:60854/
+2025-06-07 16:45:52,077 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:52,077 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:45:52,077 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:45:52,077 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:45:52,077 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=60854 local_address=None timeout=30 socket_options=None
+2025-06-07 16:45:52,078 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1231b3510>
+2025-06-07 16:45:52,078 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:45:52,079 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:45:52,079 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:45:52,079 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:45:52,079 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:45:52,477 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'398224'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 07:45:52 GMT')])
+2025-06-07 16:45:52,477 - httpx - INFO - HTTP Request: POST http://localhost:60854/ "HTTP/1.1 200 OK"
+2025-06-07 16:45:52,477 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:45:52,477 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:45:52,477 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:45:52,478 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:45:52,478 - prisma.engine._http - DEBUG - POST http://localhost:60854/ returned status 200
+2025-06-07 16:45:52,478 - prisma.engine._http - DEBUG - POST http://localhost:60854/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 16:45:52,478 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:45:52,478 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:26803]
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 16:45:52,478 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 16:45:52,478 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 16:45:52,478 - src.main - DEBUG - ファイルサイズ: 26678 bytes
+2025-06-07 16:45:52,630 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 16:45:52,697 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 16:45:52,697 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 16:45:53,167 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 16:45:53,168 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 432629b9-7aa7-4c45-84ac-5034251d424a, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 16:45:53,168 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:45:53,168 - src.main - DEBUG - 入力テキスト: こんにちは
+2025-06-07 16:45:54,926 - src.main - DEBUG - チャット用メモリストアセットアップ完了
+2025-06-07 16:45:54,930 - src.main - DEBUG - レスポンス生成開始 - Messages: 1件
+2025-06-07 16:45:54,930 - src.main - DEBUG - キャラクター取得処理を開始 - ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:45:54,930 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquecharacter
+  (
+    where: {
+      id: "432629b9-7aa7-4c45-84ac-5034251d424a"
+    }
+  )
+  {
+    id
+    name
+    personality
+    story
+    postedBy
+    modelUrl
+    createdAt
+    updatedAt
+    isPublic
+    voice {
+      id
+      characterId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 16:45:54,930 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:60854/
+2025-06-07 16:45:54,930 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:54,930 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquecharacter\n  (\n    where: {\n      id: \"432629b9-7aa7-4c45-84ac-5034251d424a\"\n    }\n  )\n  {\n    id\n    name\n    personality\n    story\n    postedBy\n    modelUrl\n    createdAt\n    updatedAt\n    isPublic\n    voice {\n      id\n      characterId\n      userId\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 16:45:54,931 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:45:54,931 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:45:54,931 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:45:54,931 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:45:54,931 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:45:55,254 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'633'), (b'x-elapsed', b'321998'), (b'content-length', b'633'), (b'date', b'Sat, 07 Jun 2025 07:45:55 GMT')])
+2025-06-07 16:45:55,254 - httpx - INFO - HTTP Request: POST http://localhost:60854/ "HTTP/1.1 200 OK"
+2025-06-07 16:45:55,254 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:45:55,255 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:45:55,255 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:45:55,255 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:45:55,255 - prisma.engine._http - DEBUG - POST http://localhost:60854/ returned status 200
+2025-06-07 16:45:55,255 - prisma.engine._http - DEBUG - POST http://localhost:60854/ returned {'data': {'result': {'id': '432629b9-7aa7-4c45-84ac-5034251d424a', 'name': 'アリスたん', 'personality': 'あ', 'story': 'かわいい', 'postedBy': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'modelUrl': 'https://mrzy2osyec6ctjcg.public.blob.vercel-storage.com/AliciaSolid-1.0-cJCvhV5qNroeiZ9ARxHmfxNXwEMN31.vrm?download=1', 'createdAt': '2025-06-07T07:33:21.678Z', 'updatedAt': '2025-06-07T07:33:21.678Z', 'isPublic': True, 'voice': {'id': 'dc6fa73d-5542-4234-8b1d-d109d0cd18fd', 'characterId': '432629b9-7aa7-4c45-84ac-5034251d424a', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'createdAt': '2025-06-07T07:33:25.735Z', 'updatedAt': '2025-06-07T07:33:25.735Z'}}}}
+2025-06-07 16:45:55,255 - src.main - INFO - キャラクター取得成功 - Name: アリスたん, ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:45:55,255 - src.main - DEBUG - 今日の学習内容を取得中...
+2025-06-07 16:45:55,255 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findFirsttodays_study
+  (
+    where: {
+      id: "0"
+    }
+  )
+  {
+    id
+    createdAt
+    content
+  }
+}
+2025-06-07 16:45:55,255 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:60854/
+2025-06-07 16:45:55,255 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:45:55,255 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findFirsttodays_study\n  (\n    where: {\n      id: \"0\"\n    }\n  )\n  {\n    id\n    createdAt\n    content\n  }\n}"}
+2025-06-07 16:45:55,255 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:45:55,256 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:45:55,256 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:45:55,256 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:45:55,256 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:45:55,414 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'135'), (b'x-elapsed', b'157891'), (b'content-length', b'135'), (b'date', b'Sat, 07 Jun 2025 07:45:54 GMT')])
+2025-06-07 16:45:55,414 - httpx - INFO - HTTP Request: POST http://localhost:60854/ "HTTP/1.1 200 OK"
+2025-06-07 16:45:55,414 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:45:55,414 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:45:55,414 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:45:55,414 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:45:55,414 - prisma.engine._http - DEBUG - POST http://localhost:60854/ returned status 200
+2025-06-07 16:45:55,414 - prisma.engine._http - DEBUG - POST http://localhost:60854/ returned {'data': {'result': {'id': '0', 'createdAt': '2025-06-03T05:49:20.328Z', 'content': "'今日は分散型SNSについて勉強するよ！'"}}}
+2025-06-07 16:45:55,415 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 16:45:55,415 - src.main - DEBUG - LLMにプロンプトを送信中...
+2025-06-07 16:46:01,682 - src.main - INFO - LLMレスポンス取得完了 - Content: やっほー、ねぇ君！今日も一緒にいられてアリスは嬉しいな！...
+2025-06-07 16:46:01,683 - src.main - DEBUG - テキスト変換処理中...
+2025-06-07 16:46:01,683 - src.main - DEBUG - 変換後テキスト: やっほー、ねぇ君！今日も一緒にいられてアリスは嬉しいな！
+2025-06-07 16:46:01,683 - src.main - DEBUG - TTS音声生成中...
+2025-06-07 16:46:01,683 - src.main - INFO - TTS音声生成完了（コメントアウト済み）
+2025-06-07 16:46:01,683 - src.main - DEBUG - レスポンス生成完了 - Emotion: neutral=0.7 happy=0.8 sad=0.1 angry=0.1, Event: None
+2025-06-07 16:46:01,684 - src.main - INFO - チャットレスポンス生成完了
+2025-06-07 16:46:01,684 - src.main - DEBUG - 記憶保存タスクを開始...
+2025-06-07 16:46:01,684 - src.main - INFO - POST /chat 正常完了
+2025-06-07 16:46:01,684 - src.main - INFO - 記憶保存処理を開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 16:46:03,211 - src.main - DEBUG - メモリストアセットアップ完了
+2025-06-07 16:46:03,213 - src.main - DEBUG - メッセージ保存中 - Input: こんにちは..., Response: やっほー、ねぇ君！今日も一緒にいられてアリスは嬉しいな！...
+2025-06-07 16:46:03,331 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'idempotency_key': 'stainless-python-retry-294b8bef-3fb1-4ebc-ab68-99d5a2c8fa11', 'post_parser': <function AsyncEmbeddings.create.<locals>.parser at 0x127341940>, 'json_data': {'input': [[3134, 419, 57086, 4961, 36874, 69427, 71289, 42891, 2243, 119, 11972, 5486, 2243, 255, 2243, 229, 7305, 249, 6447, 37271, 9080, 32977, 15120, 163, 115, 240, 20230, 16995, 33503, 33121, 38144, 39880, 37823, 22398, 15682, 161, 105, 231, 15024, 16995, 26854, 6447]], 'model': 'text-embedding-3-small', 'encoding_format': 'base64'}}
+2025-06-07 16:46:03,332 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-06-07 16:46:03,332 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-06-07 16:46:03,362 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1273b3fd0>
+2025-06-07 16:46:03,363 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1214b03b0> server_hostname='api.openai.com' timeout=None
+2025-06-07 16:46:03,396 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x12737ba90>
+2025-06-07 16:46:03,396 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 16:46:03,396 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:46:03,396 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 16:46:03,397 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:46:03,397 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 16:46:03,827 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 07 Jun 2025 07:46:03 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-3-small'), (b'openai-organization', b'personal-fsowto'), (b'openai-processing-ms', b'52'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-866c66b464-27dzp'), (b'x-envoy-upstream-service-time', b'56'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999957'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'2ms'), (b'x-request-id', b'req_cdd1696d719e1935c90e0a82867f8889'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=mndZ4X1LIenRCIaxa.wuH17ZpUGYprqsa9RF6sn1gs0-1749282363-1.0.1.1-o8I7OITzmfHJ7Jc5idC1JVFqnXlgyPb3j1jMs5xGCrzFpNfzhLZI4wpJSzwr2Tz0ukKMBNNTQjwxcbExSpM9DVAQ9T0uxsllKHWyQTJFfgs; path=/; expires=Sat, 07-Jun-25 08:16:03 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=zFxP1tvRYEjn9aXTSAnCp1INy2jFZOeVZTr3L472Wik-1749282363749-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'94be8892d995e041-NRT'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-06-07 16:46:03,828 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-07 16:46:03,828 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 16:46:03,828 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:46:03,828 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:46:03,828 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:46:03,828 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Sat, 07 Jun 2025 07:46:03 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-3-small'), ('openai-organization', 'personal-fsowto'), ('openai-processing-ms', '52'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-866c66b464-27dzp'), ('x-envoy-upstream-service-time', '56'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999957'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '2ms'), ('x-request-id', 'req_cdd1696d719e1935c90e0a82867f8889'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=mndZ4X1LIenRCIaxa.wuH17ZpUGYprqsa9RF6sn1gs0-1749282363-1.0.1.1-o8I7OITzmfHJ7Jc5idC1JVFqnXlgyPb3j1jMs5xGCrzFpNfzhLZI4wpJSzwr2Tz0ukKMBNNTQjwxcbExSpM9DVAQ9T0uxsllKHWyQTJFfgs; path=/; expires=Sat, 07-Jun-25 08:16:03 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=zFxP1tvRYEjn9aXTSAnCp1INy2jFZOeVZTr3L472Wik-1749282363749-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '94be8892d995e041-NRT'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-06-07 16:46:03,828 - openai._base_client - DEBUG - request_id: req_cdd1696d719e1935c90e0a82867f8889
+2025-06-07 16:46:04,286 - grpc._cython.cygrpc - DEBUG - Using AsyncIOEngine.POLLER as I/O engine
+2025-06-07 16:46:05,154 - langsmith.utils - DEBUG - LangSmith tracing is not enabled, returning original function.
+2025-06-07 16:46:06,989 - src.main - ERROR - 記憶保存中にエラーが発生 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a, Error: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.

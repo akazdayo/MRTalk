@@ -1,6 +1,7 @@
 import asyncio
 import datetime
 import io
+import logging
 import os
 from typing import Any, Dict
 
@@ -22,11 +23,37 @@ from src.tts import TTS
 import re
 import alkana
 
+# ログ設定
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.FileHandler("chat_debug.log"), logging.StreamHandler()],
+)
+logger = logging.getLogger(__name__)
+
 r = sr.Recognizer()
 app = FastAPI()
 llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 structured_llm = llm.with_structured_output(EmotionMessage)
 db_url = os.getenv("DATABASE_URL") or ""
+
+# グローバルPrismaインスタンス
+prisma = Prisma()
+
+
+# FastAPIイベントハンドラ
+@app.on_event("startup")
+async def startup():
+    await prisma.connect()
+    logger.info("データベース接続が確立されました")
+    logger.info("チャットバックエンドが初期化されました")
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await prisma.disconnect()
+    logger.info("データベース接続が切断されました")
+
 
 # ユーザーID、キャラクターIDのネームスペースに記憶を保存
 memory_manager = create_memory_store_manager(
@@ -85,155 +112,233 @@ def word_replace(sentence):
 
 # 音声ファイルを文字起こし
 async def get_audio_text(request: Request) -> str:
-    form = await request.form()
-    file = form["file"]
-
-    assert not isinstance(file, str)
-    file_content = await file.read()
-
-    audio_file = io.BytesIO(file_content)
-
-    audio = AudioSegment.from_file(audio_file)
-    wav_audio = io.BytesIO()
-    audio.export(wav_audio, format="wav")
-    wav_audio.seek(0)
-
-    with sr.AudioFile(wav_audio) as source:
-        audio_data = r.record(source)
+    logger.info("音声ファイルの文字起こし処理を開始")
 
     try:
+        form = await request.form()
+        file = form["file"]
+        logger.debug(
+            f"受信したファイル: {file.filename if hasattr(file, 'filename') else 'unknown'}"
+        )
+
+        assert not isinstance(file, str)
+        file_content = await file.read()
+        logger.debug(f"ファイルサイズ: {len(file_content)} bytes")
+
+        audio_file = io.BytesIO(file_content)
+
+        audio = AudioSegment.from_file(audio_file)
+        wav_audio = io.BytesIO()
+        audio.export(wav_audio, format="wav")
+        wav_audio.seek(0)
+        logger.debug("音声ファイルをWAV形式に変換完了")
+
+        with sr.AudioFile(wav_audio) as source:
+            audio_data = r.record(source)
+
+        logger.info("Google Speech Recognition APIに送信中...")
         text = r.recognize_google(audio_data, language="ja-JP")  # type:ignore
+        logger.info(f"音声認識結果: {text}")
 
         return text
     except sr.UnknownValueError:
+        logger.warning("音声を理解できませんでした")
         raise HTTPException(status_code=400, detail="音声を理解できませんでした")
-    except sr.RequestError:
+    except sr.RequestError as e:
+        logger.error(f"Speech Recognition APIエラー: {e}")
         raise HTTPException(status_code=400, detail="エラーが発生しました。")
+    except Exception as e:
+        logger.error(f"音声処理中に予期しないエラー: {e}")
+        raise HTTPException(status_code=500, detail="音声処理中にエラーが発生しました")
 
 
 # セッションを取得
 async def get_session(authorization: str = Header(None)) -> session:
+    logger.debug("セッション認証処理を開始")
+
     if not authorization:
+        logger.warning("認証ヘッダーが見つかりません")
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     token = authorization.replace("Bearer ", "")
+    logger.debug(f"トークンを抽出: {token[:10]}..." if len(token) > 10 else token)
 
-    prisma = Prisma()
-    await prisma.connect()
+    try:
+        logger.debug("セッション取得処理中...")
 
-    session = await prisma.session.find_unique(
-        where={"token": token}, include={"user": True}
-    )
+        session = await prisma.session.find_unique(
+            where={"token": token}, include={"user": True}
+        )
 
-    await prisma.disconnect()
+        if not session:
+            logger.warning(f"セッションが見つかりません - Token: {token[:10]}...")
+            raise HTTPException(status_code=401, detail="Invalid or expired token")
 
-    if not session or session.expiresAt < datetime.datetime.now(datetime.timezone.utc):
-        raise HTTPException(status_code=401, detail="Invalid or expired token")
+        if session.expiresAt < datetime.datetime.now(datetime.timezone.utc):
+            logger.warning(
+                f"セッションが期限切れです - User ID: {session.userId}, Expires: {session.expiresAt}"
+            )
+            raise HTTPException(status_code=401, detail="Invalid or expired token")
 
-    return session
+        logger.info(f"セッション認証成功 - User ID: {session.userId}")
+        return session
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"セッション取得中にエラーが発生: {e}")
+        raise HTTPException(
+            status_code=500, detail="セッション処理中にエラーが発生しました"
+        )
 
 
 async def get_character(id: str) -> character | None:
-    prisma = Prisma()
-    await prisma.connect()
-    character = await prisma.character.find_unique(
-        where={"id": id}, include={"voice": True}
-    )
+    logger.debug(f"キャラクター取得処理を開始 - ID: {id}")
 
-    if not character:
-        raise HTTPException(status_code=400, detail="Character not found")
+    try:
+        character = await prisma.character.find_unique(
+            where={"id": id}, include={"voice": True}
+        )
 
-    await prisma.disconnect()
-    return character
+        if not character:
+            logger.warning(f"キャラクターが見つかりません - ID: {id}")
+            raise HTTPException(status_code=400, detail="Character not found")
+
+        logger.info(f"キャラクター取得成功 - Name: {character.name}, ID: {id}")
+        return character
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"キャラクター取得中にエラーが発生 - ID: {id}, Error: {e}")
+        raise HTTPException(
+            status_code=500, detail="キャラクター取得中にエラーが発生しました"
+        )
 
 
 async def get_todays_study_content() -> str:
-    prisma = Prisma()
-    await prisma.connect()
+    logger.debug("今日の学習内容を取得中...")
 
-    study = await prisma.todays_study.find_first(
-        where={"id": "0"},
-    )
-    content = study.content if study else "今日の学習内容はありません。"
+    try:
+        study = await prisma.todays_study.find_first(
+            where={"id": "0"},
+        )
+        content = study.content if study else "今日の学習内容はありません。"
 
-    await prisma.disconnect()
+        logger.info(
+            f"今日の学習内容取得完了: {content[:50]}..."
+            if len(content) > 50
+            else content
+        )
+        return content
 
-    return content
+    except Exception as e:
+        logger.error(f"今日の学習内容取得中にエラーが発生: {e}")
+        return "今日の学習内容はありません。"
 
 
 # 記憶を保存
 async def save_memory(
     user_input: str, user_id: str, character_id: str, response_content: str
 ):
-    async with AsyncPostgresStore.from_conn_string(
-        db_url,
-        index={
-            "dims": 1536,
-            "embed": "openai:text-embedding-3-small",
-            "fields": ["text"],
-        },
-    ) as store:
-        assert isinstance(store.conn, AsyncConnection)
-        await store.conn.execute("SET search_path TO memories, public")
-        await store.setup()
+    logger.info(f"記憶保存処理を開始 - User: {user_id}, Character: {character_id}")
 
-        @entrypoint(store=store)
-        async def save(params: Dict[str, Any]):
-            messages = [
-                HumanMessage(content=params["user_input"]),
-                AIMessage(content=params["response_content"]),
-            ]
+    try:
+        async with AsyncPostgresStore.from_conn_string(
+            db_url,
+            index={
+                "dims": 1536,
+                "embed": "openai:text-embedding-3-small",
+                "fields": ["text"],
+            },
+        ) as store:
+            assert isinstance(store.conn, AsyncConnection)
+            await store.conn.execute("SET search_path TO memories, public")
+            await store.setup()
+            logger.debug("メモリストアセットアップ完了")
 
-            await memory_manager.ainvoke(
-                {"messages": messages, "max_steps": 10},
-                config={
-                    "configurable": {
-                        "user_id": params["user_id"],
-                        "character_id": params["character_id"],
-                    }
-                },
+            @entrypoint(store=store)
+            async def save(params: Dict[str, Any]):
+                messages = [
+                    HumanMessage(content=params["user_input"]),
+                    AIMessage(content=params["response_content"]),
+                ]
+                logger.debug(
+                    f"メッセージ保存中 - Input: {params['user_input'][:50]}..., Response: {params['response_content'][:50]}..."
+                )
+
+                await memory_manager.ainvoke(
+                    {"messages": messages, "max_steps": 10},
+                    config={
+                        "configurable": {
+                            "user_id": params["user_id"],
+                            "character_id": params["character_id"],
+                        }
+                    },
+                )
+
+            await save.ainvoke(
+                {
+                    "user_input": user_input,
+                    "user_id": user_id,
+                    "character_id": character_id,
+                    "response_content": response_content,
+                }
             )
 
-        await save.ainvoke(
-            {
-                "user_input": user_input,
-                "user_id": user_id,
-                "character_id": character_id,
-                "response_content": response_content,
-            }
+            logger.info("記憶保存完了")
+
+    except Exception as e:
+        logger.error(
+            f"記憶保存中にエラーが発生 - User: {user_id}, Character: {character_id}, Error: {e}"
         )
 
 
 async def chat(text: str, session: session, character_id: str):
-    async with AsyncPostgresStore.from_conn_string(
-        db_url,
-        index={
-            "dims": 1536,
-            "embed": "openai:text-embedding-3-small",
-            "fields": ["text"],
-        },
-    ) as store:
-        assert isinstance(store.conn, AsyncConnection)
-        await store.conn.execute("SET search_path TO memories, public")
-        await store.setup()
+    logger.info(
+        f"チャット処理開始 - User: {session.user.id if session.user else 'Unknown'}, Character: {character_id}"
+    )
+    logger.debug(f"入力テキスト: {text}")
 
-        @entrypoint(store=store)
-        async def generate(params: Dict[str, Any]) -> Response | None:
-            messages = params["messages"]
-            user_id = params["user_id"]
-            character_id = params["character_id"]
-            character = await get_character(character_id)
-            todays_study = await get_todays_study_content()
-            if not (character):
-                raise HTTPException(status_code=400, detail="Character Not Found")
+    try:
+        async with AsyncPostgresStore.from_conn_string(
+            db_url,
+            index={
+                "dims": 1536,
+                "embed": "openai:text-embedding-3-small",
+                "fields": ["text"],
+            },
+        ) as store:
+            assert isinstance(store.conn, AsyncConnection)
+            await store.conn.execute("SET search_path TO memories, public")
+            await store.setup()
+            logger.debug("チャット用メモリストアセットアップ完了")
 
-            if not character.isPublic and character.postedBy != user_id:
-                raise HTTPException(status_code=400, detail="Character Not Found")
+            @entrypoint(store=store)
+            async def generate(params: Dict[str, Any]) -> Response | None:
+                messages = params["messages"]
+                user_id = params["user_id"]
+                character_id = params["character_id"]
 
-            memories = await store.asearch(("memories", user_id, character_id))
-            memory_text = "\n".join(m.value["content"]["content"] for m in memories)
+                logger.debug(f"レスポンス生成開始 - Messages: {len(messages)}件")
 
-            system_prompt = f"""
+                character = await get_character(character_id)
+                todays_study = await get_todays_study_content()
+
+                if not (character):
+                    logger.error(f"キャラクターが見つかりません - ID: {character_id}")
+                    raise HTTPException(status_code=400, detail="Character Not Found")
+
+                if not character.isPublic and character.postedBy != user_id:
+                    logger.warning(
+                        f"キャラクターへのアクセス権限がありません - Character: {character_id}, User: {user_id}"
+                    )
+                    raise HTTPException(status_code=400, detail="Character Not Found")
+
+                # logger.debug("過去の記憶を検索中...")
+                # logger.debug(f"記憶検索完了 - {len(memories)}件の記憶を取得")
+
+                system_prompt = f"""
           あなたは、キャラクターになりきってユーザーと共に暮らしながら会話をするAIエージェントです。メッセージは100字以内の日常会話らしい短くシンプルなものにしましょう。
 
           <important>
@@ -252,11 +357,6 @@ async def chat(text: str, session: session, character_id: str):
           <story>
           {character.story}
           </story>
-
-          ユーザーとの思い出や記憶は、以下の通りです。
-          <memories>
-          {memory_text}
-          </memories>
           
           今日ユーザーが勉強した内容は以下の通りです。
           <todays_study>
@@ -279,30 +379,51 @@ async def chat(text: str, session: session, character_id: str):
           }}
           """
 
-            response = structured_llm.invoke(
-                [{"role": "system", "content": system_prompt}, *messages]
-            )
-            assert isinstance(response, EmotionMessage)
-            if not character.voice:
-                raise HTTPException(
-                    status_code=400, detail="Voice not configured for this character"
+                logger.debug("LLMにプロンプトを送信中...")
+                response = structured_llm.invoke(
+                    [{"role": "system", "content": system_prompt}, *messages]
                 )
-            converted_text = word_replace(response.content)
-            base64_voice = TTS.generate(
-                character.voice.id, converted_text, session.token
-            )
+                assert isinstance(response, EmotionMessage)
+                logger.info(
+                    f"LLMレスポンス取得完了 - Content: {response.content[:100]}..."
+                )
 
-            res = Response(
-                role=response.role,
-                content=response.content,
-                emotion=response.emotion,
-                event=response.event,
-                voice=base64_voice,
-            )
+                if not character.voice:
+                    logger.error(
+                        f"キャラクターに音声が設定されていません - Character: {character_id}"
+                    )
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Voice not configured for this character",
+                    )
 
-            return res
+                logger.debug("テキスト変換処理中...")
+                converted_text = word_replace(response.content)
+                logger.debug(f"変換後テキスト: {converted_text}")
+
+                logger.debug("TTS音声生成中...")
+                # TTS音声生成をコメントアウト
+                # base64_voice = TTS.generate(
+                #    character.voice.id, converted_text, session.token
+                # )
+                base64_voice = ""  # 空の音声データ
+                logger.info("TTS音声生成完了（コメントアウト済み）")
+
+                res = Response(
+                    role=response.role,
+                    content=response.content,
+                    emotion=response.emotion,
+                    event=response.event,
+                    voice=base64_voice,
+                )
+
+                logger.debug(
+                    f"レスポンス生成完了 - Emotion: {response.emotion}, Event: {response.event}"
+                )
+                return res
 
         if not session.user:
+            logger.error("セッションにユーザー情報がありません")
             raise HTTPException(status_code=400, detail="Invalid session")
 
         response = await generate.ainvoke(
@@ -314,8 +435,10 @@ async def chat(text: str, session: session, character_id: str):
         )
 
         assert isinstance(response, Response)
+        logger.info("チャットレスポンス生成完了")
 
         # 並列で記憶を保存
+        logger.debug("記憶保存タスクを開始...")
         asyncio.create_task(
             save_memory(
                 text,
@@ -327,6 +450,14 @@ async def chat(text: str, session: session, character_id: str):
 
         return response
 
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"チャット処理中に予期しないエラーが発生: {e}")
+        raise HTTPException(
+            status_code=500, detail="チャット処理中にエラーが発生しました"
+        )
+
 
 @app.get("/chat")
 async def chat_get(
@@ -334,8 +465,17 @@ async def chat_get(
     character_id: str,
     session: session = Depends(get_session),
 ):
-    response = await chat(character_id=character_id, session=session, text=text)
-    return JSONResponse(content=response.model_dump())
+    logger.info(
+        f"GET /chat エンドポイント呼び出し - Character: {character_id}, User: {session.user.id if session.user else 'Unknown'}"
+    )
+
+    try:
+        response = await chat(character_id=character_id, session=session, text=text)
+        logger.info("GET /chat 正常完了")
+        return JSONResponse(content=response.model_dump())
+    except Exception as e:
+        logger.error(f"GET /chat でエラーが発生: {e}")
+        raise
 
 
 @app.post("/chat")
@@ -344,5 +484,14 @@ async def chat_post(
     session: session = Depends(get_session),
     text: str = Depends(get_audio_text),
 ):
-    response = await chat(character_id=character_id, session=session, text=text)
-    return JSONResponse(content=response.model_dump())
+    logger.info(
+        f"POST /chat エンドポイント呼び出し - Character: {character_id}, User: {session.user.id if session.user else 'Unknown'}"
+    )
+
+    try:
+        response = await chat(character_id=character_id, session=session, text=text)
+        logger.info("POST /chat 正常完了")
+        return JSONResponse(content=response.model_dump())
+    except Exception as e:
+        logger.error(f"POST /chat でエラーが発生: {e}")
+        raise

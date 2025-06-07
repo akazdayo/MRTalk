@@ -70,30 +70,30 @@ export default function VRM({
       // チャット履歴に追加（音声入力の場合、userInputは音声として記録）
       onChatMessage!(userInput || "音声入力", res);
 
+      // 音声再生部分をコメントアウト
+      // const sound = "data:audio/wav;base64," + res.voice;
+      // const audio = new Audio();
+      // audio.src = sound;
 
-      const sound = "data:audio/wav;base64," + res.voice;
-      const audio = new Audio();
-      audio.src = sound;
+      // const buffer = Buffer.from(res.voice, "base64");
 
-      const buffer = Buffer.from(res.voice, "base64");
-
-      if (audioCtx.current) {
-        audioCtx.current.decodeAudioData(
-          buffer.buffer.slice(
-            buffer.byteOffset,
-            buffer.byteOffset + buffer.byteLength
-          ),
-          (audioBuffer) => {
-            if (analyser.current && audioCtx.current) {
-              const bufferSource = audioCtx.current.createBufferSource();
-              bufferSource.buffer = audioBuffer;
-              bufferSource.connect(audioCtx.current.destination);
-              bufferSource.connect(analyser.current);
-              bufferSource.start();
-            }
-          }
-        );
-      }
+      // if (audioCtx.current) {
+      //   audioCtx.current.decodeAudioData(
+      //     buffer.buffer.slice(
+      //       buffer.byteOffset,
+      //       buffer.byteOffset + buffer.byteLength
+      //     ),
+      //     (audioBuffer) => {
+      //       if (analyser.current && audioCtx.current) {
+      //         const bufferSource = audioCtx.current.createBufferSource();
+      //         bufferSource.buffer = audioBuffer;
+      //         bufferSource.connect(audioCtx.current.destination);
+      //         bufferSource.connect(analyser.current);
+      //         bufferSource.start();
+      //       }
+      //     }
+      //   );
+      // }
 
       if (movementManager.current && res.event) {
         movementManager.current.setEvent(res.event);
@@ -177,16 +177,17 @@ export default function VRM({
       alert("モデルのロードに失敗しました。");
     }
 
-    try {
-      const ctx = new window.AudioContext();
-      const a = ctx.createAnalyser();
+    // AudioContextのセットアップをコメントアウト
+    // try {
+    //   const ctx = new window.AudioContext();
+    //   const a = ctx.createAnalyser();
 
-      audioCtx.current = ctx;
-      analyser.current = a;
-      window.Buffer = Buffer;
-    } catch (e) {
-      alert("Audio Analyserのセットアップに失敗しました。");
-    }
+    //   audioCtx.current = ctx;
+    //   analyser.current = a;
+    //   window.Buffer = Buffer;
+    // } catch (e) {
+    //   alert("Audio Analyserのセットアップに失敗しました。");
+    // }
   };
 
   const setupNavMesh = () => {
@@ -241,22 +242,22 @@ export default function VRM({
       movementManager.current.update();
     }
 
-    //リップシンク(仮)
-    if (analyser.current && gltf) {
-      analyser.current.getFloatTimeDomainData(timeDomainData);
+    //リップシンク(仮) - コメントアウト
+    // if (analyser.current && gltf) {
+    //   analyser.current.getFloatTimeDomainData(timeDomainData);
 
-      let volume = 0.0;
-      for (let i = 0; i < 2048; i++) {
-        volume = Math.max(volume, Math.abs(timeDomainData[i]));
-      }
+    //   let volume = 0.0;
+    //   for (let i = 0; i < 2048; i++) {
+    //     volume = Math.max(volume, Math.abs(timeDomainData[i]));
+    //   }
 
-      volume = 1 / (1 + Math.exp(-45 * volume + 5));
-      if (volume < 0.1) volume = 0;
+    //   volume = 1 / (1 + Math.exp(-45 * volume + 5));
+    //   if (volume < 0.1) volume = 0;
 
-      const vrm: VRMType = gltf.userData.vrm;
+    //   const vrm: VRMType = gltf.userData.vrm;
 
-      vrm.expressionManager?.setValue("aa", volume);
-    }
+    //   vrm.expressionManager?.setValue("aa", volume);
+    // }
   });
 
   return (

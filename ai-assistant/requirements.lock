@@ -10,6 +10,8 @@
 #   universal: false
 
 -e file:.
+alkana==0.0.3
+    # via ai-assistant
 annotated-types==0.7.0
     # via pydantic
 anthropic==0.51.0

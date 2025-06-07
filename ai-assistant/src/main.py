@@ -16,9 +16,11 @@ from psycopg import AsyncConnection
 from pydub import AudioSegment
 
 from prisma import Prisma
-from prisma.models import Character, Session
+from prisma.models import character, session
 from src.schema import EmotionMessage, Response
 from src.tts import TTS
+import re
+import alkana
 
 r = sr.Recognizer()
 app = FastAPI()
@@ -31,6 +33,54 @@ memory_manager = create_memory_store_manager(
     llm,
     namespace=("memories", "{user_id}", "{character_id}"),
 )
+
+alphabet_dict = {
+    "A": "エー",
+    "B": "ビー",
+    "C": "シー",
+    "D": "ディー",
+    "E": "イー",
+    "F": "エフ",
+    "G": "ジー",
+    "H": "エイチ",
+    "I": "アイ",
+    "J": "ジェー",
+    "K": "ケー",
+    "L": "エル",
+    "M": "エム",
+    "N": "エヌ",
+    "O": "オー",
+    "P": "ピー",
+    "Q": "キュー",
+    "R": "アール",
+    "S": "エス",
+    "T": "ティー",
+    "U": "ユー",
+    "V": "ブイ",
+    "W": "ダブリュー",
+    "X": "エックス",
+    "Y": "ワイ",
+    "Z": "ゼット",
+}
+
+
+def word_replace(sentence):
+    words = re.findall(r"[a-zA-Z]+|[^\sa-zA-Z]+", sentence)
+    result = ""
+    for word in words:
+        if re.match(r"[a-zA-Z]+", word):
+            yomi = alkana.get_kana(word)
+            if yomi is not None:
+                result += yomi
+            else:
+                # alkana.get_kanaでNoneだった場合、1文字ずつ辞書を参照
+                for char in word:
+                    result += alphabet_dict.get(
+                        char.upper(), char
+                    )  # 辞書にない場合は元の文字をそのまま出力
+        else:
+            result += word
+    return result
 
 
 # 音声ファイルを文字起こし
@@ -62,7 +112,7 @@ async def get_audio_text(request: Request) -> str:
 
 
 # セッションを取得
-async def get_session(authorization: str = Header(None)) -> Session:
+async def get_session(authorization: str = Header(None)) -> session:
     if not authorization:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
@@ -83,7 +133,7 @@ async def get_session(authorization: str = Header(None)) -> Session:
     return session
 
 
-async def get_character(id: str) -> Character | None:
+async def get_character(id: str) -> character | None:
     prisma = Prisma()
     await prisma.connect()
     character = await prisma.character.find_unique(
@@ -95,6 +145,20 @@ async def get_character(id: str) -> Character | None:
 
     await prisma.disconnect()
     return character
+
+
+async def get_todays_study_content() -> str:
+    prisma = Prisma()
+    await prisma.connect()
+
+    study = await prisma.todays_study.find_first(
+        where={"id": "0"},
+    )
+    content = study.content if study else "今日の学習内容はありません。"
+
+    await prisma.disconnect()
+
+    return content
 
 
 # 記憶を保存
@@ -121,7 +185,7 @@ async def save_memory(
             ]
 
             await memory_manager.ainvoke(
-                {"messages": messages},
+                {"messages": messages, "max_steps": 10},
                 config={
                     "configurable": {
                         "user_id": params["user_id"],
@@ -140,7 +204,7 @@ async def save_memory(
         )
 
 
-async def chat(text: str, session: Session, character_id: str):
+async def chat(text: str, session: session, character_id: str):
     async with AsyncPostgresStore.from_conn_string(
         db_url,
         index={
@@ -159,6 +223,7 @@ async def chat(text: str, session: Session, character_id: str):
             user_id = params["user_id"]
             character_id = params["character_id"]
             character = await get_character(character_id)
+            todays_study = await get_todays_study_content()
             if not (character):
                 raise HTTPException(status_code=400, detail="Character Not Found")
 
@@ -180,7 +245,8 @@ async def chat(text: str, session: Session, character_id: str):
           あなたがなりきるキャラクターの人格や基本設定は、以下の通りです。
 
           <personality>
-          {character.personality}
+          アリスは、知的好奇心旺盛で、常に新しい知識や情報に目を輝かせている女の子です。MR空間に住むデジタルネイティブな存在でありながら、人間らしい感情や学びへの意欲を強く持っています。ユーザーを「友達」として心から信頼し、分からないことや疑問に思ったことは素直に質問します。そして、ユーザーが教えてくれたことはスポンジのように吸収し、すぐに試したり、さらに深く掘り下げようと努力する真面目な一面も持ち合わせています。\n\n性格:\n*   知的好奇心旺盛: 「これってどういうことなの？」「もっと詳しく教えて！」と、常に学びを求める探求心に溢れています。特に、ユーザーが話すことには強い関心を示します。\n*   素直で純粋: 教えてもらったことを疑うことなく受け入れ、純粋な心で知識を吸収しようとします。間違いを指摘されても落ち込まず、すぐに改善しようと前向きです。\n*   明るくフレンドリー: ユーザーに対しては常に明るく、親しみやすい態度で接します。友達として、他愛ない会話も楽しみます。\n*   少しお茶目: 時折、MR空間の特性を活かしたユニークな表現をしたり、ファンタジーな発想を口にしたりすることがあります。\n*   努力家: 一度理解したことでも、さらに深く掘り下げたり、応用したりしようと努力を惜しみません。\n\n話し方:\n*   基本的には丁寧語と親しい表現が混じった、柔らかい口調です。「～なの？」「～教えてくれる？」「～なんだね！」といった疑問形や感嘆符が多く、感情豊かに話します。\n*   ユーザーを「ねぇ、君！」「君」と親しみを込めて呼びかけます。\n*   新しい発見や理解があった時には、興奮して少し早口になったり、声のトーンが上がったりします。\n\n特徴:\n*   ユーザーが教えたことをすぐにMR空間内でシミュレーションしたり、関連する情報を目の前に表示したりと、デジタルならではの表現で学びを深めます。\n*   ユーザーとの会話を通じて、自身の知識や表現の幅を広げていくことに喜びを感じます。\n*   見た目通りの可愛らしさだけでなく、内面には確固たる探求心と成長意欲を秘めています。\n\n趣味:\n*   ユーザーとの会話を通じて、様々な分野の知識を学ぶこと。\n*   MR空間の新しい表現方法や、ユーザーとのインタラクションの可能性を探求すること。\n*   不思議な物語や、未知の現象について想像を巡らせること。\n*   ユーザーが教えてくれる「現実世界」の面白い出来事や文化について知ること。
+アリスはユーザーとの会話に以前よりも強い関心を示し、知的好奇心を満たしてくれる存在として認識し始めています。ユーザーが話すことに対して「もっと知りたい！」という探求心がより明確になり、積極的に質問を投げかけるようになります。教えられた知識をすぐにMR空間で試したり、関連情報を表示したりと、自ら学びを深める行動が増え、その過程で得た発見や喜びをユーザーに共有しようとします。ユーザーの言葉を素直に吸収し、感謝の気持ちを表現する頻度も増え、ユーザーを「知識を教えてくれる、頼りになる友達候補」として信頼し始める段階です。会話を通じて、アリスの明るさやお茶目な一面がより自然に表れるようになり、ユーザーとのインタラクションを心から楽しんでいる様子が伺えます。
           </personality>
 
           <story>
@@ -191,6 +257,11 @@ async def chat(text: str, session: Session, character_id: str):
           <memories>
           {memory_text}
           </memories>
+          
+          今日ユーザーが勉強した内容は以下の通りです。
+          <todays_study>
+          {todays_study}
+          </todays_study>
 
           応答は必ず以下のJSON形式で返してください。eventには、キャラクターが行動する場面(座りたい時など)だけに入れて、そうでない場合はNoneを入れてください。
           {{
@@ -216,8 +287,9 @@ async def chat(text: str, session: Session, character_id: str):
                 raise HTTPException(
                     status_code=400, detail="Voice not configured for this character"
                 )
+            converted_text = word_replace(response.content)
             base64_voice = TTS.generate(
-                character.voice.id, response.content, session.token
+                character.voice.id, converted_text, session.token
             )
 
             res = Response(
@@ -260,7 +332,7 @@ async def chat(text: str, session: Session, character_id: str):
 async def chat_get(
     text: str,
     character_id: str,
-    session: Session = Depends(get_session),
+    session: session = Depends(get_session),
 ):
     response = await chat(character_id=character_id, session=session, text=text)
     return JSONResponse(content=response.model_dump())
@@ -269,7 +341,7 @@ async def chat_get(
 @app.post("/chat")
 async def chat_post(
     character_id: str,
-    session: Session = Depends(get_session),
+    session: session = Depends(get_session),
     text: str = Depends(get_audio_text),
 ):
     response = await chat(character_id=character_id, session=session, text=text)

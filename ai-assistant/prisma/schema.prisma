@@ -1,47 +1,18 @@
 generator client {
-  provider             = "prisma-client-py"
-  previewFeatures      = ["postgresqlExtensions"]
-  recursive_type_depth = "5"
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+generator py {
+  provider = "prisma-client-py"
 }
 
 datasource db {
-  provider   = "postgresql"
-  url        = env("DATABASE_URL")
-  extensions = [vector(schema: "public")]
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model User {
-  id            String      @id
-  name          String
-  email         String      @unique
-  emailVerified Boolean
-  image         String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  accounts      Account[]
-  character     Character[]
-  favorite      Favorite[]
-  sessions      Session[]
-  voice         Voice[]
-
-  @@map("user")
-}
-
-model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String   @unique
-  createdAt DateTime
-  updatedAt DateTime
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("session")
-}
-
-model Account {
+model account {
   id                    String    @id
   accountId             String
   providerId            String
@@ -55,61 +26,121 @@ model Account {
   password              String?
   createdAt             DateTime
   updatedAt             DateTime
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("account")
+  user                  user      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model Verification {
+model character {
+  id          String     @id
+  name        String
+  personality String
+  story       String
+  postedBy    String
+  modelUrl    String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
+  isPublic    Boolean    @default(false)
+  user        user       @relation(fields: [postedBy], references: [id], onDelete: Cascade)
+  favorite    favorite[]
+  voice       voice?
+}
+
+model favorite {
+  id          String    @id
+  characterId String
+  userId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  character   character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  user        user      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, characterId])
+}
+
+model session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model store {
+  prefix        String
+  key           String
+  value         Json
+  created_at    DateTime?       @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime?       @default(now()) @db.Timestamptz(6)
+  expires_at    DateTime?       @db.Timestamptz(6)
+  ttl_minutes   Int?
+  store_vectors store_vectors[]
+
+  @@id([prefix, key])
+  @@index([prefix])
+}
+
+model store_migrations {
+  v Int @id
+}
+
+model store_vectors {
+  prefix     String
+  key        String
+  field_name String
+  embedding  Unsupported("vector")?
+  created_at DateTime?              @default(now()) @db.Timestamptz(6)
+  updated_at DateTime?              @default(now()) @db.Timestamptz(6)
+  store      store                  @relation(fields: [prefix, key], references: [prefix, key], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([prefix, key, field_name])
+  @@index([embedding])
+}
+
+model user {
+  id            String      @id
+  name          String
+  email         String      @unique
+  emailVerified Boolean
+  image         String?
+  createdAt     DateTime
+  updatedAt     DateTime
+  account       account[]
+  character     character[]
+  favorite      favorite[]
+  session       session[]
+  voice         voice[]
+}
+
+model vector_migrations {
+  v Int @id
+}
+
+model verification {
   id         String    @id
   identifier String
   value      String
   expiresAt  DateTime
   createdAt  DateTime?
   updatedAt  DateTime?
-
-  @@map("verification")
 }
 
-model Character {
-  id          String     @id @default(uuid())
-  name        String
-  personality String
-  story       String
-  postedBy    String
-  modelUrl   String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @default(now()) @updatedAt
-  isPublic   Boolean    @default(false)
-  user        User       @relation(fields: [postedBy], references: [id], onDelete: Cascade)
-  favorite    Favorite[]
-  voice       Voice?
-
-  @@map("character")
-}
-
-model Favorite {
-  id          String    @id @default(uuid())
-  characterId String
-  userId      String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now()) @updatedAt
-  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, characterId])
-  @@map("favorite")
-}
-
-model Voice {
-  id          String    @id @default(uuid())
+model voice {
+  id          String    @id
   characterId String    @unique
   userId      String
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now()) @updatedAt
-  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  updatedAt   DateTime  @default(now())
+  character   character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  user        user      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, characterId])
-  @@map("voice")
+}
+
+model todays_study {
+  id        String   @id
+  createdAt DateTime @default(now())
+  content   String
 }

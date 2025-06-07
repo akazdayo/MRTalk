@@ -76,10 +76,10 @@ model Character {
   personality String
   story       String
   postedBy    String
-  modelUrl   String
+  modelUrl    String
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now()) @updatedAt
-  isPublic   Boolean    @default(false)
+  isPublic    Boolean    @default(false)
   user        User       @relation(fields: [postedBy], references: [id], onDelete: Cascade)
   favorite    Favorite[]
   voice       Voice?
@@ -111,4 +111,45 @@ model Voice {
 
   @@unique([userId, characterId])
   @@map("voice")
+}
+
+model store {
+  prefix        String
+  key           String
+  value         Json
+  created_at    DateTime?       @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime?       @default(now()) @db.Timestamptz(6)
+  expires_at    DateTime?       @db.Timestamptz(6)
+  ttl_minutes   Int?
+  store_vectors store_vectors[]
+
+  @@id([prefix, key])
+  @@index([prefix])
+}
+
+model store_migrations {
+  v Int @id
+}
+
+model store_vectors {
+  prefix     String
+  key        String
+  field_name String
+  embedding  Unsupported("vector")?
+  created_at DateTime?              @default(now()) @db.Timestamptz(6)
+  updated_at DateTime?              @default(now()) @db.Timestamptz(6)
+  store      store                  @relation(fields: [prefix, key], references: [prefix, key], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([prefix, key, field_name])
+  @@index([embedding])
+}
+
+model todays_study {
+  id        String   @id
+  createdAt DateTime @default(now())
+  content   String
+}
+
+model vector_migrations {
+  v Int @id
 }

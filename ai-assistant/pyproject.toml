@@ -25,6 +25,7 @@ dependencies = [
     "langchain-google-vertexai>=2.0.16",
     "scipy>=1.15.2",
     "setuptools>=78.0.2",
+    "alkana>=0.0.3",
 ]
 
 readme = "README.md"

@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/playwright"
+      ],
+      "alwaysAllow": [
+        "browser_click",
+        "browser_navigate"
+      ]
+    }
+  }
+}

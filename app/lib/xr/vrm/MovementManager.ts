@@ -30,7 +30,7 @@ export class MovementManager {
     agent: AgentManager,
     getMeshByLabel: (label: string) => Mesh | undefined,
     getPlayerPosition: () => Vector3,
-    xr: XRSession
+    xr: XRSession,
   ) {
     this.gltf = gltf;
     this.animation = animation;
@@ -43,7 +43,11 @@ export class MovementManager {
 
     this.xr = xr;
 
-    this.randomMove();
+    // 開始時に自動的に座らせる
+    setTimeout(() => {
+      this.handleSitEvent();
+    }, 1000);
+
     setInterval(this.randomMove.bind(this), 10000);
   }
 
@@ -141,7 +145,7 @@ export class MovementManager {
     this.state = "walking";
     const labels = ["table", "couch", "shelf", "screen"];
     const mesh = this.getMeshByLabel(
-      labels[getRandomInt(0, labels.length - 1)]
+      labels[getRandomInt(0, labels.length - 1)],
     );
     if (!mesh) return;
     const targetPos = new Vector3().setFromMatrixPosition(mesh.matrixWorld);
@@ -150,7 +154,7 @@ export class MovementManager {
       const agent = this.agent.getAgent();
       const dist = this.distanceXZ(
         new Vector3(agent.position().x, 0, agent.position().z),
-        targetPos
+        targetPos,
       );
       if (dist <= 1.5) {
         this.state = "looking";
@@ -173,7 +177,7 @@ export class MovementManager {
       const agent = this.agent.getAgent();
       const dist = this.distanceXZ(
         new Vector3(agent.position().x, 0, agent.position().z),
-        couchPos
+        couchPos,
       );
       if (dist <= 0.8) {
         this.state = "sitting";
@@ -196,7 +200,7 @@ export class MovementManager {
       const agent = this.agent.getAgent();
       const dist = this.distanceXZ(
         new Vector3(agent.position().x, 0, agent.position().z),
-        target
+        target,
       );
       if (dist <= 0.8) {
         this.state = "idle";

@@ -1576,3 +1576,775 @@ query {
 server closed the connection unexpectedly
 	This probably means the server terminated abnormally
 	before or while processing the request.
+2025-06-07 16:55:19,105 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:55:19,107 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:55:19,109 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:55:19,110 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:55:19,110 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:55:19,110 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:55:19,110 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:55:19,110 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:55:19,110 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:55:20,216 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:55:20,216 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:55:20,220 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:55:20,220 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:55:20,220 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:55:20,221 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:55:20,240 - prisma.engine.utils - DEBUG - Version check took 0.0189s
+2025-06-07 16:55:20,240 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:55:20,240 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:55:20,240 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0234s
+2025-06-07 16:55:20,240 - prisma.engine._query - DEBUG - Running query engine on port 61711
+2025-06-07 16:55:20,240 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:55:20,244 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,244 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,244 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,265 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,269 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,269 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:20,370 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,370 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,370 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,371 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,372 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,373 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:20,474 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,474 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,474 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,474 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,475 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,475 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:20,576 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,576 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,576 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,577 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,578 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,578 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:20,680 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,680 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,680 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,680 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,681 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,682 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:20,783 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,783 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,783 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,783 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,784 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,784 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:20,885 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,885 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,885 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,886 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,887 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,887 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:20,989 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:20,989 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:20,989 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:20,992 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:20,994 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:55:20,994 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:55:21,095 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61711/status
+2025-06-07 16:55:21,095 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:55:21,095 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:55:21,095 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61711 local_address=None timeout=30 socket_options=None
+2025-06-07 16:55:21,097 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108bb4a10>
+2025-06-07 16:55:21,097 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:55:21,097 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:55:21,097 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:55:21,097 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:55:21,097 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:55:21,100 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'238'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:55:21 GMT')])
+2025-06-07 16:55:21,100 - httpx - INFO - HTTP Request: GET http://localhost:61711/status "HTTP/1.1 200 OK"
+2025-06-07 16:55:21,100 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:55:21,100 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:55:21,101 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:55:21,101 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:55:21,101 - prisma.engine._http - DEBUG - GET http://localhost:61711/status returned status 200
+2025-06-07 16:55:21,101 - prisma.engine._http - DEBUG - GET http://localhost:61711/status returned {'status': 'ok'}
+2025-06-07 16:55:21,101 - prisma.engine._query - DEBUG - Connecting to query engine took 0.8844s
+2025-06-07 16:55:21,101 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:55:21,101 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:56:41,620 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:56:41,622 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:56:41,622 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:56:41,625 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:56:41,625 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:56:41,626 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:56:41,626 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:56:41,627 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:56:41,627 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:56:42,728 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:56:42,728 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:56:42,732 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:56:42,732 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:56:42,732 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:42,732 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:42,761 - prisma.engine.utils - DEBUG - Version check took 0.0283s
+2025-06-07 16:56:42,761 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:56:42,761 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:42,761 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0329s
+2025-06-07 16:56:42,762 - prisma.engine._query - DEBUG - Running query engine on port 61825
+2025-06-07 16:56:42,762 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:56:42,768 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61825/status
+2025-06-07 16:56:42,768 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:42,768 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:42,797 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61825 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:42,800 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:42,800 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:42,901 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61825/status
+2025-06-07 16:56:42,901 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:42,901 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:42,901 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61825 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:42,904 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:42,904 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:43,005 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61825/status
+2025-06-07 16:56:43,005 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:43,005 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:43,005 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61825 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:43,007 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:43,007 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:43,107 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61825/status
+2025-06-07 16:56:43,107 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:43,107 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:43,108 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61825 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:43,109 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:43,109 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:43,210 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61825/status
+2025-06-07 16:56:43,210 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:43,210 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:43,210 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61825 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:43,212 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:43,212 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:43,313 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61825/status
+2025-06-07 16:56:43,313 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:43,313 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:43,313 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61825 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:43,315 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:43,315 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:43,416 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61825/status
+2025-06-07 16:56:43,416 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:43,416 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:43,416 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61825 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:43,418 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x117f68cd0>
+2025-06-07 16:56:43,418 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:56:43,418 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:56:43,418 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:56:43,418 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:56:43,418 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:56:43,418 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'7'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:56:43 GMT')])
+2025-06-07 16:56:43,419 - httpx - INFO - HTTP Request: GET http://localhost:61825/status "HTTP/1.1 200 OK"
+2025-06-07 16:56:43,419 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:56:43,419 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:56:43,419 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:56:43,419 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:56:43,419 - prisma.engine._http - DEBUG - GET http://localhost:61825/status returned status 200
+2025-06-07 16:56:43,419 - prisma.engine._http - DEBUG - GET http://localhost:61825/status returned {'status': 'ok'}
+2025-06-07 16:56:43,419 - prisma.engine._query - DEBUG - Connecting to query engine took 0.6909s
+2025-06-07 16:56:43,419 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:56:43,419 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:56:44,205 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:56:44,206 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:56:44,209 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:56:44,210 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:56:44,210 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:44,210 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:44,224 - prisma.engine.utils - DEBUG - Version check took 0.0143s
+2025-06-07 16:56:44,224 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:56:44,225 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:44,225 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.019s
+2025-06-07 16:56:44,225 - prisma.engine._query - DEBUG - Running query engine on port 61844
+2025-06-07 16:56:44,225 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:56:44,230 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61844/status
+2025-06-07 16:56:44,231 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:44,231 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:44,248 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61844 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:44,249 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:44,249 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:44,351 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61844/status
+2025-06-07 16:56:44,351 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:44,351 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:44,352 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61844 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:44,354 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:44,354 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:44,455 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61844/status
+2025-06-07 16:56:44,456 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:44,456 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:44,456 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61844 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:44,457 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:44,458 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:44,559 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61844/status
+2025-06-07 16:56:44,559 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:44,559 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:44,559 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61844 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:44,560 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:44,560 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:44,661 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61844/status
+2025-06-07 16:56:44,661 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:44,661 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:44,662 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61844 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:44,663 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:44,663 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:44,764 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61844/status
+2025-06-07 16:56:44,764 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:44,764 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:44,764 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61844 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:44,765 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:44,765 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:44,867 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61844/status
+2025-06-07 16:56:44,867 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:44,867 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:44,867 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61844 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:44,869 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1081de3d0>
+2025-06-07 16:56:44,869 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:56:44,869 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:56:44,869 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:56:44,870 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:56:44,870 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:56:44,870 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'10'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:56:44 GMT')])
+2025-06-07 16:56:44,870 - httpx - INFO - HTTP Request: GET http://localhost:61844/status "HTTP/1.1 200 OK"
+2025-06-07 16:56:44,870 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:56:44,871 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:56:44,871 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:56:44,871 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:56:44,871 - prisma.engine._http - DEBUG - GET http://localhost:61844/status returned status 200
+2025-06-07 16:56:44,871 - prisma.engine._http - DEBUG - GET http://localhost:61844/status returned {'status': 'ok'}
+2025-06-07 16:56:44,871 - prisma.engine._query - DEBUG - Connecting to query engine took 0.6654s
+2025-06-07 16:56:44,871 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:56:44,871 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 16:56:53,054 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:56:53,055 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:56:53,055 - httpcore.connection - DEBUG - close.started
+2025-06-07 16:56:53,056 - httpcore.connection - DEBUG - close.complete
+2025-06-07 16:56:53,056 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:56:53,056 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:56:53,056 - src.main - INFO - データベース接続が切断されました
+2025-06-07 16:56:53,056 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 16:56:53,056 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 16:56:53,811 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 16:56:53,811 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 16:56:53,814 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 16:56:53,814 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 16:56:53,814 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:53,815 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:53,827 - prisma.engine.utils - DEBUG - Version check took 0.0121s
+2025-06-07 16:56:53,827 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 16:56:53,827 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 16:56:53,827 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0161s
+2025-06-07 16:56:53,827 - prisma.engine._query - DEBUG - Running query engine on port 61871
+2025-06-07 16:56:53,828 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 16:56:53,831 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61871/status
+2025-06-07 16:56:53,831 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:53,831 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:53,846 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61871 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:53,848 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:53,848 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:53,949 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61871/status
+2025-06-07 16:56:53,949 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:53,949 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:53,950 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61871 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:53,951 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:53,951 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:54,052 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61871/status
+2025-06-07 16:56:54,052 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:54,052 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:54,053 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61871 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:54,054 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:54,054 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:54,155 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61871/status
+2025-06-07 16:56:54,155 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:54,155 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:54,155 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61871 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:54,156 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:54,157 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:54,257 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61871/status
+2025-06-07 16:56:54,258 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:54,258 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:54,258 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61871 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:54,259 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:54,259 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:54,360 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61871/status
+2025-06-07 16:56:54,360 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:54,360 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:54,360 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61871 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:54,362 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 16:56:54,362 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 16:56:54,463 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:61871/status
+2025-06-07 16:56:54,463 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 16:56:54,463 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 16:56:54,463 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=61871 local_address=None timeout=30 socket_options=None
+2025-06-07 16:56:54,465 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x128afeb90>
+2025-06-07 16:56:54,465 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 16:56:54,465 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 16:56:54,465 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 16:56:54,466 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 16:56:54,466 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 16:56:54,466 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'8'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 07:56:54 GMT')])
+2025-06-07 16:56:54,466 - httpx - INFO - HTTP Request: GET http://localhost:61871/status "HTTP/1.1 200 OK"
+2025-06-07 16:56:54,466 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 16:56:54,466 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 16:56:54,466 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 16:56:54,467 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 16:56:54,467 - prisma.engine._http - DEBUG - GET http://localhost:61871/status returned status 200
+2025-06-07 16:56:54,467 - prisma.engine._http - DEBUG - GET http://localhost:61871/status returned {'status': 'ok'}
+2025-06-07 16:56:54,467 - prisma.engine._query - DEBUG - Connecting to query engine took 0.6559s
+2025-06-07 16:56:54,467 - src.main - INFO - データベース接続が確立されました
+2025-06-07 16:56:54,467 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 17:01:07,864 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 17:01:07,866 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 17:01:07,868 - httpcore.connection - DEBUG - close.started
+2025-06-07 17:01:07,868 - httpcore.connection - DEBUG - close.complete
+2025-06-07 17:01:07,868 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 17:01:07,868 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 17:01:07,869 - src.main - INFO - データベース接続が切断されました
+2025-06-07 17:01:07,869 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 17:01:07,869 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 17:01:08,884 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 17:01:08,884 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 17:01:08,888 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 17:01:08,888 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 17:01:08,888 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:01:08,888 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:01:08,902 - prisma.engine.utils - DEBUG - Version check took 0.0135s
+2025-06-07 17:01:08,902 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 17:01:08,902 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:01:08,902 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0181s
+2025-06-07 17:01:08,903 - prisma.engine._query - DEBUG - Running query engine on port 62111
+2025-06-07 17:01:08,903 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 17:01:08,907 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:08,907 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:08,907 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:08,930 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:08,932 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:08,932 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,033 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,034 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,034 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,034 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,035 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,035 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,137 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,137 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,137 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,137 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,138 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,138 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,239 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,239 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,239 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,240 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,241 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,242 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,343 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,343 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,343 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,343 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,344 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,344 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,446 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,446 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,446 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,446 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,448 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,448 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,549 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,549 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,549 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,550 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,551 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,551 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,653 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,653 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,653 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,653 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,654 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,654 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,755 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,755 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,755 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,756 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,757 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,757 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,858 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,858 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,858 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,858 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,859 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:01:09,859 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:01:09,960 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62111/status
+2025-06-07 17:01:09,960 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:01:09,960 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:01:09,961 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62111 local_address=None timeout=30 socket_options=None
+2025-06-07 17:01:09,962 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11e0f5210>
+2025-06-07 17:01:09,963 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 17:01:09,963 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 17:01:09,963 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 17:01:09,963 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 17:01:09,963 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 17:01:09,964 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'17'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 08:01:09 GMT')])
+2025-06-07 17:01:09,964 - httpx - INFO - HTTP Request: GET http://localhost:62111/status "HTTP/1.1 200 OK"
+2025-06-07 17:01:09,964 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 17:01:09,964 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 17:01:09,965 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 17:01:09,965 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 17:01:09,965 - prisma.engine._http - DEBUG - GET http://localhost:62111/status returned status 200
+2025-06-07 17:01:09,965 - prisma.engine._http - DEBUG - GET http://localhost:62111/status returned {'status': 'ok'}
+2025-06-07 17:01:09,965 - prisma.engine._query - DEBUG - Connecting to query engine took 1.0811s
+2025-06-07 17:01:09,965 - src.main - INFO - データベース接続が確立されました
+2025-06-07 17:01:09,965 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 17:02:56,867 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 17:02:56,869 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 17:02:56,870 - httpcore.connection - DEBUG - close.started
+2025-06-07 17:02:56,870 - httpcore.connection - DEBUG - close.complete
+2025-06-07 17:02:56,870 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 17:02:56,870 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 17:02:56,870 - src.main - INFO - データベース接続が切断されました
+2025-06-07 17:02:56,870 - prisma.engine._query - DEBUG - Disconnecting query engine...
+2025-06-07 17:02:56,870 - prisma.engine._query - DEBUG - Disconnected query engine
+2025-06-07 17:02:57,864 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 17:02:57,864 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 17:02:57,868 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 17:02:57,868 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 17:02:57,868 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:02:57,868 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:02:57,906 - prisma.engine.utils - DEBUG - Version check took 0.037s
+2025-06-07 17:02:57,906 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 17:02:57,906 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:02:57,906 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0421s
+2025-06-07 17:02:57,906 - prisma.engine._query - DEBUG - Running query engine on port 62235
+2025-06-07 17:02:57,907 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 17:02:57,929 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62235/status
+2025-06-07 17:02:57,929 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:02:57,930 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:02:57,951 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62235 local_address=None timeout=30 socket_options=None
+2025-06-07 17:02:57,953 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:02:57,953 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:02:58,054 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62235/status
+2025-06-07 17:02:58,054 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:02:58,054 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:02:58,055 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62235 local_address=None timeout=30 socket_options=None
+2025-06-07 17:02:58,056 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:02:58,056 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:02:58,157 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62235/status
+2025-06-07 17:02:58,157 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:02:58,157 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:02:58,157 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62235 local_address=None timeout=30 socket_options=None
+2025-06-07 17:02:58,158 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:02:58,159 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:02:58,260 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62235/status
+2025-06-07 17:02:58,260 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:02:58,260 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:02:58,260 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62235 local_address=None timeout=30 socket_options=None
+2025-06-07 17:02:58,261 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:02:58,262 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:02:58,363 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62235/status
+2025-06-07 17:02:58,363 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:02:58,363 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:02:58,363 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62235 local_address=None timeout=30 socket_options=None
+2025-06-07 17:02:58,365 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:02:58,365 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:02:58,467 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62235/status
+2025-06-07 17:02:58,467 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:02:58,467 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:02:58,467 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62235 local_address=None timeout=30 socket_options=None
+2025-06-07 17:02:58,469 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:02:58,469 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:02:58,570 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62235/status
+2025-06-07 17:02:58,570 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:02:58,570 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:02:58,570 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62235 local_address=None timeout=30 socket_options=None
+2025-06-07 17:02:58,572 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10b20acd0>
+2025-06-07 17:02:58,572 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 17:02:58,572 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 17:02:58,572 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 17:02:58,572 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 17:02:58,572 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 17:02:58,572 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'7'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 08:02:58 GMT')])
+2025-06-07 17:02:58,573 - httpx - INFO - HTTP Request: GET http://localhost:62235/status "HTTP/1.1 200 OK"
+2025-06-07 17:02:58,573 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 17:02:58,573 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 17:02:58,573 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 17:02:58,573 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 17:02:58,573 - prisma.engine._http - DEBUG - GET http://localhost:62235/status returned status 200
+2025-06-07 17:02:58,573 - prisma.engine._http - DEBUG - GET http://localhost:62235/status returned {'status': 'ok'}
+2025-06-07 17:02:58,573 - prisma.engine._query - DEBUG - Connecting to query engine took 0.7092s
+2025-06-07 17:02:58,573 - src.main - INFO - データベース接続が確立されました
+2025-06-07 17:02:58,573 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 17:12:21,992 - prisma._base_client - DEBUG - datasources: None
+2025-06-07 17:12:21,992 - prisma.engine._query - DEBUG - Connecting to query engine
+2025-06-07 17:12:21,996 - prisma.engine.utils - DEBUG - Expecting local query engine /Users/somanoda/Documents/program/MRTalk/ai-assistant/prisma-query-engine-darwin
+2025-06-07 17:12:21,996 - prisma.engine.utils - DEBUG - Expecting global query engine /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/prisma-query-engine-darwin
+2025-06-07 17:12:21,996 - prisma.engine.utils - DEBUG - Query engine found from the Prisma CLI generated path: /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:12:21,996 - prisma.engine.utils - DEBUG - Using Query Engine binary at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:12:22,010 - prisma.engine.utils - DEBUG - Version check took 0.0131s
+2025-06-07 17:12:22,010 - prisma.engine.utils - DEBUG - Using query engine version 393aa359c9ad4a4bb28630fb5613f9c281cde053
+2025-06-07 17:12:22,010 - prisma.engine.utils - DEBUG - Using query engine at /Users/somanoda/.cache/prisma-python/binaries/5.17.0/393aa359c9ad4a4bb28630fb5613f9c281cde053/node_modules/prisma/query-engine-darwin-arm64
+2025-06-07 17:12:22,010 - prisma.engine.utils - DEBUG - Ensuring query engine took: 0.0177s
+2025-06-07 17:12:22,010 - prisma.engine._query - DEBUG - Running query engine on port 62844
+2025-06-07 17:12:22,011 - prisma.engine._query - DEBUG - Starting query engine...
+2025-06-07 17:12:22,033 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,033 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,034 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,054 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,056 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,056 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,157 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,157 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,157 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,157 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,159 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,159 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,259 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,259 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,259 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,260 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,261 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,261 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,362 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,362 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,362 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,362 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,363 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,363 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,464 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,465 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,465 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,465 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,466 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,466 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,567 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,567 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,567 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,568 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,569 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,569 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,672 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,673 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,673 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,674 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,681 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,681 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,782 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,782 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,782 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,783 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,784 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,784 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,885 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,885 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,885 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,885 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,886 - httpcore.connection - DEBUG - connect_tcp.failed exception=ConnectError(OSError('All connection attempts failed'))
+2025-06-07 17:12:22,886 - prisma.engine._query - DEBUG - Could not connect to query engine due to All connection attempts failed; retrying...
+2025-06-07 17:12:22,988 - prisma.engine._http - DEBUG - Constructed GET request to http://localhost:62844/status
+2025-06-07 17:12:22,988 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:12:22,988 - prisma.engine._http - DEBUG - Request content: None
+2025-06-07 17:12:22,988 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:12:22,989 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c47c650>
+2025-06-07 17:12:22,989 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-06-07 17:12:22,989 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 17:12:22,989 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-06-07 17:12:22,989 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 17:12:22,989 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-06-07 17:12:22,990 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'15'), (b'x-elapsed', b'6'), (b'content-length', b'15'), (b'date', b'Sat, 07 Jun 2025 08:12:22 GMT')])
+2025-06-07 17:12:22,990 - httpx - INFO - HTTP Request: GET http://localhost:62844/status "HTTP/1.1 200 OK"
+2025-06-07 17:12:22,990 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-06-07 17:12:22,990 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 17:12:22,990 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 17:12:22,990 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 17:12:22,990 - prisma.engine._http - DEBUG - GET http://localhost:62844/status returned status 200
+2025-06-07 17:12:22,990 - prisma.engine._http - DEBUG - GET http://localhost:62844/status returned {'status': 'ok'}
+2025-06-07 17:12:22,990 - prisma.engine._query - DEBUG - Connecting to query engine took 0.9979s
+2025-06-07 17:12:22,990 - src.main - INFO - データベース接続が確立されました
+2025-06-07 17:12:22,990 - src.main - INFO - チャットバックエンドが初期化されました
+2025-06-07 17:13:42,033 - src.main - DEBUG - セッション認証処理を開始
+2025-06-07 17:13:42,034 - src.main - DEBUG - トークンを抽出: vr74KcZt2P...
+2025-06-07 17:13:42,034 - src.main - DEBUG - セッション取得処理中...
+2025-06-07 17:13:42,036 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquesession
+  (
+    where: {
+      token: "vr74KcZt2PbPFgay8I3OpDi9YEe6XUga"
+    }
+  )
+  {
+    id
+    expiresAt
+    token
+    createdAt
+    updatedAt
+    ipAddress
+    userAgent
+    userId
+    user {
+      id
+      name
+      email
+      emailVerified
+      image
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 17:13:42,036 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:62844/
+2025-06-07 17:13:42,036 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:13:42,036 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquesession\n  (\n    where: {\n      token: \"vr74KcZt2PbPFgay8I3OpDi9YEe6XUga\"\n    }\n  )\n  {\n    id\n    expiresAt\n    token\n    createdAt\n    updatedAt\n    ipAddress\n    userAgent\n    userId\n    user {\n      id\n      name\n      email\n      emailVerified\n      image\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 17:13:42,037 - httpcore.connection - DEBUG - close.started
+2025-06-07 17:13:42,037 - httpcore.connection - DEBUG - close.complete
+2025-06-07 17:13:42,037 - httpcore.connection - DEBUG - connect_tcp.started host='localhost' port=62844 local_address=None timeout=30 socket_options=None
+2025-06-07 17:13:42,039 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c55bc50>
+2025-06-07 17:13:42,039 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:42,039 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 17:13:42,039 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 17:13:42,039 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 17:13:42,039 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:42,450 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'773'), (b'x-elapsed', b'410303'), (b'content-length', b'773'), (b'date', b'Sat, 07 Jun 2025 08:13:42 GMT')])
+2025-06-07 17:13:42,450 - httpx - INFO - HTTP Request: POST http://localhost:62844/ "HTTP/1.1 200 OK"
+2025-06-07 17:13:42,451 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 17:13:42,451 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 17:13:42,451 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 17:13:42,451 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 17:13:42,451 - prisma.engine._http - DEBUG - POST http://localhost:62844/ returned status 200
+2025-06-07 17:13:42,451 - prisma.engine._http - DEBUG - POST http://localhost:62844/ returned {'data': {'result': {'id': '2urDfCA5VAhEHT6C3lScb3LvXX1dS73A', 'expiresAt': '2025-06-14T06:44:44.070Z', 'token': 'vr74KcZt2PbPFgay8I3OpDi9YEe6XUga', 'createdAt': '2025-06-07T06:44:44.070Z', 'updatedAt': '2025-06-07T06:44:44.070Z', 'ipAddress': '126.53.190.7', 'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; Quest 3) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/38.4.0.14.57.741245639 Chrome/134.0.6998.205 VR Safari/537.36', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'user': {'id': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'name': 'soma noda', 'email': 'keenbunion7850@gmail.com', 'emailVerified': True, 'image': 'https://lh3.googleusercontent.com/a/ACg8ocLPkBUUknFTovoX7Eo0QLrEk33I_tGTn-PdehIocc9FFawylowy=s96-c', 'createdAt': '2025-05-19T05:40:56.180Z', 'updatedAt': '2025-05-19T05:40:56.180Z'}}}}
+2025-06-07 17:13:42,451 - src.main - INFO - セッション認証成功 - User ID: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 17:13:42,451 - src.main - INFO - 音声ファイルの文字起こし処理を開始
+2025-06-07 17:13:42,451 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_header_value with data[57:96]
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_header_field with data[98:110]
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_header_value with data[112:121]
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_part_data with data[125:24772]
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2025-06-07 17:13:42,452 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2025-06-07 17:13:42,452 - src.main - DEBUG - 受信したファイル: blob
+2025-06-07 17:13:42,452 - src.main - DEBUG - ファイルサイズ: 24647 bytes
+2025-06-07 17:13:42,605 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s32le', '-vn', '-f', 'wav', '-'])
+2025-06-07 17:13:42,669 - src.main - DEBUG - 音声ファイルをWAV形式に変換完了
+2025-06-07 17:13:42,670 - src.main - INFO - Google Speech Recognition APIに送信中...
+2025-06-07 17:13:43,154 - src.main - INFO - 音声認識結果: こんにちは
+2025-06-07 17:13:43,154 - src.main - INFO - POST /chat エンドポイント呼び出し - Character: 432629b9-7aa7-4c45-84ac-5034251d424a, User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH
+2025-06-07 17:13:43,154 - src.main - INFO - チャット処理開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 17:13:43,154 - src.main - DEBUG - 入力テキスト: こんにちは
+2025-06-07 17:13:45,012 - src.main - DEBUG - チャット用メモリストアセットアップ完了
+2025-06-07 17:13:45,020 - src.main - DEBUG - レスポンス生成開始 - Messages: 1件
+2025-06-07 17:13:45,020 - src.main - DEBUG - キャラクター取得処理を開始 - ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 17:13:45,020 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findUniquecharacter
+  (
+    where: {
+      id: "432629b9-7aa7-4c45-84ac-5034251d424a"
+    }
+  )
+  {
+    id
+    name
+    personality
+    story
+    postedBy
+    modelUrl
+    createdAt
+    updatedAt
+    isPublic
+    voice {
+      id
+      characterId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+2025-06-07 17:13:45,020 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:62844/
+2025-06-07 17:13:45,020 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:13:45,020 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findUniquecharacter\n  (\n    where: {\n      id: \"432629b9-7aa7-4c45-84ac-5034251d424a\"\n    }\n  )\n  {\n    id\n    name\n    personality\n    story\n    postedBy\n    modelUrl\n    createdAt\n    updatedAt\n    isPublic\n    voice {\n      id\n      characterId\n      userId\n      createdAt\n      updatedAt\n    }\n  }\n}"}
+2025-06-07 17:13:45,021 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:45,022 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 17:13:45,022 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 17:13:45,022 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 17:13:45,022 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:45,367 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'633'), (b'x-elapsed', b'344865'), (b'content-length', b'633'), (b'date', b'Sat, 07 Jun 2025 08:13:45 GMT')])
+2025-06-07 17:13:45,367 - httpx - INFO - HTTP Request: POST http://localhost:62844/ "HTTP/1.1 200 OK"
+2025-06-07 17:13:45,367 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 17:13:45,368 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 17:13:45,368 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 17:13:45,368 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 17:13:45,368 - prisma.engine._http - DEBUG - POST http://localhost:62844/ returned status 200
+2025-06-07 17:13:45,368 - prisma.engine._http - DEBUG - POST http://localhost:62844/ returned {'data': {'result': {'id': '432629b9-7aa7-4c45-84ac-5034251d424a', 'name': 'アリスたん', 'personality': 'あ', 'story': 'かわいい', 'postedBy': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'modelUrl': 'https://mrzy2osyec6ctjcg.public.blob.vercel-storage.com/AliciaSolid-1.0-cJCvhV5qNroeiZ9ARxHmfxNXwEMN31.vrm?download=1', 'createdAt': '2025-06-07T07:33:21.678Z', 'updatedAt': '2025-06-07T07:33:21.678Z', 'isPublic': True, 'voice': {'id': 'dc6fa73d-5542-4234-8b1d-d109d0cd18fd', 'characterId': '432629b9-7aa7-4c45-84ac-5034251d424a', 'userId': 'SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH', 'createdAt': '2025-06-07T07:33:25.735Z', 'updatedAt': '2025-06-07T07:33:25.735Z'}}}}
+2025-06-07 17:13:45,368 - src.main - INFO - キャラクター取得成功 - Name: アリスたん, ID: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 17:13:45,368 - src.main - DEBUG - 今日の学習内容を取得中...
+2025-06-07 17:13:45,369 - prisma._builder - DEBUG - Generated query: 
+query {
+  result: findFirsttodays_study
+  (
+    where: {
+      id: "0"
+    }
+  )
+  {
+    id
+    createdAt
+    content
+  }
+}
+2025-06-07 17:13:45,369 - prisma.engine._http - DEBUG - Constructed POST request to http://localhost:62844/
+2025-06-07 17:13:45,369 - prisma.engine._http - DEBUG - Request headers: {'Accept': 'application/json'}
+2025-06-07 17:13:45,369 - prisma.engine._http - DEBUG - Request content: {"variables": {}, "operation_name": "query", "query": "query {\n  result: findFirsttodays_study\n  (\n    where: {\n      id: \"0\"\n    }\n  )\n  {\n    id\n    createdAt\n    content\n  }\n}"}
+2025-06-07 17:13:45,369 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:45,369 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 17:13:45,369 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 17:13:45,369 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 17:13:45,369 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:45,538 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json'), (b'qe-content-length', b'135'), (b'x-elapsed', b'168023'), (b'content-length', b'135'), (b'date', b'Sat, 07 Jun 2025 08:13:45 GMT')])
+2025-06-07 17:13:45,538 - httpx - INFO - HTTP Request: POST http://localhost:62844/ "HTTP/1.1 200 OK"
+2025-06-07 17:13:45,538 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 17:13:45,538 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 17:13:45,538 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 17:13:45,538 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 17:13:45,538 - prisma.engine._http - DEBUG - POST http://localhost:62844/ returned status 200
+2025-06-07 17:13:45,538 - prisma.engine._http - DEBUG - POST http://localhost:62844/ returned {'data': {'result': {'id': '0', 'createdAt': '2025-06-03T05:49:20.328Z', 'content': "'今日は分散型SNSについて勉強するよ！'"}}}
+2025-06-07 17:13:45,539 - src.main - INFO - '今日は分散型SNSについて勉強するよ！'
+2025-06-07 17:13:45,539 - src.main - DEBUG - LLMにプロンプトを送信中...
+2025-06-07 17:13:46,710 - src.main - INFO - LLMレスポンス取得完了 - Content: やっほー、君！今日も一緒にいられてアリスは嬉しいな！...
+2025-06-07 17:13:46,710 - src.main - DEBUG - テキスト変換処理中...
+2025-06-07 17:13:46,711 - src.main - DEBUG - 変換後テキスト: やっほー、君！今日も一緒にいられてアリスは嬉しいな！
+2025-06-07 17:13:46,711 - src.main - DEBUG - TTS音声生成中...
+2025-06-07 17:13:46,741 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): deprecatedapis.tts.quest:443
+2025-06-07 17:13:48,146 - urllib3.connectionpool - DEBUG - https://deprecatedapis.tts.quest:443 "GET /v2/voicevox/audio/?text=%E3%82%84%E3%81%A3%E3%81%BB%E3%83%BC%E3%80%81%E5%90%9B%EF%BC%81%E4%BB%8A%E6%97%A5%E3%82%82%E4%B8%80%E7%B7%92%E3%81%AB%E3%81%84%E3%82%89%E3%82%8C%E3%81%A6%E3%82%A2%E3%83%AA%E3%82%B9%E3%81%AF%E5%AC%89%E3%81%97%E3%81%84%E3%81%AA%EF%BC%81&key=U7G77-N_Y4e75-Q HTTP/1.1" 200 None
+2025-06-07 17:13:48,261 - pydub.converter - DEBUG - subprocess.call(['ffmpeg', '-y', '-read_ahead_limit', '-1', '-i', 'cache:pipe:0', '-acodec', 'pcm_s16le', '-vn', '-f', 'wav', '-'])
+2025-06-07 17:13:48,329 - src.main - INFO - TTS音声生成完了
+2025-06-07 17:13:48,329 - src.main - DEBUG - レスポンス生成完了 - Emotion: neutral=0.7 happy=0.8 sad=0.1 angry=0.1, Event: None
+2025-06-07 17:13:48,330 - src.main - INFO - チャットレスポンス生成完了
+2025-06-07 17:13:48,331 - src.main - DEBUG - 記憶保存タスクを開始...
+2025-06-07 17:13:48,331 - src.main - INFO - POST /chat 正常完了
+2025-06-07 17:13:48,332 - src.main - INFO - 記憶保存処理を開始 - User: SaCOmrOk3kp6b2Ijp607PijGvf1PnVVH, Character: 432629b9-7aa7-4c45-84ac-5034251d424a
+2025-06-07 17:13:49,775 - src.main - DEBUG - メモリストアセットアップ完了
+2025-06-07 17:13:49,777 - src.main - DEBUG - メッセージ保存中 - Input: こんにちは..., Response: やっほー、君！今日も一緒にいられてアリスは嬉しいな！...
+2025-06-07 17:13:49,900 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/embeddings', 'files': None, 'idempotency_key': 'stainless-python-retry-7874e5fd-2a58-4296-a129-9987af21afa5', 'post_parser': <function AsyncEmbeddings.create.<locals>.parser at 0x10d32eca0>, 'json_data': {'input': [[3134, 419, 57086, 4961, 36874, 69427, 71289, 42891, 2243, 119, 11972, 5486, 7305, 249, 6447, 37271, 9080, 32977, 15120, 163, 115, 240, 20230, 16995, 33503, 33121, 38144, 39880, 37823, 22398, 15682, 161, 105, 231, 15024, 16995, 26854, 6447]], 'model': 'text-embedding-3-small', 'encoding_format': 'base64'}}
+2025-06-07 17:13:49,900 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/embeddings
+2025-06-07 17:13:49,901 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2025-06-07 17:13:49,928 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10d36c490>
+2025-06-07 17:13:49,928 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x109d54320> server_hostname='api.openai.com' timeout=None
+2025-06-07 17:13:49,946 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c55b0d0>
+2025-06-07 17:13:49,946 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:49,946 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-06-07 17:13:49,946 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-07 17:13:49,946 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-06-07 17:13:49,946 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-07 17:13:50,538 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 07 Jun 2025 08:13:50 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-allow-origin', b'*'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-model', b'text-embedding-3-small'), (b'openai-organization', b'personal-fsowto'), (b'openai-processing-ms', b'99'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'via', b'envoy-router-6956f8c995-qh7h5'), (b'x-envoy-upstream-service-time', b'102'), (b'x-ratelimit-limit-requests', b'3000'), (b'x-ratelimit-limit-tokens', b'1000000'), (b'x-ratelimit-remaining-requests', b'2999'), (b'x-ratelimit-remaining-tokens', b'999961'), (b'x-ratelimit-reset-requests', b'20ms'), (b'x-ratelimit-reset-tokens', b'2ms'), (b'x-request-id', b'req_e08e64b99fa88e6b978179ee07178291'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=9vpEpPFWyCJBV0nXp_.j7ZkLOAg00ockvGEKBdveZu8-1749284030-1.0.1.1-e7j8fvhz4QICn399X8OSaRG8dos5_HIrrxHvFasae_LU6o1bFK4S9lwwdL5CHeljRZ3E_L_j.Yuo3SOB3_glZU50UPnyGIMxaiVdj2Tdy8A; path=/; expires=Sat, 07-Jun-25 08:43:50 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=w.iEQr1m6MoXZkASSJAGLZktt12k3sh.SPLlDCuADXY-1749284030504-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'94beb1430ceae35b-NRT'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-06-07 17:13:50,540 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-07 17:13:50,540 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-07 17:13:50,542 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-06-07 17:13:50,542 - httpcore.http11 - DEBUG - response_closed.started
+2025-06-07 17:13:50,542 - httpcore.http11 - DEBUG - response_closed.complete
+2025-06-07 17:13:50,542 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/embeddings "200 OK" Headers([('date', 'Sat, 07 Jun 2025 08:13:50 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-allow-origin', '*'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-model', 'text-embedding-3-small'), ('openai-organization', 'personal-fsowto'), ('openai-processing-ms', '99'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('via', 'envoy-router-6956f8c995-qh7h5'), ('x-envoy-upstream-service-time', '102'), ('x-ratelimit-limit-requests', '3000'), ('x-ratelimit-limit-tokens', '1000000'), ('x-ratelimit-remaining-requests', '2999'), ('x-ratelimit-remaining-tokens', '999961'), ('x-ratelimit-reset-requests', '20ms'), ('x-ratelimit-reset-tokens', '2ms'), ('x-request-id', 'req_e08e64b99fa88e6b978179ee07178291'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=9vpEpPFWyCJBV0nXp_.j7ZkLOAg00ockvGEKBdveZu8-1749284030-1.0.1.1-e7j8fvhz4QICn399X8OSaRG8dos5_HIrrxHvFasae_LU6o1bFK4S9lwwdL5CHeljRZ3E_L_j.Yuo3SOB3_glZU50UPnyGIMxaiVdj2Tdy8A; path=/; expires=Sat, 07-Jun-25 08:43:50 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=w.iEQr1m6MoXZkASSJAGLZktt12k3sh.SPLlDCuADXY-1749284030504-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '94beb1430ceae35b-NRT'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-06-07 17:13:50,542 - openai._base_client - DEBUG - request_id: req_e08e64b99fa88e6b978179ee07178291
+2025-06-07 17:13:51,052 - grpc._cython.cygrpc - DEBUG - Using AsyncIOEngine.POLLER as I/O engine
+2025-06-07 17:13:51,873 - langsmith.utils - DEBUG - LangSmith tracing is not enabled, returning original function.
+2025-06-07 17:13:53,849 - src.main - INFO - 記憶保存完了

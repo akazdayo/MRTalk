@@ -403,11 +403,8 @@ async def chat(text: str, session: session, character_id: str):
 
                 logger.debug("TTS音声生成中...")
                 # TTS音声生成をコメントアウト
-                # base64_voice = TTS.generate(
-                #    character.voice.id, converted_text, session.token
-                # )
-                base64_voice = ""  # 空の音声データ
-                logger.info("TTS音声生成完了（コメントアウト済み）")
+                base64_voice = TTS.generate(character.voice.id, converted_text)
+                logger.info("TTS音声生成完了")
 
                 res = Response(
                     role=response.role,

@@ -55,7 +55,6 @@ export const ResponseSchema = z
     voice: z
       .string({ required_error: "Voice is required" })
       .base64()
-      .optional()
-      .or(z.literal("")),
+      .min(1, "Voice is required"),
   })
   .strict();
